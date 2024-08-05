@@ -1,0 +1,139 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Representation Analysis for NLP}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Representations and Linguistic Properties}
+
+Representations learned by NLP models capture various linguistic properties that are essential for understanding language. These properties can be broadly categorized into syntactic and semantic information.
+
+\begin{itemize}
+    \item \textbf{Syntactic Properties}: Syntactic properties refer to the structural aspects of language, including grammar and sentence structure. Effective representations encode the following syntactic information:
+    \begin{itemize}
+        \item \textbf{Part-of-Speech Tags}: Representations can capture the grammatical categories of words, such as nouns, verbs, adjectives, etc. This helps in understanding the roles that words play in sentences.
+        \item \textbf{Dependency Relations}: Words in a sentence often have grammatical dependencies with each other (e.g., subject-verb, adjective-noun). Representations that capture these dependencies can help in tasks like parsing and syntax-based translation.
+        \item \textbf{Constituent Structure}: Representations may also encode higher-level syntactic structures, such as phrases and clauses, which are important for understanding the hierarchical organization of sentences.
+        \item \textbf{Word Order}: The sequence in which words appear in a sentence is crucial for meaning. Representations that preserve word order information can help in tasks like machine translation and text generation.
+    \end{itemize}
+
+    \item \textbf{Semantic Properties}: Semantic properties involve the meanings of words and their relationships. Effective representations capture the following semantic information:
+    \begin{itemize}
+        \item \textbf{Word Meanings}: Representations encode the meanings of individual words. This can be analyzed through tasks like word similarity, where similar words (e.g., "cat" and "feline") have similar embeddings.
+        \item \textbf{Contextual Meaning}: The meaning of a word can change based on its context. Contextual embeddings, such as those from models like BERT, capture these nuances by considering surrounding words. For example, the word "bank" has different meanings in "river bank" and "financial bank".
+        \item \textbf{Synonymy and Antonymy}: Effective representations capture semantic relationships such as synonyms (words with similar meanings) and antonyms (words with opposite meanings). This is crucial for tasks like paraphrase detection and sentiment analysis.
+        \item \textbf{Polysemy}: Words with multiple meanings (polysemous words) should have representations that reflect their different senses depending on context. For instance, "bark" should have different embeddings when referring to a tree's outer layer versus a dog's sound.
+        \item \textbf{Compositionality}: The meaning of phrases and sentences is often compositional, meaning it is derived from the meanings of individual words and their arrangement. Representations that capture compositionality help in understanding complex expressions and idiomatic phrases.
+    \end{itemize}
+\end{itemize}
+
+To analyze these properties, various probing techniques are used:
+\begin{itemize}
+    \item \textbf{Probing Classifiers}: Small supervised classifiers are trained on top of fixed embeddings to predict linguistic properties like part-of-speech tags, syntactic roles, or semantic roles. High accuracy indicates that the embeddings capture relevant linguistic information.
+    \item \textbf{Visualization}: Techniques such as t-SNE or PCA can visualize the high-dimensional embeddings in a lower-dimensional space, helping to inspect clusters and relationships between words.
+    \item \textbf{Correlation Analysis}: Correlating embedding distances with human-judged linguistic distances (e.g., similarity or relatedness scores) can provide insights into how well the representations capture semantic relationships.
+    \item \textbf{Linguistic Tasks}: Evaluating representations on downstream linguistic tasks, such as named entity recognition, sentiment analysis, or syntactic parsing, provides practical evidence of the embeddings' effectiveness in capturing linguistic properties.
+\end{itemize}
+
+In summary, representations learned by NLP models encapsulate both syntactic and semantic properties of language. Analyzing these representations through various probing techniques helps in understanding their effectiveness and guiding further improvements in model design and training.
+
+
+\subsection{Analyzing Self-Attention}
+
+Self-attention mechanisms in transformer models allow for the examination of how tokens attend to each other, providing insights into the model's internal workings. Analyzing self-attention helps to understand what information the model considers important and how it processes different parts of the input sequence.
+
+\begin{itemize}
+    \item \textbf{Attention Patterns}: By visualizing attention weights, we can analyze how the model distributes attention across different tokens. Attention patterns reveal which tokens are considered relevant for predicting the next token in a sequence. Typical visualization techniques include attention heatmaps and attention heads visualizations. These patterns can show whether the model focuses on nearby words, distant words, or specific syntactic structures.
+    
+    \item \textbf{Head Specialization}: Transformers use multi-head self-attention mechanisms, where multiple attention heads operate in parallel. Each head can learn to focus on different types of relationships or aspects of the input. Analyzing head specialization involves examining the distinct roles of each attention head. For example, some heads might specialize in capturing syntactic dependencies (like subject-verb relationships), while others might focus on semantic roles (like identifying entities and their attributes).
+
+    \item \textbf{Layer-wise Analysis}: Self-attention can be analyzed at different layers of the transformer. Lower layers often capture more local and syntactic information, while higher layers tend to capture more global and semantic information. Layer-wise analysis helps in understanding the hierarchical nature of learned representations and how information is progressively abstracted.
+    
+    \item \textbf{Global vs. Local Attention}: Analyzing whether the model's attention is more global (considering distant tokens) or local (focusing on nearby tokens) helps in understanding its contextual understanding. For instance, attention to distant tokens can indicate the model's ability to capture long-range dependencies.
+
+    \item \textbf{Attention as Explanation}: Attention weights are sometimes used as explanations for model predictions. However, it is important to note that while attention provides some interpretability, it is not a definitive explanation of model behavior. Additional analysis and methods are often needed to fully understand the model's decision-making process.
+    
+\end{itemize}
+
+In summary, analyzing self-attention mechanisms in transformer models provides valuable insights into how these models process and prioritize different parts of the input sequence. Visualization and interpretation of attention patterns, head specialization, and layer-wise behavior help in understanding the internal workings of the model and improving its performance.
+
+
+\subsection{Similarity and Geometry}
+
+The geometric properties of the learned representations provide valuable insights into the structure and effectiveness of the embedding space. Understanding similarity and geometry is crucial for evaluating how well the model captures relationships between words and phrases.
+
+\begin{itemize}
+    \item \textbf{Similarity Metrics}: Analyzing similarity metrics helps in understanding how close or distant different word embeddings are within the vector space.
+    \begin{itemize}
+        \item \textbf{Cosine Similarity}: This metric measures the cosine of the angle between two vectors, indicating how similar they are in terms of direction. High cosine similarity between embeddings suggests that the words are semantically similar.
+        \item \textbf{Euclidean Distance}: This metric measures the straight-line distance between two points in the embedding space. Smaller distances indicate greater similarity. While less commonly used than cosine similarity, it can provide additional insights into the embedding space's structure.
+    \end{itemize}
+    
+    \item \textbf{Clustering}: Grouping similar word embeddings together can reveal natural clusters within the embedding space.
+    \begin{itemize}
+        \item \textbf{K-Means Clustering}: This algorithm partitions the embedding space into \( k \) clusters, where each word belongs to the cluster with the nearest mean. This can reveal semantic groupings, such as synonyms or related concepts.
+        \item \textbf{Hierarchical Clustering}: This method builds a hierarchy of clusters, which can be visualized as a dendrogram. It provides a more detailed view of the relationships between embeddings at different levels of granularity.
+    \end{itemize}
+    
+    \item \textbf{Dimensionality Reduction}: Visualizing high-dimensional embeddings in a lower-dimensional space can help in understanding their geometric properties.
+    \begin{itemize}
+        \item \textbf{t-SNE (t-Distributed Stochastic Neighbor Embedding)}: This technique reduces the dimensionality of embeddings while preserving local structures, making it useful for visualizing clusters and relationships.
+        \item \textbf{PCA (Principal Component Analysis)}: PCA reduces the dimensionality by projecting the embeddings onto the directions of maximum variance. This helps in identifying the principal components that capture most of the variance in the data.
+    \end{itemize}
+
+    \item \textbf{Embedding Space Geometry}: Studying the geometric properties of the embedding space provides insights into how well the model organizes linguistic information.
+    \begin{itemize}
+        \item \textbf{Density and Distribution}: Analyzing the density and distribution of embeddings can reveal whether the space is uniformly populated or contains sparse regions. A well-distributed space indicates good coverage of the language.
+        \item \textbf{Subspace Structures}: Identifying subspaces within the embedding space that correspond to specific linguistic features (e.g., tense, number, or gender) can provide insights into how these features are encoded. For example, certain directions in the embedding space may correspond to semantic shifts like singular to plural forms.
+    \end{itemize}
+
+    \item \textbf{Analogies and Linear Relationships}: Embeddings often capture analogical relationships through linear transformations. For instance, the relationship between "king" and "queen" can be similar to the relationship between "man" and "woman."
+    \begin{itemize}
+        \item \textbf{Word Analogies}: By performing vector arithmetic (e.g., "king" - "man" + "woman"), one can retrieve vectors close to the expected answer (e.g., "queen"). This demonstrates the model's ability to capture meaningful relationships.
+        \item \textbf{Linear Projections}: Identifying and interpreting linear projections that correspond to specific semantic or syntactic properties can help in understanding the embedding space's structure. For example, projecting embeddings onto the gender subspace can reveal gender biases.
+    \end{itemize}
+    
+    \item \textbf{Intrinsic Evaluation Tasks}: These tasks evaluate the quality of word embeddings based on their geometric properties.
+    \begin{itemize}
+        \item \textbf{Word Similarity Tasks}: These tasks measure how well the similarity between word embeddings aligns with human-judged similarities. Common datasets include WordSim-353 and SimLex-999.
+        \item \textbf{Word Analogies Tasks}: These tasks evaluate the model's ability to solve analogy problems, such as "man is to king as woman is to ?". The accuracy in these tasks reflects the model's capability to capture linear relationships.
+    \end{itemize}
+    
+\end{itemize}
+
+In summary, analyzing the similarity and geometry of learned representations involves examining similarity metrics, clustering, dimensionality reduction, and intrinsic evaluation tasks. These analyses provide insights into the structure of the embedding space and the quality of the captured linguistic relationships.
+
+
+\subsection{Representation Degeneration}
+
+Representation degeneration refers to geometric issues in learned embeddings where the embeddings lose their discriminative power and become less effective at capturing meaningful distinctions. This can manifest in several geometric phenomena:
+
+\begin{itemize}
+    \item \textbf{Anisotropy}: Anisotropy in the embedding space occurs when the space is stretched or distorted in specific directions, causing the representations to be unevenly distributed. In the context of language models, anisotropic spaces can result in embeddings that are more spread out in certain dimensions while being compressed in others. This can affect the model’s ability to capture and differentiate between various semantic and syntactic features. 
+
+    \item \textbf{Outlier Dimensions}: Outlier dimensions are directions in the embedding space that do not capture meaningful information and may represent noise or irrelevant features. These dimensions can distort the embeddings, leading to poor performance on tasks that rely on accurate semantic and syntactic understanding. Identifying and addressing outlier dimensions is essential for improving the quality of embeddings.
+
+    \item \textbf{Representation Collapse}: Representation collapse refers to the phenomenon where embeddings of different tokens become indistinguishable and collapse into a narrow subspace. This often occurs when embeddings lose their diversity and become too similar to each other. Representation collapse reduces the model's ability to differentiate between tokens, adversely affecting downstream task performance. It can be detected by analyzing the clustering of embeddings or by examining their distribution.
+
+    \item \textbf{Biases in Latent Spaces}: Embedding spaces can encode biases present in the training data, leading to undesirable biases in the latent space. For instance, gender, race, or cultural biases can manifest in specific dimensions, causing the model to make biased predictions or generate unfair outputs. Analyzing the latent space for biased subspaces or skewed distributions is crucial for addressing fairness issues in NLP models. Techniques such as adversarial debiasing or fair representation learning can help mitigate these biases.
+
+    \item \textbf{Dimensional Collapse}: Dimensional collapse occurs when the embeddings occupy only a small subset of the available dimensions, effectively reducing the dimensionality of the learned representations. This can happen due to overfitting or excessive regularization, leading to embeddings that do not utilize the full capacity of the vector space. Analyzing the effective dimensionality and ensuring that embeddings utilize the available space can help in mitigating this issue.
+
+    \item \textbf{Loss of Geometric Structure}: Effective embeddings should maintain meaningful geometric relationships, such as clustering of similar words and separation of dissimilar ones. Degeneration can lead to a loss of these geometric structures, where embeddings fail to reflect semantic or syntactic relationships accurately. Techniques like manifold learning or embedding space visualization can be used to analyze and restore geometric properties.
+
+    \item \textbf{Regularization and Hyperparameter Tuning}: Overly aggressive regularization can cause embeddings to collapse into subspaces, while insufficient regularization might lead to overfitting. Proper tuning of regularization parameters and hyperparameters is crucial for maintaining the balance between effective representation learning and avoiding degeneration.
+
+\end{itemize}
+
+\textbf{Mitigating Geometric Degeneration} involves several strategies:
+\begin{itemize}
+    \item \textbf{Enhanced Training Techniques}: Using more diverse and extensive datasets can help the model learn richer representations and prevent degeneration. Techniques such as data augmentation and noise injection can also improve the robustness of embeddings.
+    
+    \item \textbf{Dimensionality Analysis}: Analyzing and managing the dimensionality of the embedding space helps in ensuring that the model makes full use of the available dimensions. Methods like Principal Component Analysis (PCA) and Singular Value Decomposition (SVD) can help in identifying and addressing dimensional collapse.
+
+    \item \textbf{Bias Mitigation Techniques}: Applying techniques like adversarial training, counterfactual data augmentation, and fairness constraints can help in reducing biases in the latent space and ensuring more equitable representations.
+
+    \item \textbf{Regularization Techniques}: Applying appropriate regularization techniques to prevent overfitting and ensure embeddings retain their discriminative power. Techniques like weight decay, dropout, and layer normalization should be carefully tuned.
+
+    \item \textbf{Model Architecture Adjustments}: Modifying the model architecture to increase capacity or adjust attention mechanisms can help in learning better representations and addressing geometric issues. For example, increasing the number of attention heads or layers can enhance the model’s ability to capture complex relationships.
+\end{itemize}
+
+In summary, representation degeneration in the geometric sense involves anisotropy, outlier dimensions, representation collapse, and biases in latent spaces. Addressing these issues is crucial for maintaining the effectiveness of learned embeddings and ensuring that they provide accurate and fair representations in NLP models.

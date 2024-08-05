@@ -1,0 +1,52 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Representation Learning}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+  \begin{minipage}{0.5\textwidth}
+    \begin{small}
+      In which the reasons for creating this package are laid bare for the
+      whole world to see and we encounter some usage guidelines.
+    \end{small}
+  \end{minipage}
+  \vspace{0.5cm}
+\end{center}
+
+\subsection{Introduction}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Statistical approaches}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Statistical approaches to representation learning primarily involve methods that leverage co-occurrence statistics and distributional properties of words. Key techniques in this category include:
+
+\begin{itemize}
+  \item Latent Semantic Analysis (LSA): LSA is based on the Singular Value Decomposition (SVD) of term-document matrices, reducing the dimensionality of the data and uncovering latent semantic structures. By mapping words and documents to a shared vector space, LSA captures semantic similarities based on co-occurrence patterns.
+\end{itemize}
+
+
+Latent Dirichlet Allocation (LDA): LDA is a generative probabilistic model that represents documents as mixtures of topics, where each topic is a distribution over words. By inferring the topic distribution for each document, LDA provides a way to represent documents in a lower-dimensional topic space.
+
+Word2Vec: Introduced by Mikolov et al., Word2Vec includes two model architectures—Continuous Bag of Words (CBOW) and Skip-gram. These models learn word embeddings by predicting the context words surrounding a target word or vice versa. The resulting vectors capture semantic relationships such as analogies (e.g., "king" - "man" + "woman" $\simeq$ "queen").
+
+GloVe (Global Vectors for Word Representation): GloVe is another word embedding technique that combines the advantages of matrix factorization and local context window methods. It constructs a word-word co-occurrence matrix and derives word vectors by factorizing this matrix, ensuring that the dot product of word vectors approximates the logarithm of their co-occurrence probabilities.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Auto-encoders}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Auto-encoders are neural network models designed to learn efficient representations of data through unsupervised learning. They consist of an encoder that maps input data to a latent space and a decoder that reconstructs the original data from this latent representation. In NLP, auto-encoders can be used to learn embeddings for words, sentences, or documents.
+
+Basic Auto-Encoders: The simplest form of auto-encoders involves a single hidden layer that compresses the input into a lower-dimensional latent space. The model is trained to minimize the reconstruction error between the input and the output.
+
+Variational Auto-Encoders (VAEs): VAEs extend basic auto-encoders by imposing a probabilistic structure on the latent space. They use a probabilistic encoder to map inputs to a distribution in the latent space, allowing for the generation of new samples by sampling from this distribution. VAEs are useful in tasks requiring generative capabilities, such as text generation.
+
+Denoising Auto-Encoders (DAEs): DAEs are trained to reconstruct the original data from corrupted versions. This process encourages the model to learn robust features that are invariant to noise, improving the quality of the learned representations.
+
+\subsection{Contrastive approaches}
+
+Contrastive approaches in representation learning aim to learn effective embeddings by contrasting positive and negative examples. The core idea is to bring similar items closer together in the embedding space while pushing dissimilar items apart. These methods are essential for capturing nuanced relationships in the data and enhancing the quality of learned representations.
+\begin{itemize}
+  \item Contrastive Loss: The fundamental concept in contrastive learning is the contrastive loss function, which drives the learning process by encouraging the model to distinguish between positive pairs (similar items) and negative pairs (dissimilar items).
+  \item Triplet Loss: Triplet loss is a popular contrastive learning technique that uses triplets of samples: an anchor, a positive (similar to the anchor), and a negative (dissimilar to the anchor). The objective is to minimize the distance between the anchor and the positive while maximizing the distance between the anchor and the negative. This approach is widely used in tasks such as face recognition and text similarity.
+  \item 
+  Noise Contrastive Estimation (NCE): NCE is another contrastive learning method that reformulates the problem of estimating a probability distribution into a binary classification problem. The model learns to distinguish between observed data and artificially generated noise samples. NCE is particularly useful in large-scale language models where direct computation of probabilities is computationally expensive.
+\end{itemize}

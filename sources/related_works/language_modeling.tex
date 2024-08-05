@@ -1,0 +1,93 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Language Modeling}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Language modeling is a fundamental task in natural language processing (NLP) that involves predicting the next word in a sequence given the preceding context. This task is crucial for various applications, including speech recognition, machine translation, text generation, and more. Language models capture the probability distribution of word sequences, enabling them to generate coherent and contextually appropriate text.
+
+Historically, language models relied on n-gram approaches, which predict a word based on the previous n-1 words. However, these models faced limitations in handling long-range dependencies and sparsity issues. With the advent of deep learning, neural language models have significantly advanced the field, providing more powerful and flexible approaches to capturing language patterns.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Methods}
+
+The process of training a language model involves several key steps, from preparing the text data to optimizing the model using specific objectives. Here is a simplified pipeline:
+
+\begin{itemize}
+    \item \textbf{Tokenization}: The first step in building a language model is tokenization, which involves breaking down the text into smaller units called tokens. Tokens can be words, subwords, or characters. This step converts raw text into a format that the model can process, typically resulting in a sequence of token indices.
+
+    \item \textbf{Embedding}: Once the text is tokenized, each token is mapped to a continuous vector representation, known as an embedding. These embeddings capture semantic information about the tokens and are learned during training.
+
+    \item \textbf{Contextualization}: The model processes the sequence of token embeddings to capture the contextual relationships between tokens. This involves passing the embeddings through layers of neural networks that refine the representations based on the surrounding context.
+
+    \item \textbf{Prediction}: For each position in the sequence, the model predicts the probability distribution of the next token. This step involves transforming the contextualized representations into logits, which are unnormalized scores for each token in the vocabulary.
+
+    \item \textbf{Objective Function}: The model is trained to minimize a specific objective function that measures the difference between the predicted probabilities and the actual next token. The most common objective function for language modeling is cross-entropy loss, which quantifies the accuracy of the model's predictions.
+
+    \item \textbf{Contrastive Methods}: In addition to traditional cross-entropy loss, contrastive methods can be used to improve the quality of the learned representations. These methods involve creating pairs of similar and dissimilar examples and training the model to distinguish between them, enhancing the model's ability to capture nuanced relationships in the data.
+
+    \item \textbf{Regularization}: To prevent overfitting and improve generalization, regularization techniques are applied during training. Common regularization methods include dropout (randomly dropping units during training to prevent co-adaptation), weight decay (penalizing large weights), and data augmentation (creating variations of the training data to improve robustness).
+\end{itemize}
+
+In summary, the objective pipeline for training a language model involves tokenizing the text, embedding the tokens, capturing contextual relationships, making predictions, and optimizing the model using objective functions like cross-entropy and contrastive loss, along with regularization techniques to ensure robust and effective learning.
+
+
+\subsection{Architectures}
+
+The architecture of a language model significantly influences its performance and capabilities. Key architectures include Recurrent Neural Networks (RNNs) and Transformers, each with unique mechanisms for processing sequences.
+
+\begin{itemize}
+    \item \textbf{Recurrent Neural Networks (RNNs)}: RNNs process sequences one element at a time, maintaining a hidden state that captures information from previous steps. Variants like Long Short-Term Memory (LSTM) and Gated Recurrent Units (GRUs) include gating mechanisms to mitigate issues like vanishing and exploding gradients. These gates control the flow of information, allowing the network to capture long-range dependencies more effectively.
+
+    \item \textbf{Transformers}: Transformers use self-attention mechanisms to weigh the importance of different words in a sequence relative to each other. They are composed of an encoder and a decoder:
+
+    \begin{itemize}
+        \item \textbf{Encoder}: The encoder consists of multiple layers, each containing two main components: a multi-head self-attention mechanism and a position-wise feedforward neural network. The self-attention mechanism allows the model to consider all positions in the input sequence simultaneously, capturing dependencies regardless of their distance.
+        
+        \item \textbf{Decoder}: The decoder also consists of multiple layers, with three main components: a masked multi-head self-attention mechanism, an encoder-decoder attention mechanism, and a position-wise feedforward neural network. The masked self-attention ensures that each position can only attend to earlier positions, maintaining the autoregressive property during generation.
+    \end{itemize}
+
+    \item \textbf{Attention Mechanisms}: The attention mechanisms in transformers come in two forms:
+    \begin{itemize}
+        \item \textbf{Masked Attention}: Used in the decoder, masked attention ensures that the model cannot attend to future tokens, preserving the causality needed for autoregressive tasks like text generation.
+        
+        \item \textbf{Causal Attention}: Similar to masked attention, causal attention restricts the attention to past and present tokens only, which is essential for maintaining the correct sequence of predictions.
+        
+        \item \textbf{Self-Attention}: Used in both the encoder and decoder, self-attention allows each token to attend to all other tokens in the sequence, capturing global dependencies and contextual information.
+    \end{itemize}
+
+    \item \textbf{Bidirectional vs. Unidirectional Models}:
+    \begin{itemize}
+        \item \textbf{Bidirectional Models}: Examples include BERT (Bidirectional Encoder Representations from Transformers), which attends to both past and future contexts in the input sequence. This is useful for tasks requiring comprehensive context understanding, such as question answering and sentiment analysis.
+        
+        \item \textbf{Unidirectional Models}: Examples include GPT (Generative Pre-trained Transformer), which attends only to past tokens. This autoregressive approach is particularly effective for text generation tasks.
+    \end{itemize}
+    
+    \item \textbf{Encoder-Decoder Models}: Models like T5 (Text-to-Text Transfer Transformer) utilize both encoder and decoder structures. The encoder processes the input sequence into a context-rich representation, which the decoder then uses to generate the output sequence. This architecture is versatile, handling a wide range of text-to-text tasks under a unified framework.
+\end{itemize}
+
+In summary, the architecture of language models ranges from RNNs that process sequences sequentially to transformers that leverage self-attention for capturing dependencies across entire sequences. These architectures, with their various attention mechanisms and structural differences, enable powerful and flexible modeling of natural language.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Limitations}
+
+Despite their advancements, language models face several limitations:
+
+\begin{itemize}
+    \item \textbf{Data and Computation Requirements}: Training state-of-the-art language models requires vast amounts of data and computational resources. This limitation restricts access to such models to organizations with substantial resources and makes the training process energy-intensive.
+
+    \item \textbf{Bias and Fairness}: Language models can learn and perpetuate biases present in the training data, leading to biased and potentially harmful outputs. Addressing these biases is a critical area of ongoing research, as it impacts the fairness and ethical use of NLP systems.
+
+    \item \textbf{Context Length}: While transformers have improved the handling of long-range dependencies, they are still limited by the maximum input length they can process. Techniques like segment-level recurrence or hierarchical models are being explored to address this limitation.
+
+    \item \textbf{Interpretability}: Deep neural language models are often seen as black boxes, making it challenging to understand and interpret their predictions. Enhancing the interpretability of these models is essential for building trust and ensuring their safe application.
+
+    \item \textbf{Generalization}: Language models sometimes struggle to generalize to out-of-distribution examples or novel contexts not seen during training. Ensuring robust generalization remains an important challenge, particularly for applications in dynamic or unpredictable environments.
+\end{itemize}
+
+In summary, while language models have made significant strides in NLP, they face notable challenges related to data and computation requirements, bias and fairness, context length, interpretability, and generalization. Addressing these limitations is crucial for the continued advancement and ethical deployment of NLP technologies.
+

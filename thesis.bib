@@ -1,28 +1,2672 @@
 % Encoding: UTF-8
-@book{Bringhurst12,
-  title     = {The Elements of Typographic Style},
-  publisher = {Hartley \& Marks Publishers},
-  year      = {2012},
-  author    = {Robert Bringhurst},
-  address   = {Vancouver, British Columbia, Canada},
-  edition   = {4}
+
+@inproceedings{bis-etal-2021-much,
+    title = "Too Much in Common: Shifting of Embeddings in Transformer Language Models and its Implications",
+    author = "Bi{\'s}, Daniel  and
+      Podkorytov, Maksim  and
+      Liu, Xiuwen",
+    editor = "Toutanova, Kristina  and
+      Rumshisky, Anna  and
+      Zettlemoyer, Luke  and
+      Hakkani-Tur, Dilek  and
+      Beltagy, Iz  and
+      Bethard, Steven  and
+      Cotterell, Ryan  and
+      Chakraborty, Tanmoy  and
+      Zhou, Yichao",
+    booktitle = "Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies",
+    month = jun,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.naacl-main.403",
+    doi = "10.18653/v1/2021.naacl-main.403",
+    pages = "5117--5130",
+    abstract = "The success of language models based on the Transformer architecture appears to be inconsistent with observed anisotropic properties of representations learned by such models. We resolve this by showing, contrary to previous studies, that the representations do not occupy a narrow cone, but rather drift in common directions. At any training step, all of the embeddings except for the ground-truth target embedding are updated with gradient in the same direction. Compounded over the training set, the embeddings drift and share common components, manifested in their shape in all the models we have empirically tested. Our experiments show that isotropy can be restored using a simple transformation.",
 }
 
-@book{Tufte01,
-  title     = {The visual display of quantitative information},
-  publisher = {Graphics Press},
-  year      = {2001},
-  author    = {Edward R. Tufte},
-  address   = {Chesh\-ire, CT, USA},
-  edition   = {2}
+@inproceedings{ethayarajh-2019-contextual,
+    title = "How Contextual are Contextualized Word Representations? {C}omparing the Geometry of {BERT}, {ELM}o, and {GPT}-2 Embeddings",
+    author = "Ethayarajh, Kawin",
+    editor = "Inui, Kentaro  and
+      Jiang, Jing  and
+      Ng, Vincent  and
+      Wan, Xiaojun",
+    booktitle = "Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)",
+    month = nov,
+    year = "2019",
+    address = "Hong Kong, China",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/D19-1006",
+    doi = "10.18653/v1/D19-1006",
+    pages = "55--65",
+    abstract = "Replacing static word embeddings with contextualized word representations has yielded significant improvements on many NLP tasks. However, just how contextual are the contextualized representations produced by models such as ELMo and BERT? Are there infinitely many context-specific representations for each word, or are words essentially assigned one of a finite number of word-sense representations? For one, we find that the contextualized representations of all words are not isotropic in any layer of the contextualizing model. While representations of the same word in different contexts still have a greater cosine similarity than those of two different words, this self-similarity is much lower in upper layers. This suggests that upper layers of contextualizing models produce more context-specific representations, much like how upper layers of LSTMs produce more task-specific representations. In all layers of ELMo, BERT, and GPT-2, on average, less than 5{\%} of the variance in a word{'}s contextualized representations can be explained by a static embedding for that word, providing some justification for the success of contextualized representations.",
 }
 
-@book{Tufte90,
-  title     = {Envisioning information},
-  publisher = {Graphics Press},
-  year      = {1990},
-  author    = {Tufte, Edward R.},
-  address   = {Chesh\-ire, CT, USA}
+@inproceedings{
+gao2018representation,
+title={Representation Degeneration Problem in Training Natural Language Generation Models},
+author={Jun Gao and Di He and Xu Tan and Tao Qin and Liwei Wang and Tieyan Liu},
+booktitle={International Conference on Learning Representations},
+year={2019},
+url={https://openreview.net/forum?id=SkEYojRqtm},
 }
+
+@inproceedings{yu-etal-2022-rare,
+    title = "Rare Tokens Degenerate All Tokens: Improving Neural Text Generation via Adaptive Gradient Gating for Rare Token Embeddings",
+    author = "Yu, Sangwon  and
+      Song, Jongyoon  and
+      Kim, Heeseung  and
+      Lee, Seongmin  and
+      Ryu, Woo-Jong  and
+      Yoon, Sungroh",
+    editor = "Muresan, Smaranda  and
+      Nakov, Preslav  and
+      Villavicencio, Aline",
+    booktitle = "Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = may,
+    year = "2022",
+    address = "Dublin, Ireland",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.acl-long.3",
+    doi = "10.18653/v1/2022.acl-long.3",
+    pages = "29--45",
+    abstract = "Recent studies have determined that the learned token embeddings of large-scale neural language models are degenerated to be anisotropic with a narrow-cone shape. This phenomenon, called the representation degeneration problem, facilitates an increase in the overall similarity between token embeddings that negatively affect the performance of the models. Although the existing methods that address the degeneration problem based on observations of the phenomenon triggered by the problem improves the performance of the text generation, the training dynamics of token embeddings behind the degeneration problem are still not explored. In this study, we analyze the training dynamics of the token embeddings focusing on rare token embedding. We demonstrate that the specific part of the gradient for rare token embeddings is the key cause of the degeneration problem for all tokens during training stage. Based on the analysis, we propose a novel method called, adaptive gradient gating(AGG). AGG addresses the degeneration problem by gating the specific part of the gradient for rare token embeddings. Experimental results from language modeling, word similarity, and machine translation tasks quantitatively and qualitatively verify the effectiveness of AGG.",
+}
+
+@inproceedings{rajaee-pilehvar-2021-cluster,
+    title = "A Cluster-based Approach for Improving Isotropy in Contextual Embedding Space",
+    author = "Rajaee, Sara  and
+      Pilehvar, Mohammad Taher",
+    editor = "Zong, Chengqing  and
+      Xia, Fei  and
+      Li, Wenjie  and
+      Navigli, Roberto",
+    booktitle = "Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 2: Short Papers)",
+    month = aug,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.acl-short.73",
+    doi = "10.18653/v1/2021.acl-short.73",
+    pages = "575--584",
+    abstract = "The representation degeneration problem in Contextual Word Representations (CWRs) hurts the expressiveness of the embedding space by forming an anisotropic cone where even unrelated words have excessively positive correlations. Existing techniques for tackling this issue require a learning process to re-train models with additional objectives and mostly employ a global assessment to study isotropy. Our quantitative analysis over isotropy shows that a local assessment could be more accurate due to the clustered structure of CWRs. Based on this observation, we propose a local cluster-based method to address the degeneration issue in contextual embedding spaces. We show that in clusters including punctuations and stop words, local dominant directions encode structural information, removing which can improve CWRs performance on semantic tasks. Moreover, we find that tense information in verb representations dominates sense semantics. We show that removing dominant directions of verb representations can transform the space to better suit semantic applications. Our experiments demonstrate that the proposed cluster-based method can mitigate the degeneration problem on multiple tasks.",
+}
+
+
+@inproceedings{puccetti-etal-2022-outlier,
+    title = "Outlier Dimensions that Disrupt Transformers are Driven by Frequency",
+    author = "Puccetti, Giovanni  and
+      Rogers, Anna  and
+      Drozd, Aleksandr  and
+      Dell{'}Orletta, Felice",
+    editor = "Goldberg, Yoav  and
+      Kozareva, Zornitsa  and
+      Zhang, Yue",
+    booktitle = "Findings of the Association for Computational Linguistics: EMNLP 2022",
+    month = dec,
+    year = "2022",
+    address = "Abu Dhabi, United Arab Emirates",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.findings-emnlp.93",
+    doi = "10.18653/v1/2022.findings-emnlp.93",
+    pages = "1286--1304",
+    abstract = "While Transformer-based language models are generally very robust to pruning, there is the recently discovered outlier phenomenon: disabling only 48 out of 110M parameters in BERT-base drops its performance by nearly 30{\%} on MNLI. We replicate the original evidence for the outlier phenomenon and we link it to the geometry of the embedding space. We find that in both BERT and RoBERTa the magnitude of hidden state coefficients corresponding to outlier dimensions correlate with the frequencies of encoded tokens in pre-training data, and they also contribute to the {``}vertical{''} self-attention pattern enabling the model to focus on the special tokens. This explains the drop in performance from disabling the outliers, and it suggests that to decrease anisotopicity in future models we need pre-training schemas that would better take into account the skewed token distributions.",
+}
+
+@inproceedings{
+Wang2020Improving,
+title={Improving Neural Language Generation with Spectrum Control},
+author={Lingxiao Wang and Jing Huang and Kevin Huang and Ziniu Hu and Guangtao Wang and Quanquan Gu},
+booktitle={International Conference on Learning Representations},
+year={2020},
+url={https://openreview.net/forum?id=ByxY8CNtvr}
+}
+
+@inproceedings{gao-etal-2021-simcse,
+    title = "{S}im{CSE}: Simple Contrastive Learning of Sentence Embeddings",
+    author = "Gao, Tianyu  and
+      Yao, Xingcheng  and
+      Chen, Danqi",
+    editor = "Moens, Marie-Francine  and
+      Huang, Xuanjing  and
+      Specia, Lucia  and
+      Yih, Scott Wen-tau",
+    booktitle = "Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing",
+    month = nov,
+    year = "2021",
+    address = "Online and Punta Cana, Dominican Republic",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.emnlp-main.552",
+    doi = "10.18653/v1/2021.emnlp-main.552",
+    pages = "6894--6910",
+    abstract = "This paper presents SimCSE, a simple contrastive learning framework that greatly advances the state-of-the-art sentence embeddings. We first describe an unsupervised approach, which takes an input sentence and predicts itself in a contrastive objective, with only standard dropout used as noise. This simple method works surprisingly well, performing on par with previous supervised counterparts. We find that dropout acts as minimal data augmentation and removing it leads to a representation collapse. Then, we propose a supervised approach, which incorporates annotated pairs from natural language inference datasets into our contrastive learning framework, by using {``}entailment{''} pairs as positives and {``}contradiction{''} pairs as hard negatives. We evaluate SimCSE on standard semantic textual similarity (STS) tasks, and our unsupervised and supervised models using BERT base achieve an average of 76.3{\%} and 81.6{\%} Spearman{'}s correlation respectively, a 4.2{\%} and 2.2{\%} improvement compared to previous best results. We also show{---}both theoretically and empirically{---}that contrastive learning objective regularizes pre-trained embeddings{'} anisotropic space to be more uniform, and it better aligns positive pairs when supervised signals are available.",
+}
+
+@inproceedings{yan-etal-2021-consert,
+    title = "{C}on{SERT}: A Contrastive Framework for Self-Supervised Sentence Representation Transfer",
+    author = "Yan, Yuanmeng  and
+      Li, Rumei  and
+      Wang, Sirui  and
+      Zhang, Fuzheng  and
+      Wu, Wei  and
+      Xu, Weiran",
+    editor = "Zong, Chengqing  and
+      Xia, Fei  and
+      Li, Wenjie  and
+      Navigli, Roberto",
+    booktitle = "Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)",
+    month = aug,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.acl-long.393",
+    doi = "10.18653/v1/2021.acl-long.393",
+    pages = "5065--5075",
+    abstract = "Learning high-quality sentence representations benefits a wide range of natural language processing tasks. Though BERT-based pre-trained language models achieve high performance on many downstream tasks, the native derived sentence representations are proved to be collapsed and thus produce a poor performance on the semantic textual similarity (STS) tasks. In this paper, we present ConSERT, a Contrastive Framework for Self-Supervised SEntence Representation Transfer, that adopts contrastive learning to fine-tune BERT in an unsupervised and effective way. By making use of unlabeled texts, ConSERT solves the collapse issue of BERT-derived sentence representations and make them more applicable for downstream tasks. Experiments on STS datasets demonstrate that ConSERT achieves an 8{\%} relative improvement over the previous state-of-the-art, even comparable to the supervised SBERT-NLI. And when further incorporating NLI supervision, we achieve new state-of-the-art performance on STS tasks. Moreover, ConSERT obtains comparable results with only 1000 samples available, showing its robustness in data scarcity scenarios.",
+}
+
+@inproceedings{rajaee-pilehvar-2022-isotropy,
+    title = "An Isotropy Analysis in the Multilingual {BERT} Embedding Space",
+    author = "Rajaee, Sara  and
+      Pilehvar, Mohammad Taher",
+    editor = "Muresan, Smaranda  and
+      Nakov, Preslav  and
+      Villavicencio, Aline",
+    booktitle = "Findings of the Association for Computational Linguistics: ACL 2022",
+    month = may,
+    year = "2022",
+    address = "Dublin, Ireland",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.findings-acl.103",
+    doi = "10.18653/v1/2022.findings-acl.103",
+    pages = "1309--1316",
+    abstract = "Several studies have explored various advantages of multilingual pre-trained models (such as multilingual BERT) in capturing shared linguistic knowledge. However, less attention has been paid to their limitations. In this paper, we investigate the multilingual BERT for two known issues of the monolingual models: anisotropic embedding space and outlier dimensions. We show that, unlike its monolingual counterpart, the multilingual BERT model exhibits no outlier dimension in its representations while it has a highly anisotropic space. There are a few dimensions in the monolingual BERT with high contributions to the anisotropic distribution. However, we observe no such dimensions in the multilingual BERT. Furthermore, our experimental results demonstrate that increasing the isotropy of multilingual space can significantly improve its representation power and performance, similarly to what had been observed for monolingual CWRs on semantic similarity tasks. Our analysis indicates that, despite having different degenerated directions, the embedding spaces in various languages tend to be partially similar with respect to their structures.",
+}
+
+
+@misc{su2021whitening,
+      title={Whitening Sentence Representations for Better Semantics and Faster Retrieval}, 
+      author={Jianlin Su and Jiarun Cao and Weijie Liu and Yangyiwen Ou},
+      year={2021},
+      eprint={2103.15316},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2103.15316}, 
+}
+
+@inproceedings{el-boukkouri-etal-2020-characterbert,
+    title = "{C}haracter{BERT}: Reconciling {ELM}o and {BERT} for Word-Level Open-Vocabulary Representations From Characters",
+    author = "El Boukkouri, Hicham  and
+      Ferret, Olivier  and
+      Lavergne, Thomas  and
+      Noji, Hiroshi  and
+      Zweigenbaum, Pierre  and
+      Tsujii, Jun{'}ichi",
+    editor = "Scott, Donia  and
+      Bel, Nuria  and
+      Zong, Chengqing",
+    booktitle = "Proceedings of the 28th International Conference on Computational Linguistics",
+    month = dec,
+    year = "2020",
+    address = "Barcelona, Spain (Online)",
+    publisher = "International Committee on Computational Linguistics",
+    url = "https://aclanthology.org/2020.coling-main.609",
+    doi = "10.18653/v1/2020.coling-main.609",
+    pages = "6903--6915",
+    abstract = "Due to the compelling improvements brought by BERT, many recent representation models adopted the Transformer architecture as their main building block, consequently inheriting the wordpiece tokenization system despite it not being intrinsically linked to the notion of Transformers. While this system is thought to achieve a good balance between the flexibility of characters and the efficiency of full words, using predefined wordpiece vocabularies from the general domain is not always suitable, especially when building models for specialized domains (e.g., the medical domain). Moreover, adopting a wordpiece tokenization shifts the focus from the word level to the subword level, making the models conceptually more complex and arguably less convenient in practice. For these reasons, we propose CharacterBERT, a new variant of BERT that drops the wordpiece system altogether and uses a Character-CNN module instead to represent entire words by consulting their characters. We show that this new model improves the performance of BERT on a variety of medical domain tasks while at the same time producing robust, word-level, and open-vocabulary representations.",
+}
+
+@article{clark-etal-2022-canine,
+    title = "Canine: Pre-training an Efficient Tokenization-Free Encoder for Language Representation",
+    author = "Clark, Jonathan H.  and
+      Garrette, Dan  and
+      Turc, Iulia  and
+      Wieting, John",
+    editor = "Roark, Brian  and
+      Nenkova, Ani",
+    journal = "Transactions of the Association for Computational Linguistics",
+    volume = "10",
+    year = "2022",
+    address = "Cambridge, MA",
+    publisher = "MIT Press",
+    url = "https://aclanthology.org/2022.tacl-1.5",
+    doi = "10.1162/tacl_a_00448",
+    pages = "73--91",
+    abstract = "Pipelined NLP systems have largely been superseded by end-to-end neural modeling, yet nearly all commonly used models still require an explicit tokenization step. While recent tokenization approaches based on data-derived subword lexicons are less brittle than manually engineered tokenizers, these techniques are not equally suited to all languages, and the use of any fixed vocabulary may limit a model{'}s ability to adapt. In this paper, we present Canine, a neural encoder that operates directly on character sequences{---}without explicit tokenization or vocabulary{---}and a pre-training strategy that operates either directly on characters or optionally uses subwords as a soft inductive bias. To use its finer-grained input effectively and efficiently, Canine combines downsampling, which reduces the input sequence length, with a deep transformer stack, which encodes context. Canine outperforms a comparable mBert model by 5.7 F1 on TyDi QA, a challenging multilingual benchmark, despite having fewer model parameters.",
+}
+
+@inproceedings{godey-etal-2022-manta,
+    title = "{MANT}a: Efficient Gradient-Based Tokenization for End-to-End Robust Language Modeling",
+    author = "Godey, Nathan  and
+      Castagn{\'e}, Roman  and
+      de la Clergerie, {\'E}ric  and
+      Sagot, Beno{\^\i}t",
+    editor = "Goldberg, Yoav  and
+      Kozareva, Zornitsa  and
+      Zhang, Yue",
+    booktitle = "Findings of the Association for Computational Linguistics: EMNLP 2022",
+    month = dec,
+    year = "2022",
+    address = "Abu Dhabi, United Arab Emirates",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.findings-emnlp.207",
+    doi = "10.18653/v1/2022.findings-emnlp.207",
+    pages = "2859--2870",
+    abstract = "Static subword tokenization algorithms have been an essential component of recent works on language modeling. However, their static nature results in important flaws that degrade the models{'} downstream performance and robustness. In this work, we propose MANTa, a Module for Adaptive Neural TokenizAtion. MANTa is a differentiable tokenizer trained end-to-end with the language model. The resulting system offers a trade-off between the expressiveness of byte-level models and the speed of models trained using subword tokenization. In addition, our tokenizer is highly explainable since it produces an explicit segmentation of sequences into blocks. We evaluate our pre-trained model on several English datasets from different domains as well as on synthetic noise. We find that MANTa improves robustness to character perturbations and out-of-domain data. We then show that MANTa performs comparably to other models on the general-domain GLUE benchmark. Finally, we show that it is considerably faster than strictly byte-level models.",
+}
+
+
+@article{2020t5,
+  author  = {Colin Raffel and Noam Shazeer and Adam Roberts and Katherine Lee and Sharan Narang and Michael Matena and Yanqi Zhou and Wei Li and Peter J. Liu},
+  title   = {Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer},
+  journal = {Journal of Machine Learning Research},
+  year    = {2020},
+  volume  = {21},
+  number  = {140},
+  pages   = {1--67},
+  url     = {http://jmlr.org/papers/v21/20-074.html}
+}
+
+
+@article{xue-etal-2022-byt5,
+    title = "{B}y{T}5: Towards a Token-Free Future with Pre-trained Byte-to-Byte Models",
+    author = "Xue, Linting  and
+      Barua, Aditya  and
+      Constant, Noah  and
+      Al-Rfou, Rami  and
+      Narang, Sharan  and
+      Kale, Mihir  and
+      Roberts, Adam  and
+      Raffel, Colin",
+    editor = "Roark, Brian  and
+      Nenkova, Ani",
+    journal = "Transactions of the Association for Computational Linguistics",
+    volume = "10",
+    year = "2022",
+    address = "Cambridge, MA",
+    publisher = "MIT Press",
+    url = "https://aclanthology.org/2022.tacl-1.17",
+    doi = "10.1162/tacl_a_00461",
+    pages = "291--306",
+    abstract = "Most widely used pre-trained language models operate on sequences of tokens corresponding to word or subword units. By comparison, token-free models that operate directly on raw text (bytes or characters) have many benefits: They can process text in any language out of the box, they are more robust to noise, and they minimize technical debt by removing complex and error-prone text preprocessing pipelines. Because byte or character sequences are longer than token sequences, past work on token-free models has often introduced new model architectures designed to amortize the cost of operating directly on raw text. In this paper, we show that a standard Transformer architecture can be used with minimal modifications to process byte sequences. We characterize the trade-offs in terms of parameter count, training FLOPs, and inference speed, and show that byte-level models are competitive with their token-level counterparts. We also demonstrate that byte-level models are significantly more robust to noise and perform better on tasks that are sensitive to spelling and pronunciation. As part of our contribution, we release a new set of pre-trained byte-level Transformer models based on the T5 architecture, as well as all code and data used in our experiments.1",
+}
+
+@inproceedings{
+merity2017pointer,
+title={Pointer Sentinel Mixture Models},
+author={Stephen Merity and Caiming Xiong and James Bradbury and Richard Socher},
+booktitle={International Conference on Learning Representations},
+year={2017},
+url={https://openreview.net/forum?id=Byj72udxe}
+}
+
+@inproceedings{gupta-etal-2015-distributional,
+    title = "Distributional vectors encode referential attributes",
+    author = "Gupta, Abhijeet  and
+      Boleda, Gemma  and
+      Baroni, Marco  and
+      Pad{\'o}, Sebastian",
+    editor = "M{\`a}rquez, Llu{\'\i}s  and
+      Callison-Burch, Chris  and
+      Su, Jian",
+    booktitle = "Proceedings of the 2015 Conference on Empirical Methods in Natural Language Processing",
+    month = sep,
+    year = "2015",
+    address = "Lisbon, Portugal",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/D15-1002",
+    doi = "10.18653/v1/D15-1002",
+    pages = "12--21",
+}
+
+@inproceedings{kohn-2015-whats,
+    title = "What{'}s in an Embedding? Analyzing Word Embeddings through Multilingual Evaluation",
+    author = {K{\"o}hn, Arne},
+    editor = "M{\`a}rquez, Llu{\'\i}s  and
+      Callison-Burch, Chris  and
+      Su, Jian",
+    booktitle = "Proceedings of the 2015 Conference on Empirical Methods in Natural Language Processing",
+    month = sep,
+    year = "2015",
+    address = "Lisbon, Portugal",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/D15-1246",
+    doi = "10.18653/v1/D15-1246",
+    pages = "2067--2073",
+}
+
+@inproceedings{shi-etal-2016-string,
+    title = "Does String-Based Neural {MT} Learn Source Syntax?",
+    author = "Shi, Xing  and
+      Padhi, Inkit  and
+      Knight, Kevin",
+    editor = "Su, Jian  and
+      Duh, Kevin  and
+      Carreras, Xavier",
+    booktitle = "Proceedings of the 2016 Conference on Empirical Methods in Natural Language Processing",
+    month = nov,
+    year = "2016",
+    address = "Austin, Texas",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/D16-1159",
+    doi = "10.18653/v1/D16-1159",
+    pages = "1526--1534",
+}
+
+@inproceedings{ijcai2018p796,
+  title     = {Visualisation and 'Diagnostic Classifiers' Reveal how Recurrent and Recursive Neural Networks Process Hierarchical Structure (Extended Abstract)},
+  author    = {Dieuwke Hupkes and Willem Zuidema},
+  booktitle = {Proceedings of the Twenty-Seventh International Joint Conference on
+               Artificial Intelligence, {IJCAI-18}},
+  publisher = {International Joint Conferences on Artificial Intelligence Organization},
+  pages     = {5617--5621},
+  year      = {2018},
+  month     = {7},
+  doi       = {10.24963/ijcai.2018/796},
+  url       = {https://doi.org/10.24963/ijcai.2018/796},
+}
+
+
+
+@inproceedings{conneau-etal-2018-cram,
+    title = "What you can cram into a single {\$}{\&}!{\#}* vector: Probing sentence embeddings for linguistic properties",
+    author = {Conneau, Alexis  and
+      Kruszewski, German  and
+      Lample, Guillaume  and
+      Barrault, Lo{\"\i}c  and
+      Baroni, Marco},
+    editor = "Gurevych, Iryna  and
+      Miyao, Yusuke",
+    booktitle = "Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2018",
+    address = "Melbourne, Australia",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/P18-1198",
+    doi = "10.18653/v1/P18-1198",
+    pages = "2126--2136",
+    abstract = "Although much effort has recently been devoted to training high-quality sentence embeddings, we still have a poor understanding of what they are capturing. {``}Downstream{''} tasks, often based on sentence classification, are commonly used to evaluate the quality of sentence representations. The complexity of the tasks makes it however difficult to infer what kind of information is present in the representations. We introduce here 10 probing tasks designed to capture simple linguistic features of sentences, and we use them to study embeddings generated by three different encoders trained in eight distinct ways, uncovering intriguing properties of both encoders and training methods.",
+}
+
+@inproceedings{jawahar-etal-2019-bert,
+    title = "What Does {BERT} Learn about the Structure of Language?",
+    author = "Jawahar, Ganesh  and
+      Sagot, Beno{\^\i}t  and
+      Seddah, Djam{\'e}",
+    editor = "Korhonen, Anna  and
+      Traum, David  and
+      M{\`a}rquez, Llu{\'\i}s",
+    booktitle = "Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics",
+    month = jul,
+    year = "2019",
+    address = "Florence, Italy",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/P19-1356",
+    doi = "10.18653/v1/P19-1356",
+    pages = "3651--3657",
+    abstract = "BERT is a recent language representation model that has surprisingly performed well in diverse language understanding benchmarks. This result indicates the possibility that BERT networks capture structural information about language. In this work, we provide novel support for this claim by performing a series of experiments to unpack the elements of English language structure learned by BERT. Our findings are fourfold. BERT{'}s phrasal representation captures the phrase-level information in the lower layers. The intermediate layers of BERT compose a rich hierarchy of linguistic information, starting with surface features at the bottom, syntactic features in the middle followed by semantic features at the top. BERT requires deeper layers while tracking subject-verb agreement to handle long-term dependency problem. Finally, the compositional scheme underlying BERT mimics classical, tree-like structures.",
+}
+
+@misc{su2021whiteningsentencerepresentationsbetter,
+      title={Whitening Sentence Representations for Better Semantics and Faster Retrieval}, 
+      author={Jianlin Su and Jiarun Cao and Weijie Liu and Yangyiwen Ou},
+      year={2021},
+      eprint={2103.15316},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2103.15316}, 
+}
+
+@misc{wav2vec,
+      title={wav2vec 2.0: A Framework for Self-Supervised Learning of Speech Representations}, 
+      author={Alexei Baevski and Henry Zhou and Abdelrahman Mohamed and Michael Auli},
+      year={2020},
+      eprint={2006.11477},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2006.11477}, 
+}
+
+@article{HuBERT,
+author = {Hsu, Wei-Ning and Bolte, Benjamin and Tsai, Yao-Hung Hubert and Lakhotia, Kushal and Salakhutdinov, Ruslan and Mohamed, Abdelrahman},
+title = {HuBERT: Self-Supervised Speech Representation Learning by Masked Prediction of Hidden Units},
+year = {2021},
+issue_date = {2021},
+publisher = {IEEE Press},
+volume = {29},
+issn = {2329-9290},
+url = {https://doi.org/10.1109/TASLP.2021.3122291},
+doi = {10.1109/TASLP.2021.3122291},
+abstract = {Self-supervised approaches for speech representation learning are challenged by three unique problems: (1) there are multiple sound units in each input utterance, (2) there is no lexicon of input sound units during the pre-training phase, and (3) sound units have variable lengths with no explicit segmentation. To deal with these three problems, we propose the Hidden-Unit BERT (HuBERT) approach for self-supervised speech representation learning, which utilizes an offline clustering step to provide aligned target labels for a BERT-like prediction loss. A key ingredient of our approach is applying the prediction loss over the masked regions only, which forces the model to learn a combined acoustic and language model over the continuous inputs. HuBERT relies primarily on the consistency of the unsupervised clustering step rather than the intrinsic quality of the assigned cluster labels. Starting with a simple k-means teacher of 100 clusters, and using two iterations of clustering, the HuBERT model either matches or improves upon the state-of-the-art wav2vec 2.0 performance on the Librispeech (960 h) and Libri-light (60,000 h) benchmarks with 10 min, 1 h, 10 h, 100 h, and 960 h fine-tuning subsets. Using a 1B parameter model, HuBERT shows up to 19% and 13% relative WER reduction on the more challenging dev-other and test-other evaluation subsets.<xref ref-type="fn" rid="fn1"><sup>1</sup></xref><xref ref-type="fn" rid="fn2"><sup>2</sup></xref>},
+journal = {IEEE/ACM Trans. Audio, Speech and Lang. Proc.},
+month = {oct},
+pages = {3451–3460},
+numpages = {10}
+}
+
+
+
+@InProceedings{radford2022whisper,
+  title = 	 {Robust Speech Recognition via Large-Scale Weak Supervision},
+  author =       {Radford, Alec and Kim, Jong Wook and Xu, Tao and Brockman, Greg and Mcleavey, Christine and Sutskever, Ilya},
+  booktitle = 	 {Proceedings of the 40th International Conference on Machine Learning},
+  pages = 	 {28492--28518},
+  year = 	 {2023},
+  editor = 	 {Krause, Andreas and Brunskill, Emma and Cho, Kyunghyun and Engelhardt, Barbara and Sabato, Sivan and Scarlett, Jonathan},
+  volume = 	 {202},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {23--29 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {https://proceedings.mlr.press/v202/radford23a/radford23a.pdf},
+  url = 	 {https://proceedings.mlr.press/v202/radford23a.html},
+  abstract = 	 {We study the capabilities of speech processing systems trained simply to predict large amounts of transcripts of audio on the internet. When scaled to 680,000 hours of multilingual and multitask supervision, the resulting models generalize well to standard benchmarks and are often competitive with prior fully supervised results without the need for any dataset specific fine-tuning. When compared to humans, the models approach their accuracy and robustness. We are releasing models and inference code to serve as a foundation for further work on robust speech processing.}
+}
+
+@inproceedings{commonvoice:2020,
+    title = "Common Voice: A Massively-Multilingual Speech Corpus",
+    author = "Ardila, Rosana  and
+      Branson, Megan  and
+      Davis, Kelly  and
+      Kohler, Michael  and
+      Meyer, Josh  and
+      Henretty, Michael  and
+      Morais, Reuben  and
+      Saunders, Lindsay  and
+      Tyers, Francis  and
+      Weber, Gregor",
+    editor = "Calzolari, Nicoletta  and
+      B{\'e}chet, Fr{\'e}d{\'e}ric  and
+      Blache, Philippe  and
+      Choukri, Khalid  and
+      Cieri, Christopher  and
+      Declerck, Thierry  and
+      Goggi, Sara  and
+      Isahara, Hitoshi  and
+      Maegaard, Bente  and
+      Mariani, Joseph  and
+      Mazo, H{\'e}l{\`e}ne  and
+      Moreno, Asuncion  and
+      Odijk, Jan  and
+      Piperidis, Stelios",
+    booktitle = "Proceedings of the Twelfth Language Resources and Evaluation Conference",
+    month = may,
+    year = "2020",
+    address = "Marseille, France",
+    publisher = "European Language Resources Association",
+    url = "https://aclanthology.org/2020.lrec-1.520",
+    pages = "4218--4222",
+    abstract = "The Common Voice corpus is a massively-multilingual collection of transcribed speech intended for speech technology research and development. Common Voice is designed for Automatic Speech Recognition purposes but can be useful in other domains (e.g. language identification). To achieve scale and sustainability, the Common Voice project employs crowdsourcing for both data collection and data validation. The most recent release includes 29 languages, and as of November 2019 there are a total of 38 languages collecting data. Over 50,000 individuals have participated so far, resulting in 2,500 hours of collected audio. To our knowledge this is the largest audio corpus in the public domain for speech recognition, both in terms of number of hours and number of languages. As an example use case for Common Voice, we present speech recognition experiments using Mozilla{'}s DeepSpeech Speech-to-Text toolkit. By applying transfer learning from a source English model, we find an average Character Error Rate improvement of 5.99 {\mbox{$\pm$}} 5.48 for twelve target languages (German, French, Italian, Turkish, Catalan, Slovenian, Welsh, Irish, Breton, Tatar, Chuvash, and Kabyle). For most of these languages, these are the first ever published results on end-to-end Automatic Speech Recognition.",
+    language = "English",
+    ISBN = "979-10-95546-34-4",
+}
+
+@misc{Wu2020VisualTT,
+      title={Visual Transformers: Token-based Image Representation and Processing for Computer Vision}, 
+      author={Bichen Wu and Chenfeng Xu and Xiaoliang Dai and Alvin Wan and Peizhao Zhang and Zhicheng Yan and Masayoshi Tomizuka and Joseph Gonzalez and Kurt Keutzer and Peter Vajda},
+      year={2020},
+      eprint={2006.03677},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2006.03677}, 
+}
+
+@inproceedings{
+beit-2021,
+title={{BE}iT: {BERT} Pre-Training of Image Transformers},
+author={Hangbo Bao and Li Dong and Songhao Piao and Furu Wei},
+booktitle={International Conference on Learning Representations},
+year={2022},
+url={https://openreview.net/forum?id=p-BhZSz59o4}
+}
+
+@inproceedings{
+segformer21,
+title={SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers},
+author={Enze Xie and Wenhai Wang and Zhiding Yu and Anima Anandkumar and Jose M. Alvarez and Ping Luo},
+booktitle={Advances in Neural Information Processing Systems},
+editor={A. Beygelzimer and Y. Dauphin and P. Liang and J. Wortman Vaughan},
+year={2021},
+url={https://openreview.net/forum?id=OG18MI5TRL}
+}
+
+
+@InProceedings{pmlr-v139-touvron21a,
+  title = 	 {Training data-efficient image transformers and distillation through attention},
+  author =       {Touvron, Hugo and Cord, Matthieu and Douze, Matthijs and Massa, Francisco and Sablayrolles, Alexandre and Jegou, Herve},
+  booktitle = 	 {Proceedings of the 38th International Conference on Machine Learning},
+  pages = 	 {10347--10357},
+  year = 	 {2021},
+  editor = 	 {Meila, Marina and Zhang, Tong},
+  volume = 	 {139},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {18--24 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v139/touvron21a/touvron21a.pdf},
+  url = 	 {https://proceedings.mlr.press/v139/touvron21a.html},
+  abstract = 	 {Recently, neural networks purely based on attention were shown to address image understanding tasks such as image classification. These high-performing vision transformers are pre-trained with hundreds of millions of images using a large infrastructure, thereby limiting their adoption. In this work, we produce competitive convolution-free transformers trained on ImageNet only using a single computer in less than 3 days. Our reference vision transformer (86M parameters) achieves top-1 accuracy of 83.1% (single-crop) on ImageNet with no external data. We also introduce a teacher-student strategy specific to transformers. It relies on a distillation token ensuring that the student learns from the teacher through attention, typically from a convnet teacher. The learned transformers are competitive (85.2% top-1 acc.) with the state of the art on ImageNet, and similarly when transferred to other tasks. We will share our code and models.}
+}
+
+
+@article{imagenet15russakovsky,
+	abstract = {The ImageNet Large Scale Visual Recognition Challenge is a benchmark in object category classification and detection on hundreds of object categories and millions of images. The challenge has been run annually from 2010 to present, attracting participation from more than fifty institutions. This paper describes the creation of this benchmark dataset and the advances in object recognition that have been possible as a result. We discuss the challenges of collecting large-scale ground truth annotation, highlight key breakthroughs in categorical object recognition, provide a detailed analysis of the current state of the field of large-scale image classification and object detection, and compare the state-of-the-art computer vision accuracy with human accuracy. We conclude with lessons learned in the 5 years of the challenge, and propose future directions and improvements.},
+	author = {Russakovsky, Olga and Deng, Jia and Su, Hao and Krause, Jonathan and Satheesh, Sanjeev and Ma, Sean and Huang, Zhiheng and Karpathy, Andrej and Khosla, Aditya and Bernstein, Michael and Berg, Alexander C. and Fei-Fei, Li},
+	date = {2015/12/01},
+	date-added = {2024-07-25 11:25:58 +0200},
+	date-modified = {2024-07-25 11:25:58 +0200},
+	doi = {10.1007/s11263-015-0816-y},
+	id = {Russakovsky2015},
+	isbn = {1573-1405},
+	journal = {International Journal of Computer Vision},
+	number = {3},
+	pages = {211--252},
+	title = {ImageNet Large Scale Visual Recognition Challenge},
+	url = {https://doi.org/10.1007/s11263-015-0816-y},
+	volume = {115},
+	year = {2015},
+	bdsk-url-1 = {https://doi.org/10.1007/s11263-015-0816-y}}
+
+
+@inproceedings{he2016deep,
+  author={He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
+  booktitle={2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}, 
+  title={Deep Residual Learning for Image Recognition}, 
+  year={2016},
+  volume={},
+  number={},
+  pages={770-778},
+  keywords={Training;Degradation;Complexity theory;Image recognition;Neural networks;Visualization;Image segmentation},
+  doi={10.1109/CVPR.2016.90}}
+
+
+
+@InProceedings{Tan2019EfficientNetRM,
+  title = 	 {{E}fficient{N}et: Rethinking Model Scaling for Convolutional Neural Networks},
+  author =       {Tan, Mingxing and Le, Quoc},
+  booktitle = 	 {Proceedings of the 36th International Conference on Machine Learning},
+  pages = 	 {6105--6114},
+  year = 	 {2019},
+  editor = 	 {Chaudhuri, Kamalika and Salakhutdinov, Ruslan},
+  volume = 	 {97},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {09--15 Jun},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v97/tan19a/tan19a.pdf},
+  url = 	 {https://proceedings.mlr.press/v97/tan19a.html},
+  abstract = 	 {Convolutional Neural Networks (ConvNets) are commonly developed at a fixed resource budget, and then scaled up for better accuracy if more resources are given. In this paper, we systematically study model scaling and identify that carefully balancing network depth, width, and resolution can lead to better performance. Based on this observation, we propose a new scaling method that uniformly scales all dimensions of depth/width/resolution using a simple yet highly effective compound coefficient. We demonstrate the effectiveness of this method on MobileNets and ResNet. To go even further, we use neural architecture search to design a new baseline network and scale it up to obtain a family of models, called EfficientNets, which achieve much better accuracy and efficiency than previous ConvNets. In particular, our EfficientNet-B7 achieves stateof-the-art 84.4% top-1 / 97.1% top-5 accuracy on ImageNet, while being 8.4x smaller and 6.1x faster on inference than the best existing ConvNet (Huang et al., 2018). Our EfficientNets also transfer well and achieve state-of-the-art accuracy on CIFAR-100 (91.7%), Flower (98.8%), and 3 other transfer learning datasets, with an order of magnitude fewer parameters.}
+}
+
+
+@inproceedings{wu2021cvt,
+  author={Wu, Haiping and Xiao, Bin and Codella, Noel and Liu, Mengchen and Dai, Xiyang and Yuan, Lu and Zhang, Lei},
+  booktitle={2021 IEEE/CVF International Conference on Computer Vision (ICCV)}, 
+  title={CvT: Introducing Convolutions to Vision Transformers}, 
+  year={2021},
+  volume={},
+  number={},
+  pages={22-31},
+  keywords={Convolutional codes;Image resolution;Image recognition;Computer architecture;Performance gain;Transformers;Distortion;Recognition and classification},
+  doi={10.1109/ICCV48922.2021.00009}}
+
+@InProceedings{liu2022convnet,
+    author    = {Liu, Zhuang and Mao, Hanzi and Wu, Chao-Yuan and Feichtenhofer, Christoph and Darrell, Trevor and Xie, Saining},
+    title     = {A ConvNet for the 2020s},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2022},
+    pages     = {11976-11986}
+}
+
+
+@article{guo2022visual,
+	abstract = {While originally designed for natural language processing tasks, the self-attention mechanism has recently taken various computer vision areas by storm. However, the 2D nature of images brings three challenges for applying self-attention in computer vision: (1) treating images as 1D sequences neglects their 2D structures; (2) the quadratic complexity is too expensive for high-resolution images; (3) it only captures spatial adaptability but ignores channel adaptability. In this paper, we propose a novel linear attention named large kernel attention (LKA) to enable self-adaptive and long-range correlations in self-attention while avoiding its shortcomings. Furthermore, we present a neural network based on LKA, namely Visual Attention Network (VAN). While extremely simple, VAN achieves comparable results with similar size convolutional neural networks (CNNs) and vision transformers (ViTs) in various tasks, including image classification, object detection, semantic segmentation, panoptic segmentation, pose estimation, etc. For example, VAN-B6 achieves 87.8{\%} accuracy on ImageNet benchmark, and sets new state-of-the-art performance (58.2 PQ) for panoptic segmentation. Besides, VAN-B2 surpasses Swin-T 4 mIoU (50.1 vs. 46.1) for semantic segmentation on ADE20K benchmark, 2.6 AP (48.8 vs. 46.2) for object detection on COCO dataset. It provides a novel method and a simple yet strong baseline for the community. The code is available at https://github.com/Visual-Attention-Network.},
+	author = {Guo, Meng-Hao and Lu, Cheng-Ze and Liu, Zheng-Ning and Cheng, Ming-Ming and Hu, Shi-Min},
+	date = {2023/12/01},
+	date-added = {2024-07-25 14:14:32 +0200},
+	date-modified = {2024-07-25 14:14:32 +0200},
+	doi = {10.1007/s41095-023-0364-2},
+	id = {Guo2023},
+	isbn = {2096-0662},
+	journal = {Computational Visual Media},
+	number = {4},
+	pages = {733--752},
+	title = {Visual attention network},
+	url = {https://doi.org/10.1007/s41095-023-0364-2},
+	volume = {9},
+	year = {2023},
+	bdsk-url-1 = {https://doi.org/10.1007/s41095-023-0364-2}}
+
+
+
+@InProceedings{pmlr-v37-ioffe15,
+  title = 	 {Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift},
+  author = 	 {Ioffe, Sergey and Szegedy, Christian},
+  booktitle = 	 {Proceedings of the 32nd International Conference on Machine Learning},
+  pages = 	 {448--456},
+  year = 	 {2015},
+  editor = 	 {Bach, Francis and Blei, David},
+  volume = 	 {37},
+  series = 	 {Proceedings of Machine Learning Research},
+  address = 	 {Lille, France},
+  month = 	 {07--09 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v37/ioffe15.pdf},
+  url = 	 {https://proceedings.mlr.press/v37/ioffe15.html},
+  abstract = 	 {Training Deep Neural Networks is complicated by the fact that the distribution of each layer’s inputs changes during training, as the parameters of the previous layers change. This slows down the training by requiring lower learning rates and careful parameter initialization, and makes it notoriously hard to train models with saturating nonlinearities. We refer to this phenomenon as internal covariate shift, and address the problem by normalizing layer inputs. Our method draws its strength from making normalization a part of the model architecture and performing the normalization for each training mini-batch. Batch Normalization allows us to use much higher learning rates and be less careful about initialization, and in some cases eliminates the need for Dropout. Applied to a stateof-the-art image classification model, Batch Normalization achieves the same accuracy with 14 times fewer training steps, and beats the original model by a significant margin. Using an ensemble of batch-normalized networks, we improve upon the best published result on ImageNet classification: reaching 4.82% top-5 test error, exceeding the accuracy of human raters.}
+}
+
+@inproceedings{devlin-etal-2019-bert,
+    title = "{BERT}: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+    author = "Devlin, Jacob  and
+      Chang, Ming-Wei  and
+      Lee, Kenton  and
+      Toutanova, Kristina",
+    editor = "Burstein, Jill  and
+      Doran, Christy  and
+      Solorio, Thamar",
+    booktitle = "Proceedings of the 2019 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)",
+    month = jun,
+    year = "2019",
+    address = "Minneapolis, Minnesota",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/N19-1423",
+    doi = "10.18653/v1/N19-1423",
+    pages = "4171--4186",
+    abstract = "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. Unlike recent language representation models (Peters et al., 2018a; Radford et al., 2018), BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers. As a result, the pre-trained BERT model can be fine-tuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such as question answering and language inference, without substantial task-specific architecture modifications. BERT is conceptually simple and empirically powerful. It obtains new state-of-the-art results on eleven natural language processing tasks, including pushing the GLUE score to 80.5 (7.7 point absolute improvement), MultiNLI accuracy to 86.7{\%} (4.6{\%} absolute improvement), SQuAD v1.1 question answering Test F1 to 93.2 (1.5 point absolute improvement) and SQuAD v2.0 Test F1 to 83.1 (5.1 point absolute improvement).",
+}
+
+@misc{roberta,
+      title={RoBERTa: A Robustly Optimized BERT Pretraining Approach}, 
+      author={Yinhan Liu and Myle Ott and Naman Goyal and Jingfei Du and Mandar Joshi and Danqi Chen and Omer Levy and Mike Lewis and Luke Zettlemoyer and Veselin Stoyanov},
+      year={2019},
+      eprint={1907.11692},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/1907.11692}, 
+}
+
+@article{gpt2,
+  title={Language Models are Unsupervised Multitask Learners},
+  author={Radford, Alec and Wu, Jeff and Child, Rewon and Luan, David and Amodei, Dario and Sutskever, Ilya},
+  year={2019}
+}
+
+@inproceedings{clark-etal-2019-bert,
+    title = "What Does {BERT} Look at? An Analysis of {BERT}{'}s Attention",
+    author = "Clark, Kevin  and
+      Khandelwal, Urvashi  and
+      Levy, Omer  and
+      Manning, Christopher D.",
+    editor = "Linzen, Tal  and
+      Chrupa{\l}a, Grzegorz  and
+      Belinkov, Yonatan  and
+      Hupkes, Dieuwke",
+    booktitle = "Proceedings of the 2019 ACL Workshop BlackboxNLP: Analyzing and Interpreting Neural Networks for NLP",
+    month = aug,
+    year = "2019",
+    address = "Florence, Italy",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/W19-4828",
+    doi = "10.18653/v1/W19-4828",
+    pages = "276--286",
+    abstract = "Large pre-trained neural networks such as BERT have had great recent success in NLP, motivating a growing body of research investigating what aspects of language they are able to learn from unlabeled data. Most recent analysis has focused on model outputs (e.g., language model surprisal) or internal vector representations (e.g., probing classifiers). Complementary to these works, we propose methods for analyzing the attention mechanisms of pre-trained models and apply them to BERT. BERT{'}s attention heads exhibit patterns such as attending to delimiter tokens, specific positional offsets, or broadly attending over the whole sentence, with heads in the same layer often exhibiting similar behaviors. We further show that certain attention heads correspond well to linguistic notions of syntax and coreference. For example, we find heads that attend to the direct objects of verbs, determiners of nouns, objects of prepositions, and coreferent mentions with remarkably high accuracy. Lastly, we propose an attention-based probing classifier and use it to further demonstrate that substantial syntactic information is captured in BERT{'}s attention.",
+}
+
+
+@inproceedings{
+sellam2021multiberts,
+title={The Multi{BERT}s: {BERT} Reproductions for Robustness Analysis},
+author={Thibault Sellam and Steve Yadlowsky and Ian Tenney and Jason Wei and Naomi Saphra and Alexander D'Amour and Tal Linzen and Jasmijn Bastings and Iulia Raluca Turc and Jacob Eisenstein and Dipanjan Das and Ellie Pavlick},
+booktitle={International Conference on Learning Representations},
+year={2022},
+url={https://openreview.net/forum?id=K0E_F0gFDgA}
+}
+
+@inproceedings{bihani-rayz-2021-low,
+    title = "Low Anisotropy Sense Retrofitting ({LAS}e{R}) : Towards Isotropic and Sense Enriched Representations",
+    author = "Bihani, Geetanjali  and
+      Rayz, Julia",
+    editor = "Agirre, Eneko  and
+      Apidianaki, Marianna  and
+      Vuli{\'c}, Ivan",
+    booktitle = "Proceedings of Deep Learning Inside Out (DeeLIO): The 2nd Workshop on Knowledge Extraction and Integration for Deep Learning Architectures",
+    month = jun,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.deelio-1.9",
+    doi = "10.18653/v1/2021.deelio-1.9",
+    pages = "81--95",
+    abstract = "Contextual word representation models have shown massive improvements on a multitude of NLP tasks, yet their word sense disambiguation capabilities remain poorly explained. To address this gap, we assess whether contextual word representations extracted from deep pretrained language models create distinguishable representations for different senses of a given word. We analyze the representation geometry and find that most layers of deep pretrained language models create highly anisotropic representations, pointing towards the existence of representation degeneration problem in contextual word representations. After accounting for anisotropy, our study further reveals that there is variability in sense learning capabilities across different language models. Finally, we propose LASeR, a {`}Low Anisotropy Sense Retrofitting{'} approach that renders off-the-shelf representations isotropic and semantically more meaningful, resolving the representation degeneration problem as a post-processing step, and conducting sense-enrichment of contextualized representations extracted from deep neural language models.",
+}
+
+@inproceedings{hämmerl2023exploring,
+    title = "Exploring Anisotropy and Outliers in Multilingual Language Models for Cross-Lingual Semantic Sentence Similarity",
+    author = {H{\"a}mmerl, Katharina  and
+      Fastowski, Alina  and
+      Libovick{\'y}, Jind{\v{r}}ich  and
+      Fraser, Alexander},
+    editor = "Rogers, Anna  and
+      Boyd-Graber, Jordan  and
+      Okazaki, Naoaki",
+    booktitle = "Findings of the Association for Computational Linguistics: ACL 2023",
+    month = jul,
+    year = "2023",
+    address = "Toronto, Canada",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.findings-acl.439",
+    doi = "10.18653/v1/2023.findings-acl.439",
+    pages = "7023--7037",
+    abstract = "Previous work has shown that the representations output by contextual language models are more anisotropic than static type embeddings, and typically display outlier dimensions. This seems to be true for both monolingual and multilingual models, although much less work has been done on the multilingual context. Why these outliers occur and how they affect the representations is still an active area of research. We investigate outlier dimensions and their relationship to anisotropy in multiple pre-trained multilingual language models. We focus on cross-lingual semantic similarity tasks, as these are natural tasks for evaluating multilingual representations. Specifically, we examine sentence representations. Sentence transformers which are fine-tuned on parallel resources (that are not always available) perform better on this task, and we show that their representations are more isotropic. However, we aim to improve multilingual representations in general. We investigate how much of the performance difference can be made up by only transforming the embedding space without fine-tuning, and visualise the resulting spaces. We test different operations: Removing individual outlier dimensions, cluster-based isotropy enhancement, and ZCA whitening. We publish our code for reproducibility.",
+}
+
+@inproceedings{press-wolf-2017-using,
+    title = "Using the Output Embedding to Improve Language Models",
+    author = "Press, Ofir  and
+      Wolf, Lior",
+    editor = "Lapata, Mirella  and
+      Blunsom, Phil  and
+      Koller, Alexander",
+    booktitle = "Proceedings of the 15th Conference of the {E}uropean Chapter of the Association for Computational Linguistics: Volume 2, Short Papers",
+    month = apr,
+    year = "2017",
+    address = "Valencia, Spain",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/E17-2025",
+    pages = "157--163",
+    abstract = "We study the topmost weight matrix of neural network language models. We show that this matrix constitutes a valid word embedding. When training language models, we recommend tying the input embedding and this output embedding. We analyze the resulting update rules and show that the tied embedding evolves in a more similar way to the output embedding than to the input embedding in the untied model. We also offer a new method of regularizing the output embedding. Our methods lead to a significant reduction in perplexity, as we are able to show on a variety of neural network language models. Finally, we show that weight tying can reduce the size of neural translation models to less than half of their original size without harming their performance.",
+}
+
+@inproceedings{ait-saada-nadif-2023-anisotropy,
+    title = "Is Anisotropy Truly Harmful? A Case Study on Text Clustering",
+    author = "Ait-Saada, Mira  and
+      Nadif, Mohamed",
+    editor = "Rogers, Anna  and
+      Boyd-Graber, Jordan  and
+      Okazaki, Naoaki",
+    booktitle = "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)",
+    month = jul,
+    year = "2023",
+    address = "Toronto, Canada",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.acl-short.103",
+    doi = "10.18653/v1/2023.acl-short.103",
+    pages = "1194--1203",
+    abstract = "In the last few years, several studies have been devoted to dissecting dense text representations in order to understand their effectiveness and further improve their quality. Particularly, the anisotropy of such representations has been observed, which means that the directions of the word vectors are not evenly distributed across the space but rather concentrated in a narrow cone. This has led to several attempts to counteract this phenomenon both on static and contextualized text representations. However, despite this effort, there is no established relationship between anisotropy and performance. In this paper, we aim to bridge this gap by investigating the impact of different transformations on both the isotropy and the performance in order to assess the true impact of anisotropy. To this end, we rely on the clustering task as a means of evaluating the ability of text representations to produce meaningful groups. Thereby, we empirically show a limited impact of anisotropy on the expressiveness of sentence representations both in terms of directions and L2 closeness.",
+}
+
+@inproceedings{zhao-etal-2018-gender,
+    title = "Gender Bias in Coreference Resolution: Evaluation and Debiasing Methods",
+    author = "Zhao, Jieyu  and
+      Wang, Tianlu  and
+      Yatskar, Mark  and
+      Ordonez, Vicente  and
+      Chang, Kai-Wei",
+    editor = "Walker, Marilyn  and
+      Ji, Heng  and
+      Stent, Amanda",
+    booktitle = "Proceedings of the 2018 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 2 (Short Papers)",
+    month = jun,
+    year = "2018",
+    address = "New Orleans, Louisiana",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/N18-2003",
+    doi = "10.18653/v1/N18-2003",
+    pages = "15--20",
+    abstract = "In this paper, we introduce a new benchmark for co-reference resolution focused on gender bias, WinoBias. Our corpus contains Winograd-schema style sentences with entities corresponding to people referred by their occupation (e.g. the nurse, the doctor, the carpenter). We demonstrate that a rule-based, a feature-rich, and a neural coreference system all link gendered pronouns to pro-stereotypical entities with higher accuracy than anti-stereotypical entities, by an average difference of 21.1 in F1 score. Finally, we demonstrate a data-augmentation approach that, in combination with existing word-embedding debiasing techniques, removes the bias demonstrated by these systems in WinoBias without significantly affecting their performance on existing datasets.",
+}
+
+
+@inproceedings{
+rudman2023stable,
+title={Stable Anisotropic Regularization},
+author={William Rudman and Carsten Eickhoff},
+booktitle={The Twelfth International Conference on Learning Representations},
+year={2024},
+url={https://openreview.net/forum?id=dbQH9AOVd5}
+}
+
+
+@misc{zhou2021freqbased,
+      title={Frequency-based Distortions in Contextualized Word Embeddings}, 
+      author={Kaitlyn Zhou and Kawin Ethayarajh and Dan Jurafsky},
+      year={2021},
+      eprint={2104.08465},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2104.08465}, 
+}
+
+@misc{touvron2023llama,
+      title={LLaMA: Open and Efficient Foundation Language Models}, 
+      author={Hugo Touvron and Thibaut Lavril and Gautier Izacard and Xavier Martinet and Marie-Anne Lachaux and Timothée Lacroix and Baptiste Rozière and Naman Goyal and Eric Hambro and Faisal Azhar and Aurelien Rodriguez and Armand Joulin and Edouard Grave and Guillaume Lample},
+      year={2023},
+      eprint={2302.13971},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2302.13971}, 
+}
+
+@inproceedings{ravfogel-etal-2020-null,
+    title = "Null It Out: Guarding Protected Attributes by Iterative Nullspace Projection",
+    author = "Ravfogel, Shauli  and
+      Elazar, Yanai  and
+      Gonen, Hila  and
+      Twiton, Michael  and
+      Goldberg, Yoav",
+    editor = "Jurafsky, Dan  and
+      Chai, Joyce  and
+      Schluter, Natalie  and
+      Tetreault, Joel",
+    booktitle = "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics",
+    month = jul,
+    year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2020.acl-main.647",
+    doi = "10.18653/v1/2020.acl-main.647",
+    pages = "7237--7256",
+    abstract = "The ability to control for the kinds of information encoded in neural representation has a variety of use cases, especially in light of the challenge of interpreting these models. We present Iterative Null-space Projection (INLP), a novel method for removing information from neural representations. Our method is based on repeated training of linear classifiers that predict a certain property we aim to remove, followed by projection of the representations on their null-space. By doing so, the classifiers become oblivious to that target property, making it hard to linearly separate the data according to it. While applicable for multiple uses, we evaluate our method on bias and fairness use-cases, and show that our method is able to mitigate bias in word embeddings, as well as to increase fairness in a setting of multi-class classification.",
+}
+
+@article{lotr,
+author = {Louwerse, Max M. and Benesh, Nick},
+title = {Representing Spatial Structure Through Maps and Language: Lord of the Rings Encodes the Spatial Structure of Middle Earth},
+journal = {Cognitive Science},
+volume = {36},
+number = {8},
+pages = {1556-1569},
+keywords = {Spatial cognition, Embodied cognition, Geographical structures, Cognitive maps, Mental representations, Symbol interdependency, Latent semantic analysis},
+doi = {https://doi.org/10.1111/cogs.12000},
+url = {https://onlinelibrary.wiley.com/doi/abs/10.1111/cogs.12000},
+eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1111/cogs.12000},
+abstract = {Abstract Spatial mental representations can be derived from linguistic and non-linguistic sources of information. This study tested whether these representations could be formed from statistical linguistic frequencies of city names, and to what extent participants differed in their performance when they estimated spatial locations from language or maps. In a computational linguistic study, we demonstrated that co-occurrences of cities in Tolkien’s Lord of the Rings trilogy and The Hobbit predicted the authentic longitude and latitude of those cities in Middle Earth. In a human study, we showed that human spatial estimates of the location of cities were very similar regardless of whether participants read Tolkien’s texts or memorized a map of Middle Earth. However, text-based location estimates obtained from statistical linguistic frequencies better predicted the human text-based estimates than the human map-based estimates. These findings suggest that language encodes spatial structure of cities, and that human cognitive map representations can come from implicit statistical linguistic patterns, from explicit non-linguistic perceptual information, or from both.},
+year = {2012}
+}
+
+@inproceedings{faisal-anastasopoulos-2022-geographic,
+    title = "Geographic and Geopolitical Biases of Language Models",
+    author = "Faisal, Fahim  and
+      Anastasopoulos, Antonios",
+    editor = "Ataman, Duygu",
+    booktitle = "Proceedings of the 3rd Workshop on Multi-lingual Representation Learning (MRL)",
+    month = dec,
+    year = "2023",
+    address = "Singapore",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.mrl-1.12",
+    doi = "10.18653/v1/2023.mrl-1.12",
+    pages = "139--163",
+}
+
+@inproceedings{faisal-etal-2022-dataset,
+    title = "Dataset Geography: Mapping Language Data to Language Users",
+    author = "Faisal, Fahim  and
+      Wang, Yinkai  and
+      Anastasopoulos, Antonios",
+    editor = "Muresan, Smaranda  and
+      Nakov, Preslav  and
+      Villavicencio, Aline",
+    booktitle = "Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = may,
+    year = "2022",
+    address = "Dublin, Ireland",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.acl-long.239",
+    doi = "10.18653/v1/2022.acl-long.239",
+    pages = "3381--3411",
+    abstract = "As language technologies become more ubiquitous, there are increasing efforts towards expanding the language diversity and coverage of natural language processing (NLP) systems. Arguably, the most important factor influencing the quality of modern NLP systems is data availability. In this work, we study the geographical representativeness of NLP datasets, aiming to quantify if and by how much do NLP datasets match the expected needs of the language speakers. In doing so, we use entity recognition and linking systems, also making important observations about their cross-lingual consistency and giving suggestions for more robust evaluation. Last, we explore some geographical and economic factors that may explain the observed dataset distributions.",
+}
+
+
+@inproceedings{
+gurnee2023language,
+title={Language Models Represent Space and Time},
+author={Wes Gurnee and Max Tegmark},
+booktitle={The Twelfth International Conference on Learning Representations},
+year={2024},
+url={https://openreview.net/forum?id=jE8xbmvFin}
+}
+
+@article{ridge,
+  added-at = {2009-01-29T03:39:09.000+0100},
+  author = {Hoerl, A. E. and Kennard, R. W.},
+  journal = {Technometrics},
+  keywords = {ridge-regg},
+  pages = {55--67},
+  timestamp = {2009-01-29T03:40:48.000+0100},
+  title = {Ridge Regression: Biased
+        Estimation for Nonorthogonal Problems},
+  volume = 12,
+  year = 1970
+}
+
+@misc{zhang2022opt,
+      title={OPT: Open Pre-trained Transformer Language Models}, 
+      author={Susan Zhang and Stephen Roller and Naman Goyal and Mikel Artetxe and Moya Chen and Shuohui Chen and Christopher Dewan and Mona Diab and Xian Li and Xi Victoria Lin and Todor Mihaylov and Myle Ott and Sam Shleifer and Kurt Shuster and Daniel Simig and Punit Singh Koura and Anjali Sridhar and Tianlu Wang and Luke Zettlemoyer},
+      year={2022},
+      eprint={2205.01068},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2205.01068}, 
+}
+
+
+
+@InProceedings{pythia,
+  title = 	 {Pythia: A Suite for Analyzing Large Language Models Across Training and Scaling},
+  author =       {Biderman, Stella and Schoelkopf, Hailey and Anthony, Quentin Gregory and Bradley, Herbie and O'Brien, Kyle and Hallahan, Eric and Khan, Mohammad Aflah and Purohit, Shivanshu and Prashanth, Usvsn Sai and Raff, Edward and Skowron, Aviya and Sutawika, Lintang and Van Der Wal, Oskar},
+  booktitle = 	 {Proceedings of the 40th International Conference on Machine Learning},
+  pages = 	 {2397--2430},
+  year = 	 {2023},
+  editor = 	 {Krause, Andreas and Brunskill, Emma and Cho, Kyunghyun and Engelhardt, Barbara and Sabato, Sivan and Scarlett, Jonathan},
+  volume = 	 {202},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {23--29 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {https://proceedings.mlr.press/v202/biderman23a/biderman23a.pdf},
+  url = 	 {https://proceedings.mlr.press/v202/biderman23a.html},
+  abstract = 	 {How do large language models (LLMs) develop and evolve over the course of training? How do these patterns change as models scale? To answer these questions, we introduce <em>Pythia</em>, a suite of 16 LLMs all trained on public data seen in the exact same order and ranging in size from 70M to 12B parameters. We provide public access to 154 checkpoints for each one of the 16 models, alongside tools to download and reconstruct their exact training dataloaders for further study. We intend <em>Pythia</em> to facilitate research in many areas, and we present several case studies including novel results in memorization, term frequency effects on few-shot performance, and reducing gender bias. We demonstrate that this highly controlled setup can be used to yield novel insights toward LLMs and their training dynamics. Trained models, analysis code, training code, and training data can be found at https://github.com/EleutherAI/pythia.}
+}
+
+@software{gpt-neo,
+  author       = {Black, Sid and
+                  Gao, Leo and
+                  Wang, Phil and
+                  Leahy, Connor and
+                  Biderman, Stella},
+  title        = {{GPT-Neo: Large Scale Autoregressive Language 
+                   Modeling with Mesh-Tensorflow}},
+  month        = mar,
+  year         = 2021,
+  publisher    = {Zenodo},
+  version      = {1.0},
+  doi          = {10.5281/zenodo.5297715},
+  url          = {https://doi.org/10.5281/zenodo.5297715}
+}
+
+@article{shliazhko2023mgpt,
+ title={mGPT: Few-Shot Learners Go Multilingual},
+ author={Shliazhko, Oleh and Fenogenova, Alena and Tikhonova, Maria and Kozlova, Anastasia and Mikhailov, Vladislav and Shavrina, Tatiana},
+ journal={Transactions of the Association for Computational Linguistics},
+ volume={12},
+ pages={58--79},
+ year={2024},
+ publisher={MIT Press One Broadway, 12th Floor, Cambridge, Massachusetts 02142, USA~…}
+}
+
+@misc{
+turc2020wellread,
+title={Well-Read Students Learn Better: On the Importance of Pre-training Compact Models},
+author={Iulia Turc and Ming-Wei Chang and Kenton Lee and Kristina Toutanova},
+year={2020},
+url={https://openreview.net/forum?id=BJg7x1HFvB}
+}
+
+
+@inproceedings{
+electra,
+title={ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators},
+author={Kevin Clark and Minh-Thang Luong and Quoc V. Le and Christopher D. Manning},
+booktitle={International Conference on Learning Representations},
+year={2020},
+url={https://openreview.net/forum?id=r1xMH1BtvB}
+}
+
+@inproceedings{
+deberta,
+title={{\{}DEBERTA{\}}: {\{}DECODING{\}}-{\{}ENHANCED{\}} {\{}BERT{\}} {\{}WITH{\}} {\{}DISENTANGLED{\}} {\{}ATTENTION{\}}},
+author={Pengcheng He and Xiaodong Liu and Jianfeng Gao and Weizhu Chen},
+booktitle={International Conference on Learning Representations},
+year={2021},
+url={https://openreview.net/forum?id=XPZIaotutsD}
+}
+
+% Use this file for citations not found in the ACL Anthology (contained in "anthology.bib").
+
+@article{gao2020pile,
+  title={The {P}ile: An 800{GB} dataset of diverse text for language modeling},
+  author={Gao, Leo and Biderman, Stella and Black, Sid and Golding, Laurence and Hoppe, Travis and Foster, Charles and Phang, Jason and He, Horace and Thite, Anish and Nabeshima, Noa and others},
+  journal={arXiv preprint arXiv:2101.00027},
+  year={2020}
+}
+
+@InProceedings{conneau2018xnli,
+  author = "Conneau, Alexis
+        and Rinott, Ruty
+        and Lample, Guillaume
+        and Williams, Adina
+        and Bowman, Samuel R.
+        and Schwenk, Holger
+        and Stoyanov, Veselin",
+  title = "XNLI: Evaluating Cross-lingual Sentence Representations",
+  booktitle = "Proceedings of the 2018 Conference on Empirical Methods
+               in Natural Language Processing",
+  year = "2018",
+  publisher = "Association for Computational Linguistics",
+  location = "Brussels, Belgium",
+}
+
+@inproceedings{SciQ,
+    title={Crowdsourcing Multiple Choice Science Questions},
+    author={Johannes Welbl, Nelson F. Liu, Matt Gardner},
+    year={2017},
+    journal={arXiv:1707.06209v1}
+}
+
+@misc{clark2018think,
+      title={Think you have Solved Question Answering? Try ARC, the AI2 Reasoning Challenge}, 
+      author={Peter Clark and Isaac Cowhey and Oren Etzioni and Tushar Khot and Ashish Sabharwal and Carissa Schoenick and Oyvind Tafjord},
+      year={2018},
+      eprint={1803.05457},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI}
+}
+
+@inproceedings{sanh2019distilbert,
+  title={DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter},
+  author={Sanh, Victor and Debut, Lysandre and Chaumond, Julien and Wolf, Thomas},
+  booktitle={NeurIPS EMC2 Workshop},
+  year={2019}
+}
+
+@article{conneau2019unsupervised,
+  title={Unsupervised Cross-lingual Representation Learning at Scale},
+  author={Conneau, Alexis and Khandelwal, Kartikay and Goyal, Naman and Chaudhary, Vishrav and Wenzek, Guillaume and Guzm{\'a}n, Francisco and Grave, Edouard and Ott, Myle and Zettlemoyer, Luke and Stoyanov, Veselin},
+  journal={arXiv preprint arXiv:1911.02116},
+  year={2019}
+}
+
+@inproceedings{wav2vec2,
+ author = {Baevski, Alexei and Zhou, Yuhao and Mohamed, Abdelrahman and Auli, Michael},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {H. Larochelle and M. Ranzato and R. Hadsell and M.F. Balcan and H. Lin},
+ pages = {12449--12460},
+ publisher = {Curran Associates, Inc.},
+ title = {wav2vec 2.0: A Framework for Self-Supervised Learning of Speech Representations},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2020/file/92d1e1eb1cd6f9fba3227870bb6d7f07-Paper.pdf},
+ volume = {33},
+ year = {2020}
+}
+
+@inproceedings{klein-nabi-2023-micse,
+    title = "mi{CSE}: Mutual Information Contrastive Learning for Low-shot Sentence Embeddings",
+    author = "Klein, Tassilo  and
+      Nabi, Moin",
+    booktitle = "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2023",
+    address = "Toronto, Canada",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.acl-long.339",
+    pages = "6159--6177"
+}
+
+@inproceedings{zouhar-etal-2023-tokenization,
+    title = "Tokenization and the Noiseless Channel",
+    author = "Zouhar, Vil{\'e}m  and
+      Meister, Clara  and
+      Gastaldi, Juan  and
+      Du, Li  and
+      Sachan, Mrinmaya  and
+      Cotterell, Ryan",
+    booktitle = "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2023",
+    address = "Toronto, Canada",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.acl-long.284",
+    doi = "10.18653/v1/2023.acl-long.284",
+    pages = "5184--5207",
+}
+
+@misc{liang2023xlmv,
+      title={XLM-V: Overcoming the Vocabulary Bottleneck in Multilingual Masked Language Models}, 
+      author={Davis Liang and Hila Gonen and Yuning Mao and Rui Hou and Naman Goyal and Marjan Ghazvininejad and Luke Zettlemoyer and Madian Khabsa},
+      year={2023},
+      eprint={2301.10472},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+
+
+@InProceedings{contr1,
+  title = 	 {Do More Negative Samples Necessarily Hurt In Contrastive Learning?},
+  author =       {Awasthi, Pranjal and Dikkala, Nishanth and Kamath, Pritish},
+  booktitle = 	 {Proceedings of the 39th International Conference on Machine Learning},
+  pages = 	 {1101--1116},
+  year = 	 {2022},
+  editor = 	 {Chaudhuri, Kamalika and Jegelka, Stefanie and Song, Le and Szepesvari, Csaba and Niu, Gang and Sabato, Sivan},
+  volume = 	 {162},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {17--23 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {https://proceedings.mlr.press/v162/awasthi22b/awasthi22b.pdf},
+  url = 	 {https://proceedings.mlr.press/v162/awasthi22b.html}
+}
+
+@misc{he2023debertav3,
+      title={DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing}, 
+      author={Pengcheng He and Jianfeng Gao and Weizhu Chen},
+      year={2023},
+      eprint={2111.09543},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+
+@InProceedings{contr2,
+  title = 	 {Investigating the Role of Negatives in Contrastive Representation Learning },
+  author =       {Ash, Jordan and Goel, Surbhi and Krishnamurthy, Akshay and Misra, Dipendra},
+  booktitle = 	 {Proceedings of The 25th International Conference on Artificial Intelligence and Statistics},
+  pages = 	 {7187--7209},
+  year = 	 {2022},
+  editor = 	 {Camps-Valls, Gustau and Ruiz, Francisco J. R. and Valera, Isabel},
+  volume = 	 {151},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {28--30 Mar},
+  publisher =    {PMLR},
+  pdf = 	 {https://proceedings.mlr.press/v151/ash22a/ash22a.pdf},
+  url = 	 {https://proceedings.mlr.press/v151/ash22a.html}
+}
+
+
+@misc{zhou2021frequencybased,
+      title={Frequency-based Distortions in Contextualized Word Embeddings}, 
+      author={Kaitlyn Zhou and Kawin Ethayarajh and Dan Jurafsky},
+      year={2021},
+      eprint={2104.08465},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+
+@inproceedings{jain-etal-2023-contraclm,
+    title = "{C}ontra{CLM}: Contrastive Learning For Causal Language Model",
+    author = "Jain, Nihal  and
+      Zhang, Dejiao  and
+      Ahmad, Wasi Uddin  and
+      Wang, Zijian  and
+      Nan, Feng  and
+      Li, Xiaopeng  and
+      Tan, Ming  and
+      Nallapati, Ramesh  and
+      Ray, Baishakhi  and
+      Bhatia, Parminder  and
+      Ma, Xiaofei  and
+      Xiang, Bing",
+    booktitle = "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2023",
+    address = "Toronto, Canada",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.acl-long.355",
+    pages = "6436--6459"
+}
+
+@misc{su2022contrastive,
+      title={A Contrastive Framework for Neural Text Generation}, 
+      author={Yixuan Su and Tian Lan and Yan Wang and Dani Yogatama and Lingpeng Kong and Nigel Collier},
+      year={2022},
+      eprint={2202.06417},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+
+@Misc{xFormers2022,
+  author =       {Benjamin Lefaudeux and Francisco Massa and Diana Liskovich and Wenhan Xiong and Vittorio Caggiano and Sean Naren and Min Xu and Jieru Hu and Marta Tintore and Susan Zhang and Patrick Labatut and Daniel Haziza},
+  title =        {xFormers: A modular and hackable Transformer modelling library},
+  howpublished = {\url{https://github.com/facebookresearch/xformers}},
+  year =         {2022}
+}
+@misc{oord2019representation,
+      title={Representation Learning with Contrastive Predictive Coding}, 
+      author={Aaron van den Oord and Yazhe Li and Oriol Vinyals},
+      year={2019},
+      eprint={1807.03748},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+
+@inproceedings{schneider19_interspeech,
+  author={Steffen Schneider and Alexei Baevski and Ronan Collobert and Michael Auli},
+  title={{wav2vec: Unsupervised Pre-Training for Speech Recognition}},
+  year=2019,
+  booktitle={Proc. Interspeech 2019},
+  pages={3465--3469},
+  doi={10.21437/Interspeech.2019-1873}
+}
+
+@misc{sermanet2018timecontrastive,
+      title={Time-Contrastive Networks: Self-Supervised Learning from Video}, 
+      author={Pierre Sermanet and Corey Lynch and Yevgen Chebotar and Jasmine Hsu and Eric Jang and Stefan Schaal and Sergey Levine},
+      year={2018},
+      eprint={1704.06888},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+
+@article{turc2019,
+  title={Well-Read Students Learn Better: On the Importance of Pre-training Compact Models},
+  author={Turc, Iulia and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina},
+  journal={arXiv preprint arXiv:1908.08962v2 },
+  year={2019}
+}
+
+@InProceedings{Hamborg2017,
+  author     = {Hamborg, Felix and Meuschke, Norman and Breitinger, Corinna and Gipp, Bela},
+  title      = {news-please: A Generic News Crawler and Extractor},
+  year       = {2017},
+  booktitle  = {Proceedings of the 15th International Symposium of Information Science},
+  location   = {Berlin},
+  doi        = {10.5281/zenodo.4120316},
+  pages      = {218--223},
+  month      = {March}
+}
+
+@ARTICLE{2023arXiv230110472L,
+       author = {{Liang}, Davis and {Gonen}, Hila and {Mao}, Yuning and {Hou}, Rui and {Goyal}, Naman and {Ghazvininejad}, Marjan and {Zettlemoyer}, Luke and {Khabsa}, Madian},
+        title = "{XLM-V: Overcoming the Vocabulary Bottleneck in Multilingual Masked Language Models}",
+      journal = {arXiv e-prints},
+     keywords = {Computer Science - Computation and Language, Computer Science - Machine Learning},
+         year = 2023,
+        month = jan,
+          eid = {arXiv:2301.10472},
+        pages = {arXiv:2301.10472},
+          doi = {10.48550/arXiv.2301.10472},
+archivePrefix = {arXiv},
+       eprint = {2301.10472},
+ primaryClass = {cs.CL},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2023arXiv230110472L},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@article{meister_natbias,
+  doi = {10.48550/ARXIV.2212.09686},
+  
+  url = {https://arxiv.org/abs/2212.09686},
+  
+  author = {Meister, Clara and Stokowiec, Wojciech and Pimentel, Tiago and Yu, Lei and Rimell, Laura and Kuncoro, Adhiguna},
+  
+  keywords = {Computation and Language (cs.CL), FOS: Computer and information sciences, FOS: Computer and information sciences},
+  
+  title = {A Natural Bias for Language Generation Models},
+  
+  publisher = {arXiv},
+  
+  year = {2022},
+  
+  copyright = {arXiv.org perpetual, non-exclusive license}
+}
+
+
+
+@article{warstadt2018neural,
+    title={Neural Network Acceptability Judgments},
+    author={Warstadt, Alex and Singh, Amanpreet and Bowman, Samuel R},
+    journal={arXiv preprint arXiv:1805.12471},
+    year={2018}
+}
+
+
+@article{gao19,
+  doi = {10.48550/ARXIV.1907.12009},
+  
+  url = {https://arxiv.org/abs/1907.12009},
+  
+  author = {Gao, Jun and He, Di and Tan, Xu and Qin, Tao and Wang, Liwei and Liu, Tie-Yan},
+  
+  keywords = {Computation and Language (cs.CL), FOS: Computer and information sciences, FOS: Computer and information sciences},
+  
+  title = {Representation Degeneration Problem in Training Natural Language Generation Models},
+  
+  publisher = {arXiv},
+  
+  year = {2019},
+  
+  copyright = {Creative Commons Attribution Non Commercial Share Alike 4.0 International}
+}
+
+@article{zhou_freq,
+  doi = {10.48550/ARXIV.2104.08465},
+  
+  url = {https://arxiv.org/abs/2104.08465},
+  
+  author = {Zhou, Kaitlyn and Ethayarajh, Kawin and Jurafsky, Dan},
+  
+  keywords = {Computation and Language (cs.CL), FOS: Computer and information sciences, FOS: Computer and information sciences},
+  
+  title = {Frequency-based Distortions in Contextualized Word Embeddings},
+  
+  publisher = {arXiv},
+  
+  year = {2021},
+  
+  copyright = {arXiv.org perpetual, non-exclusive license}
+}
+
+
+
+@book{APA:83,
+    author  = {{American Psychological Association}},
+    title   = {Publications Manual},
+    year    = "1983",
+    publisher = {American Psychological Association},
+    address = {Washington, DC}
+}
+
+@article{Chandra:81,
+	author = {Ashok K. Chandra and Dexter C. Kozen and Larry J. Stockmeyer},
+	year = "1981",
+	title = {Alternation},
+	journal = {Journal of the Association for Computing Machinery},
+	volume = "28",
+	number = "1",
+	pages = "114--133",
+	doi = "10.1145/322234.322243",
+}
+
+@inproceedings{andrew2007scalable,
+  title={Scalable training of {$L_1$}-regularized log-linear models},
+  author={Andrew, Galen and Gao, Jianfeng},
+  booktitle={Proceedings of the 24th International Conference on Machine Learning},
+  pages={33--40},
+  year={2007},
+  url={https://dl.acm.org/doi/abs/10.1145/1273496.1273501}
+}
+
+@book{Gusfield:97,
+    author  = {Dan Gusfield},
+    title   = {Algorithms on Strings, Trees and Sequences},
+    year    = "1997",
+    publisher = {Cambridge University Press},
+    address = {Cambridge, UK},
+    url={https://www.cambridge.org/core/books/algorithms-on-strings-trees-and-sequences/F0B095049C7E6EF5356F0A26686C20D3}
+}
+
+@article{rasooli-tetrault-2015,
+    author    = {Mohammad Sadegh Rasooli and Joel R. Tetreault},
+    title     = {Yara Parser: {A} Fast and Accurate Dependency Parser},
+    journal   = {Computing Research Repository},
+    volume    = {arXiv:1503.06733},
+    year      = {2015},
+    url       = {http://arxiv.org/abs/1503.06733},
+    note    = {version 2}
+}
+
+@article{algayres-etal-2022-dp,
+    title = "{DP}-Parse: Finding Word Boundaries from Raw Speech with an Instance Lexicon",
+    author = "Algayres, Robin  and
+      Ricoul, Tristan  and
+      Karadayi, Julien  and
+      Lauren{\c{c}}on, Hugo  and
+      Zaiem, Salah  and
+      Mohamed, Abdelrahman  and
+      Sagot, Beno{\^\i}t  and
+      Dupoux, Emmanuel",
+    journal = "Transactions of the Association for Computational Linguistics",
+    volume = "10",
+    year = "2022",
+    address = "Cambridge, MA",
+    publisher = "MIT Press",
+    url = "https://aclanthology.org/2022.tacl-1.61",
+    doi = "10.1162/tacl_a_00505",
+    pages = "1051--1065",
+}
+
+@misc{mnih2012fast,
+      title={A Fast and Simple Algorithm for Training Neural Probabilistic Language Models}, 
+      author={Andriy Mnih and Yee Whye Teh},
+      year={2012},
+      eprint={1206.6426},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+
+@InProceedings{nce,
+  title = 	 {Noise-contrastive estimation: A new estimation principle for unnormalized statistical models},
+  author = 	 {Gutmann, Michael and Hyvärinen, Aapo},
+  booktitle = 	 {Proceedings of the Thirteenth International Conference on Artificial Intelligence and Statistics},
+  pages = 	 {297--304},
+  year = 	 {2010},
+  editor = 	 {Teh, Yee Whye and Titterington, Mike},
+  volume = 	 {9},
+  series = 	 {Proceedings of Machine Learning Research},
+  address = 	 {Chia Laguna Resort, Sardinia, Italy},
+  month = 	 {13--15 May},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf},
+  url = 	 {https://proceedings.mlr.press/v9/gutmann10a.html}
+}
+
+@inproceedings{kumar2018vmf,
+title={Von Mises-Fisher Loss for Training Sequence to Sequence Models with Continuous Outputs},
+author={Sachin Kumar and Yulia Tsvetkov},
+booktitle={Proc. of ICLR},
+year={2019},
+url={https://arxiv.org/pdf/1812.04616.pdf},
+}
+
+@InProceedings{quick_train_bengio_03,
+  title = 	 {Quick Training of Probabilistic Neural Nets by Importance Sampling},
+  author =       {Bengio, Yoshua and Senecal, Jean-S{\'{e}}bastien},
+  booktitle = 	 {Proceedings of the Ninth International Workshop on Artificial Intelligence and Statistics},
+  pages = 	 {17--24},
+  year = 	 {2003},
+  editor = 	 {Bishop, Christopher M. and Frey, Brendan J.},
+  volume = 	 {R4},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {03--06 Jan},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/r4/bengio03a/bengio03a.pdf},
+  url = 	 {https://proceedings.mlr.press/r4/bengio03a.html},
+  note =         {Reissued by PMLR on 01 April 2021.}
+}
+
+
+% Use this file for citations not found in the ACL Anthology (contained in "anthology.bib").
+
+@book{Aho:72,
+    author  = {Alfred V. Aho and Jeffrey D. Ullman},
+    title   = {The Theory of Parsing, Translation and Compiling},
+    year    = "1972",
+    volume  = "1",
+    publisher = {Prentice-Hall},
+    address = {Englewood Cliffs, NJ}
+}
+
+@inproceedings{iskander-etal-2023-shielded,
+    title = "Shielded Representations: Protecting Sensitive Attributes Through Iterative Gradient-Based Projection",
+    author = "Iskander, Shadi  and
+      Radinsky, Kira  and
+      Belinkov, Yonatan",
+    booktitle = "Findings of the Association for Computational Linguistics: ACL 2023",
+    month = jul,
+    year = "2023",
+    address = "Toronto, Canada",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.findings-acl.369",
+    doi = "10.18653/v1/2023.findings-acl.369",
+    pages = "5961--5977",
+}
+
+
+@misc{conneau2020unsupervised,
+      title={Unsupervised Cross-lingual Representation Learning at Scale}, 
+      author={Alexis Conneau and Kartikay Khandelwal and Naman Goyal and Vishrav Chaudhary and Guillaume Wenzek and Francisco Guzmán and Edouard Grave and Myle Ott and Luke Zettlemoyer and Veselin Stoyanov},
+      year={2020},
+      eprint={1911.02116},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+
+@misc{orr2020bootleg,
+      title={Bootleg: Chasing the Tail with Self-Supervised Named Entity Disambiguation}, 
+      author={Laurel Orr and Megan Leszczynski and Simran Arora and Sen Wu and Neel Guha and Xiao Ling and Christopher Re},
+      year={2020},
+      eprint={2010.10363},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+
+@inproceedings{parrots_bender,
+author = {Bender, Emily M. and Gebru, Timnit and McMillan-Major, Angelina and Shmitchell, Shmargaret},
+title = {On the Dangers of Stochastic Parrots: Can Language Models Be Too Big?},
+year = {2021},
+isbn = {9781450383097},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3442188.3445922},
+doi = {10.1145/3442188.3445922},
+booktitle = {Proceedings of the 2021 ACM Conference on Fairness, Accountability, and Transparency},
+pages = {610–623},
+numpages = {14},
+location = {Virtual Event, Canada},
+series = {FAccT '21}
+}
+
+@inproceedings{feng-etal-2023-pretraining,
+    title = "From Pretraining Data to Language Models to Downstream Tasks: Tracking the Trails of Political Biases Leading to Unfair {NLP} Models",
+    author = "Feng, Shangbin  and
+      Park, Chan Young  and
+      Liu, Yuhan  and
+      Tsvetkov, Yulia",
+    booktitle = "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2023",
+    address = "Toronto, Canada",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.acl-long.656",
+    doi = "10.18653/v1/2023.acl-long.656",
+    pages = "11737--11762",
+}
+
+@book{gini1912variabilita,
+  title={Variabilit{\`a} e mutabilit{\`a}: contributo allo studio delle distribuzioni e delle relazioni statistiche.[Fasc. I.]},
+  author={Gini, Corrado},
+  year={1912},
+  publisher={Tipogr. di P. Cuppini}
+}
+
+@article{MerityXBS16,
+  author       = {Stephen Merity and
+                  Caiming Xiong and
+                  James Bradbury and
+                  Richard Socher},
+  title        = {Pointer Sentinel Mixture Models},
+  journal      = {CoRR},
+  volume       = {abs/1609.07843},
+  year         = {2016},
+  url          = {http://arxiv.org/abs/1609.07843},
+  eprinttype    = {arXiv},
+  eprint       = {1609.07843},
+  timestamp    = {Thu, 21 Mar 2019 11:19:44 +0100},
+  biburl       = {https://dblp.org/rec/journals/corr/MerityXBS16.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{meister_natbias,
+  doi = {10.48550/ARXIV.2212.09686},
+  
+  url = {https://arxiv.org/abs/2212.09686},
+  
+  author = {Meister, Clara and Stokowiec, Wojciech and Pimentel, Tiago and Yu, Lei and Rimell, Laura and Kuncoro, Adhiguna},
+  
+  keywords = {Computation and Language (cs.CL), FOS: Computer and information sciences, FOS: Computer and information sciences},
+  
+  title = {A Natural Bias for Language Generation Models},
+  
+  publisher = {arXiv},
+  
+  year = {2022},
+  
+  copyright = {arXiv.org perpetual, non-exclusive license}
+}
+
+
+@article{warstadt2018neural,
+    title={Neural Network Acceptability Judgments},
+    author={Warstadt, Alex and Singh, Amanpreet and Bowman, Samuel R},
+    journal={arXiv preprint arXiv:1805.12471},
+    year={2018}
+}
+
+
+% Use this file for citations not found in the ACL Anthology (contained in "anthology.bib").
+
+@article{beltagy2020longformer,
+  title={Longformer: The long-document transformer},
+  author={Beltagy, Iz and Peters, Matthew E and Cohan, Arman},
+  journal={arXiv preprint arXiv:2004.05150},
+  year={2020}
+}
+
+@article{BISCARRI201892,
+    title = {A simple and fast method for computing the Poisson binomial distribution function},
+    journal = {Computational Statistics \& Data Analysis},
+    volume = {122},
+    pages = {92-100},
+    year = {2018},
+    issn = {0167-9473},
+    doi = {https://doi.org/10.1016/j.csda.2018.01.007},
+    url = {https://www.sciencedirect.com/science/article/pii/S0167947318300082},
+    author = {William Biscarri and Sihai Dave Zhao and Robert J. Brunner}
+}
+
+@article{chung2016hierarchical,
+  title={Hierarchical multiscale recurrent neural networks},
+  author={Chung, Junyoung and Ahn, Sungjin and Bengio, Yoshua},
+  journal={arXiv preprint arXiv:1609.01704},
+  year={2016}
+}
+
+@article{clark2022canine,
+  title={Canine: Pre-training an efficient tokenization-free encoder for language representation},
+  author={Clark, Jonathan H and Garrette, Dan and Turc, Iulia and Wieting, John},
+  journal={Transactions of the Association for Computational Linguistics},
+  volume={10},
+  pages={73--91},
+  year={2022},
+  publisher={MIT Press}
+}
+
+@article{graves2013generating,
+  title={Generating sequences with recurrent neural networks},
+  author={Graves, Alex},
+  journal={arXiv preprint arXiv:1308.0850},
+  year={2013}
+}
+
+@article{hochreiter1997long,
+  title={Long short-term memory},
+  author={Hochreiter, Sepp and Schmidhuber, J{\"u}rgen},
+  journal={Neural computation},
+  volume={9},
+  number={8},
+  pages={1735--1780},
+  year={1997},
+  publisher={MIT Press}
+}
+
+@article{jaegle2021perceiver,
+  author    = {Andrew Jaegle and
+               Sebastian Borgeaud and
+               Jean{-}Baptiste Alayrac and
+               Carl Doersch and
+               Catalin Ionescu and
+               David Ding and
+               Skanda Koppula and
+               Daniel Zoran and
+               Andrew Brock and
+               Evan Shelhamer and
+               Olivier J. H{\'{e}}naff and
+               Matthew M. Botvinick and
+               Andrew Zisserman and
+               Oriol Vinyals and
+               Jo{\~{a}}o Carreira},
+  title     = {Perceiver {IO:} {A} General Architecture for Structured Inputs {\&}
+               Outputs},
+  journal   = {CoRR},
+  volume    = {abs/2107.14795},
+  year      = {2021},
+  url       = {https://arxiv.org/abs/2107.14795},
+  eprinttype = {arXiv},
+  eprint    = {2107.14795},
+  timestamp = {Tue, 03 Aug 2021 14:53:34 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-2107-14795.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{Jzefowicz2016ExploringTL,
+  title={Exploring the Limits of Language Modeling},
+  author={Rafal J{\'o}zefowicz and Oriol Vinyals and Mike Schuster and Noam M. Shazeer and Yonghui Wu},
+  journal={ArXiv},
+  year={2016},
+  volume={abs/1602.02410}
+}
+
+@inproceedings{kim2016character,
+  title={Character-aware neural language models},
+  author={Kim, Yoon and Jernite, Yacine and Sontag, David and Rush, Alexander M},
+  booktitle={Thirtieth AAAI conference on artificial intelligence},
+  year={2016}
+}
+
+@article{mielke2021between,
+  title={Between words and characters: A Brief History of Open-Vocabulary Modeling and Tokenization in NLP},
+  author={Mielke, Sabrina J and Alyafeai, Zaid and Salesky, Elizabeth and Raffel, Colin and Dey, Manan and Gall{\'e}, Matthias and Raja, Arun and Si, Chenglei and Lee, Wilson Y and Sagot, Beno{\^\i}t and others},
+  journal={arXiv preprint arXiv:2112.10508},
+  year={2021}
+}
+
+@article{mofijul2022vocabulary,
+  title={A Vocabulary-Free Multilingual Neural Tokenizer for End-to-End Task Learning},
+  author={Mofijul Islam, Md and Aguilar, Gustavo and Ponnusamy, Pragaash and Mathialagan, Clint Solomon and Ma, Chengyuan and Guo, Chenlei},
+  journal={arXiv e-prints},
+  pages={arXiv--2204},
+  year={2022}
+}
+
+@misc{poibin_fft,
+  doi = {10.48550/ARXIV.1702.01326},
+  url = {https://arxiv.org/abs/1702.01326},
+  author = {Zhang, Man and Hong, Yili and Balakrishnan, Narayanaswamy},
+  keywords = {Computation (stat.CO), FOS: Computer and information sciences, FOS: Computer and information sciences},
+  title = {An Algorithm for Computing the Distribution Function of the Generalized Poisson-Binomial Distribution},
+  publisher = {arXiv},
+  year = {2017},
+  copyright = {arXiv.org perpetual, non-exclusive license}
+}
+
+@article{raffel2020t5,
+  author  = {Colin Raffel and Noam Shazeer and Adam Roberts and Katherine Lee and Sharan Narang and Michael Matena and Yanqi Zhou and Wei Li and Peter J. Liu},
+  title   = {Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer},
+  journal = {Journal of Machine Learning Research},
+  year    = {2020},
+  volume  = {21},
+  number  = {140},
+  pages   = {1-67},
+  url     = {http://jmlr.org/papers/v21/20-074.html}
+}
+
+@inproceedings{sutskever2011generating,
+  title={Generating text with recurrent neural networks},
+  author={Sutskever, Ilya and Martens, James and Hinton, Geoffrey E},
+  booktitle={ICML},
+  year={2011}
+}
+
+@inproceedings{tay2021charformer,
+  title={Charformer: Fast Character Transformers via Gradient-based Subword Tokenization},
+  author={Tay, Yi and Tran, Vinh Q and Ruder, Sebastian and Gupta, Jai and Chung, Hyung Won and Bahri, Dara and Qin, Zhen and Baumgartner, Simon and Yu, Cong and Metzler, Donald},
+  booktitle={International Conference on Learning Representations},
+  year={2021}
+}
+
+@inproceedings{vaswani2017attention,
+ author = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser, \L ukasz and Polosukhin, Illia},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {I. Guyon and U. Von Luxburg and S. Bengio and H. Wallach and R. Fergus and S. Vishwanathan and R. Garnett},
+ pages = {},
+ publisher = {Curran Associates, Inc.},
+ title = {Attention is All you Need},
+ url = {https://proceedings.neurips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf},
+ volume = {30},
+ year = {2017}
+}
+
+@article{wu2016google,
+  title={Google's neural machine translation system: Bridging the gap between human and machine translation},
+  author={Wu, Yonghui and Schuster, Mike and Chen, Zhifeng and Le, Quoc V and Norouzi, Mohammad and Macherey, Wolfgang and Krikun, Maxim and Cao, Yuan and Gao, Qin and Macherey, Klaus and others},
+  journal={arXiv preprint arXiv:1609.08144},
+  year={2016}
+}
+
+@inproceedings{wulczyn2017ex,
+  title={Ex machina: Personal attacks seen at scale},
+  author={Wulczyn, Ellery and Thain, Nithum and Dixon, Lucas},
+  booktitle={Proceedings of the 26th international conference on world wide web},
+  pages={1391--1399},
+  year={2017}
+}
+
+@article{xue2022byt5,
+  title={ByT5: Towards a Token-Free Future with Pre-trained Byte-to-Byte Models},
+  author={Xue, Linting and Barua, Aditya and Constant, Noah and Al-Rfou, Rami and Narang, Sharan and Kale, Mihir and Roberts, Adam and Raffel, Colin},
+  journal={Transactions of the Association for Computational Linguistics},
+  volume={10},
+  pages={291--306},
+  year={2022},
+  publisher={MIT Press}
+}
+
+@article{DBLP:journals/corr/abs-1804-04235,
+  author    = {Noam Shazeer and
+               Mitchell Stern},
+  title     = {Adafactor: Adaptive Learning Rates with Sublinear Memory Cost},
+  journal   = {CoRR},
+  volume    = {abs/1804.04235},
+  year      = {2018},
+  url       = {http://arxiv.org/abs/1804.04235},
+  eprinttype = {arXiv},
+  eprint    = {1804.04235},
+  timestamp = {Mon, 13 Aug 2018 16:48:15 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-1804-04235.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{clark-etal-2020-pre,
+    title = "Pre-Training Transformers as Energy-Based Cloze Models",
+    author = "Clark, Kevin  and
+      Luong, Minh-Thang  and
+      Le, Quoc  and
+      Manning, Christopher D.",
+    editor = "Webber, Bonnie  and
+      Cohn, Trevor  and
+      He, Yulan  and
+      Liu, Yang",
+    booktitle = "Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+    month = nov,
+    year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2020.emnlp-main.20",
+    doi = "10.18653/v1/2020.emnlp-main.20",
+    pages = "285--294",
+    abstract = "We introduce Electric, an energy-based cloze model for representation learning over text. Like BERT, it is a conditional generative model of tokens given their contexts. However, Electric does not use masking or output a full distribution over tokens that could occur in a context. Instead, it assigns a scalar energy score to each input token indicating how likely it is given its context. We train Electric using an algorithm based on noise-contrastive estimation and elucidate how this learning objective is closely related to the recently proposed ELECTRA pre-training method. Electric performs well when transferred to downstream tasks and is particularly effective at producing likelihood scores for text: it re-ranks speech recognition n-best lists better than language models and much faster than masked language models. Furthermore, it offers a clearer and more principled view of what ELECTRA learns during pre-training.",
+}
+
+@inproceedings{jean-etal-2015-using,
+    title = "On Using Very Large Target Vocabulary for Neural Machine Translation",
+    author = "Jean, S{\'e}bastien  and
+      Cho, Kyunghyun  and
+      Memisevic, Roland  and
+      Bengio, Yoshua",
+    editor = "Zong, Chengqing  and
+      Strube, Michael",
+    booktitle = "Proceedings of the 53rd Annual Meeting of the Association for Computational Linguistics and the 7th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)",
+    month = jul,
+    year = "2015",
+    address = "Beijing, China",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/P15-1001",
+    doi = "10.3115/v1/P15-1001",
+    pages = "1--10",
+}
+
+@inproceedings{ma-collins-2018-noise,
+    title = "Noise Contrastive Estimation and Negative Sampling for Conditional Models: Consistency and Statistical Efficiency",
+    author = "Ma, Zhuang  and
+      Collins, Michael",
+    editor = "Riloff, Ellen  and
+      Chiang, David  and
+      Hockenmaier, Julia  and
+      Tsujii, Jun{'}ichi",
+    booktitle = "Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing",
+    month = oct # "-" # nov,
+    year = "2018",
+    address = "Brussels, Belgium",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/D18-1405",
+    doi = "10.18653/v1/D18-1405",
+    pages = "3698--3707",
+    abstract = "Noise Contrastive Estimation (NCE) is a powerful parameter estimation method for log-linear models, which avoids calculation of the partition function or its derivatives at each training step, a computationally demanding step in many cases. It is closely related to negative sampling methods, now widely used in NLP. This paper considers NCE-based estimation of conditional models. Conditional models are frequently encountered in practice; however there has not been a rigorous theoretical analysis of NCE in this setting, and we will argue there are subtle but important questions when generalizing NCE to the conditional case. In particular, we analyze two variants of NCE for conditional models: one based on a classification objective, the other based on a ranking objective. We show that the ranking-based variant of NCE gives consistent parameter estimates under weaker assumptions than the classification-based method; we analyze the statistical efficiency of the ranking-based and classification-based variants of NCE; finally we describe experiments on synthetic data and language modeling showing the effectiveness and tradeoffs of both methods.",
+}
+
+@inproceedings{nangia-etal-2020-crows,
+    title = "{C}row{S}-Pairs: A Challenge Dataset for Measuring Social Biases in Masked Language Models",
+    author = "Nangia, Nikita  and
+      Vania, Clara  and
+      Bhalerao, Rasika  and
+      Bowman, Samuel R.",
+    editor = "Webber, Bonnie  and
+      Cohn, Trevor  and
+      He, Yulan  and
+      Liu, Yang",
+    booktitle = "Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+    month = nov,
+    year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2020.emnlp-main.154",
+    doi = "10.18653/v1/2020.emnlp-main.154",
+    pages = "1953--1967",
+    abstract = "Pretrained language models, especially masked language models (MLMs) have seen success across many NLP tasks. However, there is ample evidence that they use the cultural biases that are undoubtedly present in the corpora they are trained on, implicitly creating harm with biased representations. To measure some forms of social bias in language models against protected demographic groups in the US, we introduce the Crowdsourced Stereotype Pairs benchmark (CrowS-Pairs). CrowS-Pairs has 1508 examples that cover stereotypes dealing with nine types of bias, like race, religion, and age. In CrowS-Pairs a model is presented with two sentences: one that is more stereotyping and another that is less stereotyping. The data focuses on stereotypes about historically disadvantaged groups and contrasts them with advantaged groups. We find that all three of the widely-used MLMs we evaluate substantially favor sentences that express stereotypes in every category in CrowS-Pairs. As work on building less biased models advances, this dataset can be used as a benchmark to evaluate progress.",
+}
+
+@inproceedings{rust-etal-2021-good,
+    title = "How Good is Your Tokenizer? On the Monolingual Performance of Multilingual Language Models",
+    author = "Rust, Phillip  and
+      Pfeiffer, Jonas  and
+      Vuli{\'c}, Ivan  and
+      Ruder, Sebastian  and
+      Gurevych, Iryna",
+    editor = "Zong, Chengqing  and
+      Xia, Fei  and
+      Li, Wenjie  and
+      Navigli, Roberto",
+    booktitle = "Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)",
+    month = aug,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.acl-long.243",
+    doi = "10.18653/v1/2021.acl-long.243",
+    pages = "3118--3135",
+    abstract = "In this work, we provide a systematic and comprehensive empirical comparison of pretrained multilingual language models versus their monolingual counterparts with regard to their monolingual task performance. We study a set of nine typologically diverse languages with readily available pretrained monolingual models on a set of five diverse monolingual downstream tasks. We first aim to establish, via fair and controlled comparisons, if a gap between the multilingual and the corresponding monolingual representation of that language exists, and subsequently investigate the reason for any performance difference. To disentangle conflating factors, we train new monolingual models on the same data, with monolingually and multilingually trained tokenizers. We find that while the pretraining data size is an important factor, a designated monolingual tokenizer plays an equally important role in the downstream performance. Our results show that languages that are adequately represented in the multilingual model{'}s vocabulary exhibit negligible performance decreases over their monolingual counterparts. We further find that replacing the original multilingual tokenizer with the specialized monolingual tokenizer improves the downstream performance of the multilingual model for almost every task and language.",
+}
+
+@inproceedings{wang-etal-2018-glue,
+    title = "{GLUE}: A Multi-Task Benchmark and Analysis Platform for Natural Language Understanding",
+    author = "Wang, Alex  and
+      Singh, Amanpreet  and
+      Michael, Julian  and
+      Hill, Felix  and
+      Levy, Omer  and
+      Bowman, Samuel",
+    editor = "Linzen, Tal  and
+      Chrupa{\l}a, Grzegorz  and
+      Alishahi, Afra",
+    booktitle = "Proceedings of the 2018 {EMNLP} Workshop {B}lackbox{NLP}: Analyzing and Interpreting Neural Networks for {NLP}",
+    month = nov,
+    year = "2018",
+    address = "Brussels, Belgium",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/W18-5446",
+    doi = "10.18653/v1/W18-5446",
+    pages = "353--355",
+    abstract = "Human ability to understand language is \textit{general, flexible, and robust}. In contrast, most NLU models above the word level are designed for a specific task and struggle with out-of-domain data. If we aspire to develop models with understanding beyond the detection of superficial correspondences between inputs and outputs, then it is critical to develop a unified model that can execute a range of linguistic tasks across different domains. To facilitate research in this direction, we present the General Language Understanding Evaluation (GLUE, gluebenchmark.com): a benchmark of nine diverse NLU tasks, an auxiliary dataset for probing models for understanding of specific linguistic phenomena, and an online platform for evaluating and comparing models. For some benchmark tasks, training data is plentiful, but for others it is limited or does not match the genre of the test set. GLUE thus favors models that can represent linguistic knowledge in a way that facilitates sample-efficient learning and effective knowledge-transfer across tasks. While none of the datasets in GLUE were created from scratch for the benchmark, four of them feature privately-held test data, which is used to ensure that the benchmark is used fairly. We evaluate baselines that use ELMo (Peters et al., 2018), a powerful transfer learning technique, as well as state-of-the-art sentence representation models. The best models still achieve fairly low absolute scores. Analysis with our diagnostic dataset yields similarly weak performance over all phenomena tested, with some exceptions.",
+}
+
+@inproceedings{garcia-etal-2021-towards,
+    title = "Towards Continual Learning for Multilingual Machine Translation via Vocabulary Substitution",
+    author = "Garcia, Xavier  and
+      Constant, Noah  and
+      Parikh, Ankur  and
+      Firat, Orhan",
+    editor = "Toutanova, Kristina  and
+      Rumshisky, Anna  and
+      Zettlemoyer, Luke  and
+      Hakkani-Tur, Dilek  and
+      Beltagy, Iz  and
+      Bethard, Steven  and
+      Cotterell, Ryan  and
+      Chakraborty, Tanmoy  and
+      Zhou, Yichao",
+    booktitle = "Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies",
+    month = jun,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.naacl-main.93",
+    doi = "10.18653/v1/2021.naacl-main.93",
+    pages = "1184--1192",
+    abstract = "We propose a straightforward vocabulary adaptation scheme to extend the language capacity of multilingual machine translation models, paving the way towards efficient continual learning for multilingual machine translation. Our approach is suitable for large-scale datasets, applies to distant languages with unseen scripts, incurs only minor degradation on the translation performance for the original language pairs and provides competitive performance even in the case where we only possess monolingual data for the new languages.",
+}
+
+@inproceedings{romanov-shivade-2018-lessons,
+    title = "Lessons from Natural Language Inference in the Clinical Domain",
+    author = "Romanov, Alexey  and
+      Shivade, Chaitanya",
+    editor = "Riloff, Ellen  and
+      Chiang, David  and
+      Hockenmaier, Julia  and
+      Tsujii, Jun{'}ichi",
+    booktitle = "Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing",
+    month = oct # "-" # nov,
+    year = "2018",
+    address = "Brussels, Belgium",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/D18-1187",
+    doi = "10.18653/v1/D18-1187",
+    pages = "1586--1596",
+    abstract = "State of the art models using deep neural networks have become very good in learning an accurate mapping from inputs to outputs. However, they still lack generalization capabilities in conditions that differ from the ones encountered during training. This is even more challenging in specialized, and knowledge intensive domains, where training data is limited. To address this gap, we introduce MedNLI - a dataset annotated by doctors, performing a natural language inference task (NLI), grounded in the medical history of patients. We present strategies to: 1) leverage transfer learning using datasets from the open domain, (e.g. SNLI) and 2) incorporate domain knowledge from external data and lexical sources (e.g. medical terminologies). Our results demonstrate performance gains using both strategies.",
+}
+
+
+@inproceedings{faisal-anastasopoulos-2021-investigating,
+    title = "Investigating Post-pretraining Representation Alignment for Cross-Lingual Question Answering",
+    author = "Faisal, Fahim  and
+      Anastasopoulos, Antonios",
+    editor = "Fisch, Adam  and
+      Talmor, Alon  and
+      Chen, Danqi  and
+      Choi, Eunsol  and
+      Seo, Minjoon  and
+      Lewis, Patrick  and
+      Jia, Robin  and
+      Min, Sewon",
+    booktitle = "Proceedings of the 3rd Workshop on Machine Reading for Question Answering",
+    month = nov,
+    year = "2021",
+    address = "Punta Cana, Dominican Republic",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.mrqa-1.14",
+    doi = "10.18653/v1/2021.mrqa-1.14",
+    pages = "133--148",
+    abstract = "Human knowledge is collectively encoded in the roughly 6500 languages spoken around the world, but it is not distributed equally across languages. Hence, for information-seeking question answering (QA) systems to adequately serve speakers of all languages, they need to operate cross-lingually. In this work we investigate the capabilities of multilingually pretrained language models on cross-lingual QA. We find that explicitly aligning the representations across languages with a post-hoc finetuning step generally leads to improved performance. We additionally investigate the effect of data size as well as the language choice in this fine-tuning step, also releasing a dataset for evaluating cross-lingual QA systems.",
+}
+
+@inproceedings{hoffart-etal-2011-robust,
+    title = "Robust Disambiguation of Named Entities in Text",
+    author = {Hoffart, Johannes  and
+      Yosef, Mohamed Amir  and
+      Bordino, Ilaria  and
+      F{\"u}rstenau, Hagen  and
+      Pinkal, Manfred  and
+      Spaniol, Marc  and
+      Taneva, Bilyana  and
+      Thater, Stefan  and
+      Weikum, Gerhard},
+    editor = "Barzilay, Regina  and
+      Johnson, Mark",
+    booktitle = "Proceedings of the 2011 Conference on Empirical Methods in Natural Language Processing",
+    month = jul,
+    year = "2011",
+    address = "Edinburgh, Scotland, UK.",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/D11-1072",
+    pages = "782--792",
+}
+
+@inproceedings{ma-etal-2020-charbert,
+    title = "{C}har{BERT}: Character-aware Pre-trained Language Model",
+    author = "Ma, Wentao  and
+      Cui, Yiming  and
+      Si, Chenglei  and
+      Liu, Ting  and
+      Wang, Shijin  and
+      Hu, Guoping",
+    editor = "Scott, Donia  and
+      Bel, Nuria  and
+      Zong, Chengqing",
+    booktitle = "Proceedings of the 28th International Conference on Computational Linguistics",
+    month = dec,
+    year = "2020",
+    address = "Barcelona, Spain (Online)",
+    publisher = "International Committee on Computational Linguistics",
+    url = "https://aclanthology.org/2020.coling-main.4",
+    doi = "10.18653/v1/2020.coling-main.4",
+    pages = "39--50",
+    abstract = "Most pre-trained language models (PLMs) construct word representations at subword level with Byte-Pair Encoding (BPE) or its variations, by which OOV (out-of-vocab) words are almost avoidable. However, those methods split a word into subword units and make the representation incomplete and fragile. In this paper, we propose a character-aware pre-trained language model named CharBERT improving on the previous methods (such as BERT, RoBERTa) to tackle these problems. We first construct the contextual word embedding for each token from the sequential character representations, then fuse the representations of characters and the subword representations by a novel heterogeneous interaction module. We also propose a new pre-training task named NLM (Noisy LM) for unsupervised character representation learning. We evaluate our method on question answering, sequence labeling, and text classification tasks, both on the original datasets and adversarial misspelling test sets. The experimental results show that our method can significantly improve the performance and robustness of PLMs simultaneously.",
+}
+
+@inproceedings{tokarchuk-niculae-2022-target,
+    title = "On Target Representation in Continuous-output Neural Machine Translation",
+    author = "Tokarchuk, Evgeniia  and
+      Niculae, Vlad",
+    editor = "Gella, Spandana  and
+      He, He  and
+      Majumder, Bodhisattwa Prasad  and
+      Can, Burcu  and
+      Giunchiglia, Eleonora  and
+      Cahyawijaya, Samuel  and
+      Min, Sewon  and
+      Mozes, Maximilian  and
+      Li, Xiang Lorraine  and
+      Augenstein, Isabelle  and
+      Rogers, Anna  and
+      Cho, Kyunghyun  and
+      Grefenstette, Edward  and
+      Rimell, Laura  and
+      Dyer, Chris",
+    booktitle = "Proceedings of the 7th Workshop on Representation Learning for NLP",
+    month = may,
+    year = "2022",
+    address = "Dublin, Ireland",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.repl4nlp-1.24",
+    doi = "10.18653/v1/2022.repl4nlp-1.24",
+    pages = "227--235",
+    abstract = "Continuous generative models proved their usefulness in high-dimensional data, such as image and audio generation. However, continuous models for text generation have received limited attention from the community. In this work, we study continuous text generation using Transformers for neural machine translation (NMT). We argue that the choice of embeddings is crucial for such models, so we aim to focus on one particular aspect{''}:{''} target representation via embeddings. We explore pretrained embeddings and also introduce knowledge transfer from the discrete Transformer model using embeddings in Euclidean and non-Euclidean spaces. Our results on the WMT Romanian-English and English-Turkish benchmarks show such transfer leads to the best-performing continuous model.",
+}
+
+@inproceedings{su-etal-2022-tacl,
+    title = "{T}a{CL}: Improving {BERT} Pre-training with Token-aware Contrastive Learning",
+    author = "Su, Yixuan  and
+      Liu, Fangyu  and
+      Meng, Zaiqiao  and
+      Lan, Tian  and
+      Shu, Lei  and
+      Shareghi, Ehsan  and
+      Collier, Nigel",
+    editor = "Carpuat, Marine  and
+      de Marneffe, Marie-Catherine  and
+      Meza Ruiz, Ivan Vladimir",
+    booktitle = "Findings of the Association for Computational Linguistics: NAACL 2022",
+    month = jul,
+    year = "2022",
+    address = "Seattle, United States",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.findings-naacl.191",
+    doi = "10.18653/v1/2022.findings-naacl.191",
+    pages = "2497--2507",
+    abstract = "Masked language models (MLMs) such as BERT have revolutionized the field of Natural Language Understanding in the past few years. However, existing pre-trained MLMs often output an anisotropic distribution of token representations that occupies a narrow subset of the entire representation space. Such token representations are not ideal, especially for tasks that demand discriminative semantic meanings of distinct tokens. In this work, we propose TaCL (Token-aware Contrastive Learning), a novel continual pre-training approach that encourages BERT to learn an isotropic and discriminative distribution of token representations. TaCL is fully unsupervised and requires no additional data. We extensively test our approach on a wide range of English and Chinese benchmarks. The results show that TaCL brings consistent and notable improvements over the original BERT model. Furthermore, we conduct detailed analysis to reveal the merits and inner-workings of our approach.",
+}
+
+@inproceedings{clark-etal-2019-boolq,
+    title = "{B}ool{Q}: Exploring the Surprising Difficulty of Natural Yes/No Questions",
+    author = "Clark, Christopher  and
+      Lee, Kenton  and
+      Chang, Ming-Wei  and
+      Kwiatkowski, Tom  and
+      Collins, Michael  and
+      Toutanova, Kristina",
+    editor = "Burstein, Jill  and
+      Doran, Christy  and
+      Solorio, Thamar",
+    booktitle = "Proceedings of the 2019 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)",
+    month = jun,
+    year = "2019",
+    address = "Minneapolis, Minnesota",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/N19-1300",
+    doi = "10.18653/v1/N19-1300",
+    pages = "2924--2936",
+    abstract = "In this paper we study yes/no questions that are naturally occurring {---} meaning that they are generated in unprompted and unconstrained settings. We build a reading comprehension dataset, BoolQ, of such questions, and show that they are unexpectedly challenging. They often query for complex, non-factoid information, and require difficult entailment-like inference to solve. We also explore the effectiveness of a range of transfer learning baselines. We find that transferring from entailment data is more effective than transferring from paraphrase or extractive QA data, and that it, surprisingly, continues to be very beneficial even when starting from massive pre-trained language models such as BERT. Our best method trains BERT on MultiNLI and then re-trains it on our train set. It achieves 80.4{\%} accuracy compared to 90{\%} accuracy of human annotators (and 62{\%} majority-baseline), leaving a significant gap for future work.",
+}
+
+@inproceedings{jin-etal-2019-pubmedqa,
+    title = "{P}ub{M}ed{QA}: A Dataset for Biomedical Research Question Answering",
+    author = "Jin, Qiao  and
+      Dhingra, Bhuwan  and
+      Liu, Zhengping  and
+      Cohen, William  and
+      Lu, Xinghua",
+    editor = "Inui, Kentaro  and
+      Jiang, Jing  and
+      Ng, Vincent  and
+      Wan, Xiaojun",
+    booktitle = "Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)",
+    month = nov,
+    year = "2019",
+    address = "Hong Kong, China",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/D19-1259",
+    doi = "10.18653/v1/D19-1259",
+    pages = "2567--2577",
+    abstract = "We introduce PubMedQA, a novel biomedical question answering (QA) dataset collected from PubMed abstracts. The task of PubMedQA is to answer research questions with yes/no/maybe (e.g.: Do preoperative statins reduce atrial fibrillation after coronary artery bypass grafting?) using the corresponding abstracts. PubMedQA has 1k expert-annotated, 61.2k unlabeled and 211.3k artificially generated QA instances. Each PubMedQA instance is composed of (1) a question which is either an existing research article title or derived from one, (2) a context which is the corresponding abstract without its conclusion, (3) a long answer, which is the conclusion of the abstract and, presumably, answers the research question, and (4) a yes/no/maybe answer which summarizes the conclusion. PubMedQA is the first QA dataset where reasoning over biomedical research texts, especially their quantitative contents, is required to answer the questions. Our best performing model, multi-phase fine-tuning of BioBERT with long answer bag-of-word statistics as additional supervision, achieves 68.1{\%} accuracy, compared to single human performance of 78.0{\%} accuracy and majority-baseline of 55.2{\%} accuracy, leaving much room for improvement. PubMedQA is publicly available at \url{https://pubmedqa.github.io}.",
+}
+
+@inproceedings{dasigi-etal-2021-dataset,
+    title = "A Dataset of Information-Seeking Questions and Answers Anchored in Research Papers",
+    author = "Dasigi, Pradeep  and
+      Lo, Kyle  and
+      Beltagy, Iz  and
+      Cohan, Arman  and
+      Smith, Noah A.  and
+      Gardner, Matt",
+    editor = "Toutanova, Kristina  and
+      Rumshisky, Anna  and
+      Zettlemoyer, Luke  and
+      Hakkani-Tur, Dilek  and
+      Beltagy, Iz  and
+      Bethard, Steven  and
+      Cotterell, Ryan  and
+      Chakraborty, Tanmoy  and
+      Zhou, Yichao",
+    booktitle = "Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies",
+    month = jun,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.naacl-main.365",
+    doi = "10.18653/v1/2021.naacl-main.365",
+    pages = "4599--4610",
+    abstract = "Readers of academic research papers often read with the goal of answering specific questions. Question Answering systems that can answer those questions can make consumption of the content much more efficient. However, building such tools requires data that reflect the difficulty of the task arising from complex reasoning about claims made in multiple parts of a paper. In contrast, existing information-seeking question answering datasets usually contain questions about generic factoid-type information. We therefore present Qasper, a dataset of 5049 questions over 1585 Natural Language Processing papers. Each question is written by an NLP practitioner who read only the title and abstract of the corresponding paper, and the question seeks information present in the full text. The questions are then answered by a separate set of NLP practitioners who also provide supporting evidence to answers. We find that existing models that do well on other QA tasks do not perform well on answering these questions, underperforming humans by at least 27 F1 points when answering them from entire papers, motivating further research in document-grounded, information-seeking QA, which our dataset is designed to facilitate.",
+}
+
+@book{Fellbaum1998,
+    author = {Fellbaum, Christiane},
+    title = "{WordNet: An Electronic Lexical Database}",
+    publisher = {The MIT Press},
+    year = {1998},
+    month = {05},
+    abstract = "{WordNet is an on-line lexical reference system whose design isinspired by current psycholinguistic theories of human lexical memory;version 1.6 is the most up-to-date version of the system.WordNet, an electronic lexical database, is considered to be the most important resource available to researchers in computational linguistics, text analysis, and many related areas. Its design is inspired by current psycholinguistic and computational theories of human lexical memory. English nouns, verbs, adjectives, and adverbs are organized into synonym sets, each representing one underlying lexicalized concept. Different relations link the synonym sets.The purpose of this volume is twofold. First, it discusses the design of WordNet and the theoretical motivations behind it. Second, it provides a survey of representative applications, including word sense identification, information retrieval, selectional preferences of verbs, and lexical chains. Contributors Reem Al-Halimi, Robert C. Berwick, J. F. M. Burg, Martin Chodorow, Christiane Fellbaum, Joachim Grabowski, Sanda Harabagiu, Marti A. Hearst, Graeme Hirst, Douglas A. Jones, Rick Kazman, Karen T. Kohl, Shari Landes, Claudia Leacock, George A. Miller, Katherine J. Miller, Dan Moldovan, Naoyuki Nomura, Uta Priss, Philip Resnik, David St-Onge, Randee Tengi, Reind P. van de Riet, Ellen VoorheesBradford Books imprint}",
+    isbn = {9780262272551},
+    doi = {10.7551/mitpress/7287.001.0001},
+    url = {https://doi.org/10.7551/mitpress/7287.001.0001},
+}
+
+@article{joshi-etal-2020-spanbert,
+    title = "{S}pan{BERT}: Improving Pre-training by Representing and Predicting Spans",
+    author = "Joshi, Mandar  and
+      Chen, Danqi  and
+      Liu, Yinhan  and
+      Weld, Daniel S.  and
+      Zettlemoyer, Luke  and
+      Levy, Omer",
+    editor = "Johnson, Mark  and
+      Roark, Brian  and
+      Nenkova, Ani",
+    journal = "Transactions of the Association for Computational Linguistics",
+    volume = "8",
+    year = "2020",
+    address = "Cambridge, MA",
+    publisher = "MIT Press",
+    url = "https://aclanthology.org/2020.tacl-1.5",
+    doi = "10.1162/tacl_a_00300",
+    pages = "64--77",
+    abstract = "We present SpanBERT, a pre-training method that is designed to better represent and predict spans of text. Our approach extends BERT by (1) masking contiguous random spans, rather than random tokens, and (2) training the span boundary representations to predict the entire content of the masked span, without relying on the individual token representations within it. SpanBERT consistently outperforms BERT and our better-tuned baselines, with substantial gains on span selection tasks such as question answering and coreference resolution. In particular, with the same training data and model size as BERTlarge, our single model obtains 94.6{\%} and 88.7{\%} F1 on SQuAD 1.1 and 2.0 respectively. We also achieve a new state of the art on the OntoNotes coreference resolution task (79.6{\%} F1), strong performance on the TACRED relation extraction benchmark, and even gains on GLUE.1",
+}
+
+@inproceedings{sennrich-etal-2016-neural,
+    title = "Neural Machine Translation of Rare Words with Subword Units",
+    author = "Sennrich, Rico  and
+      Haddow, Barry  and
+      Birch, Alexandra",
+    editor = "Erk, Katrin  and
+      Smith, Noah A.",
+    booktitle = "Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = aug,
+    year = "2016",
+    address = "Berlin, Germany",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/P16-1162",
+    doi = "10.18653/v1/P16-1162",
+    pages = "1715--1725",
+}
+
+@inproceedings{kudo-2018-subword,
+    title = "Subword Regularization: Improving Neural Network Translation Models with Multiple Subword Candidates",
+    author = "Kudo, Taku",
+    editor = "Gurevych, Iryna  and
+      Miyao, Yusuke",
+    booktitle = "Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2018",
+    address = "Melbourne, Australia",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/P18-1007",
+    doi = "10.18653/v1/P18-1007",
+    pages = "66--75",
+    abstract = "Subword units are an effective way to alleviate the open vocabulary problems in neural machine translation (NMT). While sentences are usually converted into unique subword sequences, subword segmentation is potentially ambiguous and multiple segmentations are possible even with the same vocabulary. The question addressed in this paper is whether it is possible to harness the segmentation ambiguity as a noise to improve the robustness of NMT. We present a simple regularization method, subword regularization, which trains the model with multiple subword segmentations probabilistically sampled during training. In addition, for better subword sampling, we propose a new subword segmentation algorithm based on a unigram language model. We experiment with multiple corpora and report consistent improvements especially on low resource and out-of-domain settings.",
+}
+
+@inproceedings{bostrom-durrett-2020-byte,
+    title = "Byte Pair Encoding is Suboptimal for Language Model Pretraining",
+    author = "Bostrom, Kaj  and
+      Durrett, Greg",
+    editor = "Cohn, Trevor  and
+      He, Yulan  and
+      Liu, Yang",
+    booktitle = "Findings of the Association for Computational Linguistics: EMNLP 2020",
+    month = nov,
+    year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2020.findings-emnlp.414",
+    doi = "10.18653/v1/2020.findings-emnlp.414",
+    pages = "4617--4624",
+    abstract = "The success of pretrained transformer language models (LMs) in natural language processing has led to a wide range of pretraining setups. In particular, these models employ a variety of subword tokenization methods, most notably byte-pair encoding (BPE) (Sennrich et al., 2016; Gage, 1994), the WordPiece method (Schuster and Nakajima, 2012), and unigram language modeling (Kudo, 2018), to segment text. However, to the best of our knowledge, the literature does not contain a direct evaluation of the impact of tokenization on language model pretraining. We analyze differences between BPE and unigram LM tokenization, finding that the latter method recovers subword units that align more closely with morphology and avoids problems stemming from BPE{'}s greedy construction procedure. We then compare the fine-tuned task performance of identical transformer masked language models pretrained with these tokenizations. Across downstream tasks and two languages (English and Japanese), we find that the unigram LM tokenization method matches or outperforms BPE. We hope that developers of future pretrained LMs will consider adopting the unigram LM method over the more prevalent BPE.",
+}
+
+@inproceedings{peters-etal-2018-deep,
+    title = "Deep Contextualized Word Representations",
+    author = "Peters, Matthew E.  and
+      Neumann, Mark  and
+      Iyyer, Mohit  and
+      Gardner, Matt  and
+      Clark, Christopher  and
+      Lee, Kenton  and
+      Zettlemoyer, Luke",
+    editor = "Walker, Marilyn  and
+      Ji, Heng  and
+      Stent, Amanda",
+    booktitle = "Proceedings of the 2018 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long Papers)",
+    month = jun,
+    year = "2018",
+    address = "New Orleans, Louisiana",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/N18-1202",
+    doi = "10.18653/v1/N18-1202",
+    pages = "2227--2237",
+    abstract = "We introduce a new type of deep contextualized word representation that models both (1) complex characteristics of word use (e.g., syntax and semantics), and (2) how these uses vary across linguistic contexts (i.e., to model polysemy). Our word vectors are learned functions of the internal states of a deep bidirectional language model (biLM), which is pre-trained on a large text corpus. We show that these representations can be easily added to existing models and significantly improve the state of the art across six challenging NLP problems, including question answering, textual entailment and sentiment analysis. We also present an analysis showing that exposing the deep internals of the pre-trained network is crucial, allowing downstream models to mix different types of semi-supervision signals.",
+}
+
+
+@inproceedings{Vaswani+2017,
+ author = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser, \L ukasz and Polosukhin, Illia},
+ booktitle = {Advances in Neural Information Processing Systems},
+ pages = {},
+ publisher = {Curran Associates, Inc.},
+ title = {Attention is All you Need},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf},
+ volume = {30},
+ year = {2017}
+}
+
+@inproceedings{meister-etal-2023-natural,
+    title = "A Natural Bias for Language Generation Models",
+    author = "Meister, Clara  and
+      Stokowiec, Wojciech  and
+      Pimentel, Tiago  and
+      Yu, Lei  and
+      Rimell, Laura  and
+      Kuncoro, Adhiguna",
+    editor = "Rogers, Anna  and
+      Boyd-Graber, Jordan  and
+      Okazaki, Naoaki",
+    booktitle = "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)",
+    month = jul,
+    year = "2023",
+    address = "Toronto, Canada",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.acl-short.22",
+    doi = "10.18653/v1/2023.acl-short.22",
+    pages = "243--255"
+}
+
+
+@inproceedings{lai-etal-2023-mitigating,
+    title = "Mitigating Data Imbalance and Representation Degeneration in Multilingual Machine Translation",
+    author = "Lai, Wen  and
+      Chronopoulou, Alexandra  and
+      Fraser, Alexander",
+    editor = "Bouamor, Houda  and
+      Pino, Juan  and
+      Bali, Kalika",
+    booktitle = "Findings of the Association for Computational Linguistics: EMNLP 2023",
+    month = dec,
+    year = "2023",
+    address = "Singapore",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.findings-emnlp.953",
+    doi = "10.18653/v1/2023.findings-emnlp.953",
+    pages = "14279--14294",
+}
+
+@misc{godey2024anisotropy,
+      title={Anisotropy Is Inherent to Self-Attention in Transformers}, 
+      author={Nathan Godey and Éric de la Clergerie and Benoît Sagot},
+      year={2024},
+      eprint={2401.12143},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+
+@article{freq-based-dist,
+  author       = {Kaitlyn Zhou and
+                  Kawin Ethayarajh and
+                  Dan Jurafsky},
+  title        = {Frequency-based Distortions in Contextualized Word Embeddings},
+  journal      = {CoRR},
+  volume       = {abs/2104.08465},
+  year         = {2021},
+  url          = {https://arxiv.org/abs/2104.08465},
+  eprinttype    = {arXiv},
+  eprint       = {2104.08465},
+  timestamp    = {Mon, 26 Apr 2021 17:25:10 +0200},
+  biburl       = {https://dblp.org/rec/journals/corr/abs-2104-08465.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+@misc{gemmateam2024gemma,
+      title={Gemma: Open Models Based on Gemini Research and Technology}, 
+      author={Gemma Team and Thomas Mesnard and Cassidy Hardin and Robert Dadashi and Surya Bhupatiraju and Shreya Pathak and Laurent Sifre and Morgane Rivière and Mihir Sanjay Kale and Juliette Love and Pouya Tafti and Léonard Hussenot and Aakanksha Chowdhery and Adam Roberts and Aditya Barua and Alex Botev and Alex Castro-Ros and Ambrose Slone and Amélie Héliou and Andrea Tacchetti and Anna Bulanova and Antonia Paterson and Beth Tsai and Bobak Shahriari and Charline Le Lan and Christopher A. Choquette-Choo and Clément Crepy and Daniel Cer and Daphne Ippolito and David Reid and Elena Buchatskaya and Eric Ni and Eric Noland and Geng Yan and George Tucker and George-Christian Muraru and Grigory Rozhdestvenskiy and Henryk Michalewski and Ian Tenney and Ivan Grishchenko and Jacob Austin and James Keeling and Jane Labanowski and Jean-Baptiste Lespiau and Jeff Stanway and Jenny Brennan and Jeremy Chen and Johan Ferret and Justin Chiu and Justin Mao-Jones and Katherine Lee and Kathy Yu and Katie Millican and Lars Lowe Sjoesund and Lisa Lee and Lucas Dixon and Machel Reid and Maciej Mikuła and Mateo Wirth and Michael Sharman and Nikolai Chinaev and Nithum Thain and Olivier Bachem and Oscar Chang and Oscar Wahltinez and Paige Bailey and Paul Michel and Petko Yotov and Pier Giuseppe Sessa and Rahma Chaabouni and Ramona Comanescu and Reena Jana and Rohan Anil and Ross McIlroy and Ruibo Liu and Ryan Mullins and Samuel L Smith and Sebastian Borgeaud and Sertan Girgin and Sholto Douglas and Shree Pandya and Siamak Shakeri and Soham De and Ted Klimenko and Tom Hennigan and Vlad Feinberg and Wojciech Stokowiec and Yu-hui Chen and Zafarali Ahmed and Zhitao Gong and Tris Warkentin and Ludovic Peran and Minh Giang and Clément Farabet and Oriol Vinyals and Jeff Dean and Koray Kavukcuoglu and Demis Hassabis and Zoubin Ghahramani and Douglas Eck and Joelle Barral and Fernando Pereira and Eli Collins and Armand Joulin and Noah Fiedel and Evan Senter and Alek Andreev and Kathleen Kenealy},
+      year={2024},
+      eprint={2403.08295},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+@article{merrill-etal-2022-saturated,
+    title = "Saturated Transformers are Constant-Depth Threshold Circuits",
+    author = "Merrill, William  and
+      Sabharwal, Ashish  and
+      Smith, Noah A.",
+    editor = "Roark, Brian  and
+      Nenkova, Ani",
+    journal = "Transactions of the Association for Computational Linguistics",
+    volume = "10",
+    year = "2022",
+    address = "Cambridge, MA",
+    publisher = "MIT Press",
+    url = "https://aclanthology.org/2022.tacl-1.49",
+    doi = "10.1162/tacl_a_00493",
+    pages = "843--856"
+}
+
+@inproceedings{
+tay2022scale,
+title={Scale Efficiently: Insights from Pretraining and Finetuning Transformers},
+author={Yi Tay and Mostafa Dehghani and Jinfeng Rao and William Fedus and Samira Abnar and Hyung Won Chung and Sharan Narang and Dani Yogatama and Ashish Vaswani and Donald Metzler},
+booktitle={International Conference on Learning Representations},
+year={2022},
+url={https://openreview.net/forum?id=f2OYVDyfIB}
+}
+
+@misc{petty2023impact,
+      title={The Impact of Depth and Width on Transformer Language Model Generalization}, 
+      author={Jackson Petty and Sjoerd van Steenkiste and Ishita Dasgupta and Fei Sha and Dan Garrette and Tal Linzen},
+      year={2023},
+      eprint={2310.19956},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+
+
+@inproceedings{biderman2023pythia,
+  title={Pythia: A suite for analyzing large language models across training and scaling},
+  author={Biderman, Stella and Schoelkopf, Hailey and Anthony, Quentin Gregory and Bradley, Herbie and O’Brien, Kyle and Hallahan, Eric and Khan, Mohammad Aflah and Purohit, Shivanshu and Prashanth, USVSN Sai and Raff, Edward and others},
+  booktitle={International Conference on Machine Learning},
+  pages={2397--2430},
+  year={2023},
+  organization={PMLR}
+}
+
+@article{low_rank,
+author = {N. Kishore Kumar and J. Schneider},
+title = {Literature survey on low rank approximation of matrices},
+journal = {Linear and Multilinear Algebra},
+volume = {65},
+number = {11},
+pages = {2212-2244},
+year = {2017},
+publisher = {Taylor & Francis},
+doi = {10.1080/03081087.2016.1267104},
+URL = {https://doi.org/10.1080/03081087.2016.1267104}
+}
+
+@misc{chinchilla_scaling,
+      title={Training Compute-Optimal Large Language Models}, 
+      author={Jordan Hoffmann and Sebastian Borgeaud and Arthur Mensch and Elena Buchatskaya and Trevor Cai and Eliza Rutherford and Diego de Las Casas and Lisa Anne Hendricks and Johannes Welbl and Aidan Clark and Tom Hennigan and Eric Noland and Katie Millican and George van den Driessche and Bogdan Damoc and Aurelia Guy and Simon Osindero and Karen Simonyan and Erich Elsen and Jack W. Rae and Oriol Vinyals and Laurent Sifre},
+      year={2022},
+      eprint={2203.15556},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+
+@misc{tinyllama,
+      title={TinyLlama: An Open-Source Small Language Model}, 
+      author={Peiyuan Zhang and Guangtao Zeng and Tianduo Wang and Wei Lu},
+      year={2024},
+      eprint={2401.02385},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+
+@inproceedings{chang-mccallum-2022-softmax,
+    title = "Softmax Bottleneck Makes Language Models Unable to Represent Multi-mode Word Distributions",
+    author = "Chang, Haw-Shiuan  and
+      McCallum, Andrew",
+    editor = "Muresan, Smaranda  and
+      Nakov, Preslav  and
+      Villavicencio, Aline",
+    booktitle = "Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = may,
+    year = "2022",
+    address = "Dublin, Ireland",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.acl-long.554",
+    doi = "10.18653/v1/2022.acl-long.554",
+    pages = "8048--8073"
+}
+
+@misc{wikitext,
+      title={Pointer Sentinel Mixture Models},
+      author={Stephen Merity and Caiming Xiong and James Bradbury and Richard Socher},
+      year={2016},
+      eprint={1609.07843},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+
+@inproceedings{rudman-etal-2022-isoscore,
+    title = "{I}so{S}core: Measuring the Uniformity of Embedding Space Utilization",
+    author = "Rudman, William  and
+      Gillman, Nate  and
+      Rayne, Taylor  and
+      Eickhoff, Carsten",
+    editor = "Muresan, Smaranda  and
+      Nakov, Preslav  and
+      Villavicencio, Aline",
+    booktitle = "Findings of the Association for Computational Linguistics: ACL 2022",
+    month = may,
+    year = "2022",
+    address = "Dublin, Ireland",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.findings-acl.262",
+    doi = "10.18653/v1/2022.findings-acl.262",
+    pages = "3325--3339",
+}
+@misc{jiang2023mistral,
+      title={Mistral 7B}, 
+      author={Albert Q. Jiang and Alexandre Sablayrolles and Arthur Mensch and Chris Bamford and Devendra Singh Chaplot and Diego de las Casas and Florian Bressand and Gianna Lengyel and Guillaume Lample and Lucile Saulnier and Lélio Renard Lavaud and Marie-Anne Lachaux and Pierre Stock and Teven Le Scao and Thibaut Lavril and Thomas Wang and Timothée Lacroix and William El Sayed},
+      year={2023},
+      eprint={2310.06825},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+
+
+@misc{almazrouei2023falcon,
+      title={The Falcon Series of Open Language Models}, 
+      author={Ebtesam Almazrouei and Hamza Alobeidli and Abdulaziz Alshamsi and Alessandro Cappelli and Ruxandra Cojocaru and Mérouane Debbah and Étienne Goffinet and Daniel Hesslow and Julien Launay and Quentin Malartic and Daniele Mazzotta and Badreddine Noune and Baptiste Pannier and Guilherme Penedo},
+      year={2023},
+      eprint={2311.16867},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+
+@misc{brown2020language,
+      title={Language Models are Few-Shot Learners}, 
+      author={Tom B. Brown and Benjamin Mann and Nick Ryder and Melanie Subbiah and Jared Kaplan and Prafulla Dhariwal and Arvind Neelakantan and Pranav Shyam and Girish Sastry and Amanda Askell and Sandhini Agarwal and Ariel Herbert-Voss and Gretchen Krueger and Tom Henighan and Rewon Child and Aditya Ramesh and Daniel M. Ziegler and Jeffrey Wu and Clemens Winter and Christopher Hesse and Mark Chen and Eric Sigler and Mateusz Litwin and Scott Gray and Benjamin Chess and Jack Clark and Christopher Berner and Sam McCandlish and Alec Radford and Ilya Sutskever and Dario Amodei},
+      year={2020},
+      eprint={2005.14165},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+
+@misc{eval-harness,
+  author       = {Gao, Leo and Tow, Jonathan and Abbasi, Baber and Biderman, Stella and Black, Sid and DiPofi, Anthony and Foster, Charles and Golding, Laurence and Hsu, Jeffrey and Le Noac'h, Alain and Li, Haonan and McDonell, Kyle and Muennighoff, Niklas and Ociepa, Chris and Phang, Jason and Reynolds, Laria and Schoelkopf, Hailey and Skowron, Aviya and Sutawika, Lintang and Tang, Eric and Thite, Anish and Wang, Ben and Wang, Kevin and Zou, Andy},
+  title        = {A framework for few-shot language model evaluation},
+  month        = 12,
+  year         = 2023,
+  publisher    = {Zenodo},
+  version      = {v0.4.0},
+  doi          = {10.5281/zenodo.10256836},
+  url          = {https://zenodo.org/records/10256836}
+}
+
+@InProceedings{imdb,
+  author    = {Maas, Andrew L.  and  Daly, Raymond E.  and  Pham, Peter T.  and  Huang, Dan  and  Ng, Andrew Y.  and  Potts, Christopher},
+  title     = {Learning Word Vectors for Sentiment Analysis},
+  booktitle = {Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies},
+  month     = {June},
+  year      = {2011},
+  address   = {Portland, Oregon, USA},
+  publisher = {Association for Computational Linguistics},
+  pages     = {142--150},
+  url       = {http://www.aclweb.org/anthology/P11-1015}
+}
+
+@inproceedings{srebro2003weighted,
+  title={Weighted low-rank approximations},
+  author={Srebro, Nathan and Jaakkola, Tommi},
+  booktitle={Proceedings of the 20th international conference on machine learning (ICML-03)},
+  pages={720--727},
+  year={2003}
+}
+
+@article{intrinsic_d,
+title = {Intrinsic dimension estimation: Advances and open problems},
+journal = {Information Sciences},
+volume = {328},
+pages = {26-41},
+year = {2016},
+issn = {0020-0255},
+doi = {https://doi.org/10.1016/j.ins.2015.08.029},
+url = {https://www.sciencedirect.com/science/article/pii/S0020025515006179},
+author = {Francesco Camastra and Antonino Staiano},
+keywords = {Intrinsic dimension, Curse of dimensionality, Maximum likelihood, Correlation dimension, Dimensionality reduction},
+}
+
+@article{scaling_manifold,
+  author  = {Utkarsh Sharma and Jared Kaplan},
+  title   = {Scaling Laws from the Data Manifold Dimension},
+  journal = {Journal of Machine Learning Research},
+  year    = {2022},
+  volume  = {23},
+  number  = {9},
+  pages   = {1--34},
+  url     = {http://jmlr.org/papers/v23/20-1111.html}
+}
+
+
+@inproceedings{
+jing2022understanding,
+title={Understanding Dimensional Collapse in Contrastive Self-supervised Learning},
+author={Li Jing and Pascal Vincent and Yann LeCun and Yuandong Tian},
+booktitle={International Conference on Learning Representations},
+year={2022},
+url={https://openreview.net/forum?id=YevsQ05DEN7}
+}
+
+@inproceedings{sigsoftmax,
+ author = {Kanai, Sekitoshi and Fujiwara, Yasuhiro and Yamanaka, Yuki and Adachi, Shuichi},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {S. Bengio and H. Wallach and H. Larochelle and K. Grauman and N. Cesa-Bianchi and R. Garnett},
+ pages = {},
+ publisher = {Curran Associates, Inc.},
+ title = {Sigsoftmax: Reanalysis of the Softmax Bottleneck},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2018/file/9dcb88e0137649590b755372b040afad-Paper.pdf},
+ volume = {31},
+ year = {2018}
+}
+
+@misc{lin2021breaking,
+      title={Breaking the Softmax Bottleneck for Sequential Recommender Systems with Dropout and Decoupling}, 
+      author={Ying-Chen Lin},
+      year={2021},
+      eprint={2110.05409},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+
+@article{ngram_svd,
+author = {Terashima, Shiro and Takeda, Kazuya and Itakura, Fumitada},
+title = {A linear space representation of language probability through SVD of N-gram matrix},
+journal = {Electronics and Communications in Japan (Part III: Fundamental Electronic Science)},
+volume = {86},
+number = {8},
+pages = {61-70},
+keywords = {singular value decomposition, number of dimensions, entropy, clustering},
+doi = {https://doi.org/10.1002/ecjc.10106},
+url = {https://onlinelibrary.wiley.com/doi/abs/10.1002/ecjc.10106},
+eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1002/ecjc.10106},
+year = {2003}
+}
+
+
+
+@inproceedings{
+softmax_bottleneck,
+title={Breaking the Softmax Bottleneck: A High-Rank {RNN} Language Model},
+author={Zhilin Yang and Zihang Dai and Ruslan Salakhutdinov and William W. Cohen},
+booktitle={International Conference on Learning Representations},
+year={2018},
+url={https://openreview.net/forum?id=HkwZSG-CZ},
+}
+
+@misc{faysse2024croissantllm,
+      title={CroissantLLM: A Truly Bilingual French-English Language Model}, 
+      author={Manuel Faysse and Patrick Fernandes and Nuno M. Guerreiro and António Loison and Duarte M. Alves and Caio Corro and Nicolas Boizard and João Alves and Ricardo Rei and Pedro H. Martins and Antoni Bigata Casademunt and François Yvon and André F. T. Martins and Gautier Viaud and Céline Hudelot and Pierre Colombo},
+      year={2024},
+      eprint={2402.00786},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+
+@misc{beyond_chinchilla,
+      title={Beyond Chinchilla-Optimal: Accounting for Inference in Language Model Scaling Laws}, 
+      author={Nikhil Sardana and Jonathan Frankle},
+      year={2023},
+      eprint={2401.00448},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+
+@article{kaplan_scaling,
+  title={Scaling Laws for Neural Language Models},
+  author={Jared Kaplan and Sam McCandlish and Tom Henighan and Tom B. Brown and Benjamin Chess and Rewon Child and Scott Gray and Alec Radford and Jeff Wu and Dario Amodei},
+  journal={ArXiv},
+  year={2020},
+  volume={abs/2001.08361},
+  url={https://api.semanticscholar.org/CorpusID:210861095}
+}
+
+@InProceedings{lambada,
+  author    = {Paperno, Denis  and  Kruszewski, Germ\'{a}n  and  Lazaridou,
+Angeliki  and  Pham, Ngoc Quan  and  Bernardi, Raffaella  and  Pezzelle,
+Sandro  and  Baroni, Marco  and  Boleda, Gemma  and  Fernandez, Raquel},
+  title     = {The {LAMBADA} dataset: Word prediction requiring a broad
+discourse context},
+  booktitle = {Proceedings of the 54th Annual Meeting of the Association for
+Computational Linguistics (Volume 1: Long Papers)},
+  month     = {August},
+  year      = {2016},
+  address   = {Berlin, Germany},
+  publisher = {Association for Computational Linguistics},
+  pages     = {1525--1534},
+  url       = {http://www.aclweb.org/anthology/P16-1144}
+}
+
+
+@inproceedings{
+bondarenko2023quantizable,
+title={Quantizable Transformers: Removing Outliers by Helping Attention Heads Do Nothing},
+author={Yelysei Bondarenko and Markus Nagel and Tijmen Blankevoort},
+booktitle={Thirty-seventh Conference on Neural Information Processing Systems},
+year={2023},
+url={https://openreview.net/forum?id=sbusw6LD41}
+}
+
+@misc{lee2024owq,
+      title={OWQ: Outlier-Aware Weight Quantization for Efficient Fine-Tuning and Inference of Large Language Models}, 
+      author={Changhun Lee and Jungyu Jin and Taesu Kim and Hyungjun Kim and Eunhyeok Park},
+      year={2024},
+      eprint={2306.02272},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+
 
 @Comment{jabref-meta: databaseType:bibtex;}

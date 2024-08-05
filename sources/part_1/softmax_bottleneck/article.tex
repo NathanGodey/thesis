@@ -1,0 +1,570 @@
+
+\subsection{Introduction}
+The representation degeneration problem is a common phenomenon that affects self-supervised learning methods used for textual data \citep{gao2018representation,lai-etal-2023-mitigating}, among other modalities \citep{jing2022understanding,godey2024anisotropy}.
+% 
+This phenomenon consists in the emergence of degenerated structures in the intermediate latent spaces of language models throughout training.
+In particular, many observations on the intermediate representations of Language Models (LMs) have shed light on their low angular variability (or \textit{anisotropy}) by showing that cosine-similarity between pairs of intermediate embeddings tend to be unexpectedly high \citep{freq-based-dist, rajaee-pilehvar-2022-isotropy}. Other works have identified outlier dimensions that emerged during training \citep{puccetti-etal-2022-outlier}. However, these observations were mostly made on relatively small-scale models of dimensions comparable to BERT \citep{devlin-etal-2019-bert} or models from the GPT-2 family \citep{radford2019language}.
+
+These models are usually composed of a neural network $f_\theta$ that takes sequences of tokens $(y_{<i}) \in [1,V]^{i-1}$ as inputs and produces a relatively low-dimensional contextual representation in $\mathbb{R}^d$, where $d$ is the \textit{hidden dimension} of the model. They then rely on a \textit{language modeling head} that produces logits for contextual token probabilities. A common choice for the language modeling head is a linear layer with parameter $W \in \mathbb{R}^{V \times d}$, where $V$ is the number of possible tokens. The resulting next-token probability distribution is then given by:
+$$
+p(y_i) = \sigma (W f_\theta(y_{<i}))
+$$
+where $\sigma$ is the softmax function.
+
+In the language modeling field, the current trend consists in scaling up the generative pretraining approach introduced with GPT-2, which implies training neural models made of several billions of parameters on gigantic web-mined text corpora \citep{brown2020language, touvron2023llama, almazrouei2023falcon, jiang2023mistral}. However, training and serving such highly parameterized models raises energy and hardware-related problematics, which motivates for looking into achieving similar performance levels with smaller models \citep{beyond_chinchilla}.
+
+Nevertheless, the evaluation of the Pythia model suite \citep{biderman2023pythia} has shown that training small models on very large corpora could lead to \textit{saturation}, in the form of a performance degradation in late pretraining. In this paper, we explore this saturation phenomenon through the lens of representation degeneration, and find that both phenomena strongly correlate. We further demonstrate that representation degeneration strongly occurs in the language modeling head of small models, and we theoretically and empirically show how a linear language modeling head can represent a performance bottleneck for architectures based on small hidden dimensions.
+
+Overall, our contributions can be summarized as:
+\begin{itemize}
+    \item We characterize the performance saturation of small language models through evaluation and extrapolation of the scaling laws;
+    \item We find that the representations of smaller models degenerate concurrently with this saturation. We shed light on \textit{rank saturation}, i.e. the explosion of the entropy of singular value distributions of small LM prediction heads;
+    \item We empirically verify that the rank of the target contextual distribution is usually
+    high. Moreover, we observe that regardless of the expressiveness of the output
+    representations of a model, a linear head $W$ substantially affects performance when
+    $rank(W) < 1000$;
+    \item We theoretically quantify the performance limitation induced by a low-rank linear language modeling head.
+\end{itemize}
+
+% Our observations identify a bottleneck in causal language modeling that harms the optimization process of small language models.
+
+\subsection{Related Works}
+\paragraph{Small LMs \& Saturation} \citet{biderman2023pythia} train Pythia, a suite of models of various sizes on 300B tokens from the Pile \citep{gao2020pile}, and release the weights for an exhaustive number of checkpoints during training. They notice that smaller models suffer a performance decrease on the Lambada dataset \citep{lambada} in late training. The scaling laws \citep{kaplan_scaling,chinchilla_scaling} predict that training smaller models on large corpora is suboptimal in terms of compute. However, recent initiatives \citep{tinyllama,faysse2024croissantllm,gemmateam2024gemma} have pretrained smaller language models on large datasets, motivated by inference cost reduction \citep{beyond_chinchilla}.
+
+\paragraph{Softmax Bottleneck} The concept of \textit{softmax bottleneck} was introduced in \citet{softmax_bottleneck}, where the authors show that a model using a hidden dimension inferior to the rank of the contextual probability matrix cannot predict correctly in every context. They then hypothesize that this rank is relatively high in natural language and propose an alternative method for the predictive layer of language models. Subsequent works have explored negative effects of the softmax linear layer on language modeling performance \citep{chang-mccallum-2022-softmax} and possible alternatives \citep{lin2021breaking,sigsoftmax}. We extend this line of work by quantifying the critical dimensionalities involved in the softmax bottleneck.
+
+\paragraph{Representation Degeneration} is a phenomenon in which pretrained models tend to adopt low-entropy singular value distributions \citep{jing2022understanding}. In language modeling, representation degeneration takes the form of anisotropy \citep{ethayarajh-2019-contextual, rajaee-pilehvar-2021-cluster} and was proven to be related with the Zipfian shape of token distribution \citep{gao2018representation,bis-etal-2021-much}. We study this phenomenon along training and its relation with saturation.
+
+\paragraph{Data Dimensionality and Performance} \citet{scaling_manifold} link the scaling laws observed across pretrained models to data dimensionality, through the lens of Intrinsic Dimension \citep{intrinsic_d}. While they show that Singular Value Decomposition (SVD) is not suited for studying the dimensionality of the data manifold in the universal approximation paradigm, we argue that it is well-suited, to a certain extent, when studying the performance of a linear classifier limited by the dimensionality of input representations.
+
+
+\subsection{Language Model Saturation}
+We first verify that we can indeed observe and quantify performance saturation for the Pythia checkpoints, as they are the only released intermediate checkpoints for a wide range of model sizes. We measure the cross-entropy of Pythia checkpoints on 50k tokens randomly sampled from their pretraining dataset, i.e. The Pile \citep{gao2020pile}. 
+
+\begin{figure}[h]
+\centering
+    \begin{subfigure}{0.37\columnwidth}
+         \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/loss_saturation_anno.pdf}
+         \caption{Loss saturation}
+         \label{fig:loss_sat}
+    \end{subfigure}
+    \begin{subfigure}{0.42\columnwidth}
+         \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/scaling_laws_unfit_anno.pdf}
+         \caption{Loss extrapolation}
+         \label{fig:scaling_law}
+    \end{subfigure}
+    \caption{Performance of Pythia models on the Pile. On the left, we compare training dynamics of models from 14M (top) to 410M (bottom) parameters, displaying darker shades as we approach the minimal value. On the right, we fit a power law on larger models and find that final checkpoints of smaller models underperform compared to predictions.}
+    \label{fig:saturation}
+\end{figure}
+In \Cref{fig:loss_sat}, we clearly see that models up to 410M parameters suffer from the saturation phenomenon, characterized as an increase of the in-domain loss in advanced training stages. 
+
+In \Cref{fig:scaling_law}, we fit a scaling law in the style of \citet{chinchilla_scaling} on data points from models ranging from 410M parameters, only optimizing for model-related constants ($A$ and $\alpha$) while reusing all other values ($B=410.7$, $\beta=0.28$, $E=1.69$). We recall the relation between parameter count $N$ and token count $T$ given in \citet{chinchilla_scaling}:
+$$
+L(N, T) = \frac{A}{N^\alpha} + \frac{B}{T^\beta} + E
+$$
+
+We find that optimal parameters are $A=119.09$ and $\alpha=0.246$. We display the fitted curves for token counts that correspond to best and final checkpoints. We observe that the final checkpoints underperform the extrapolation by 8\% in average. The loss-minimizing (\textit{best}) checkpoints, which are expected to fall short of the extrapolation due to their incomplete learning rate cooldown, only underperform it by roughly 4\%.
+
+A similar performance saturation is also observed on datasets used for evaluation in the LM Evaluation Harness \citep{eval-harness}, as shown in \Cref{tab:perf_gap}.
+
+\begin{table}[h]
+% \scriptsize
+\centering
+\scalebox{0.85}{%
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+\multicolumn{1}{c}{Checkpoint} & Lambada (ppl.) $\downarrow$ & Lambada $\uparrow$ & StoryCloze $\uparrow$ & WikiText (ppl.) $\downarrow$ & SciQ $\uparrow$ & ARC-e $\uparrow$\\ \midrule
+Best & \textbf{24.6} & \textbf{40.3} & \textbf{59.6} & \textbf{30.47} & \textbf{79.6} & \textbf{46.5} \\
+Final & 32.9 & 38 & 57.2 & 33.4 & 73.4 & 43.2 \\ \bottomrule
+\end{tabular}}
+\caption{Zero-shot performance of Pythia-160M best and final checkpoints on evaluation datasets. Unless specified, we report accuracy for all tasks.}
+\label{tab:perf_gap}
+\end{table}
+
+
+\subsection{Performance Saturation is Rank Saturation}
+\subsubsection{Anisotropy at Scale}
+Anisotropy is a common form of representation degeneration that has been observed among various small language models. It consists in reduced angular variability of the representation distribution at a given layer. Previous works \citep{ethayarajh-2019-contextual,godey2024anisotropy} notice that almost all layers of small Transformers language models are anisotropic. A common measure for anisotropy in a set $H$ of vector representations is the average cosine-similarity:
+$$
+\mathcal{A}(H) = \frac{1}{|H|^2 - |H|} \sum_{h_i, h_j \in H, i \neq j} \frac{h_i^Th_j}{||h_i||_2 \cdot ||h_j||_2}
+$$
+
+However, it remains unclear whether anisotropy affects models with over 1 billion parameters. In order to address this question, we compute average cosine-similarity of intermediate representations across layers in suites of models; namely GPT-2 \citep{radford2019language}, OPT \citep{zhang2022opt}, Pythia \citep{biderman2023pythia}, and Gemma \citep{gemmateam2024gemma}. We use a subsample of The Pile \citep{gao2020pile}, as we hypothesize that the domain of this dataset includes or matches the domain of the pretraining datasets used in these suites.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{0.33\columnwidth}
+         \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/pythia_anisotropy.png}
+         \caption{Pythia}
+         \label{fig:pythia_aniso}
+    \end{subfigure}
+    \begin{subfigure}{0.33\columnwidth}
+         \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/gpt2_anisotropy.png}
+         \caption{GPT-2}
+         \label{fig:gpt2_aniso}
+    \end{subfigure}
+    \begin{subfigure}{0.33\columnwidth}
+         \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/gemma_anisotropy.png}
+         \caption{Gemma}
+         \label{fig:gemma_aniso}
+    \end{subfigure}
+    \begin{subfigure}{0.34\columnwidth}
+         \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/opt_anisotropy.png}
+         \caption{OPT}
+         \label{fig:opt_aniso}
+    \end{subfigure}
+    \caption{Anisotropy in function of layer depth (i.e. order in the forward pass).}
+    \label{fig:anisotropy}
+\end{figure}
+
+In \Cref{fig:anisotropy}, we observe that most layers of Transformers models are anisotropic to some extent, regardless of the scale. Nevertheless, there seems to be a dichotomy in the last layer, where models are either nearly isotropic or highly anisotropic. Interestingly, we notice that the dichotomy aligns with the one of the saturation phenomenon for the Pythia suite, where only models containing 160M or fewer parameters seem affected by last-layer anisotropy.
+
+We thus decide to study the training dynamics of anisotropy for the Pythia suite, and compare them with the saturation phenomenon in \Cref{fig:aniso_v_saturation}.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{0.32\columnwidth}
+         \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/anisotropy_explosion_14m.png}
+         \caption{14M}
+         \label{fig:14M}
+    \end{subfigure}
+    \begin{subfigure}{0.32\columnwidth}
+         \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/anisotropy_explosion_31m.png}
+         \caption{31M}
+         \label{fig:31M}
+    \end{subfigure}
+    \begin{subfigure}{0.32\columnwidth}
+         \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/anisotropy_explosion_70m.png}
+         \caption{70M}
+         \label{fig:70M}
+    \end{subfigure}
+    \begin{subfigure}{0.32\columnwidth}
+         \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/anisotropy_explosion_160m.png}
+         \caption{160M}
+         \label{fig:160M}
+    \end{subfigure}
+    \begin{subfigure}{0.33\columnwidth}
+         \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/anisotropy_explosion_410m.png}
+         \caption{410M}
+         \label{fig:410M}
+    \end{subfigure}
+    \caption{Evolution of the language modeling performance on the Wikipedia test set from the LM Evaluation Harness \citep{eval-harness} and last-layer anisotropy of Pythia models along training (color).}
+    \label{fig:aniso_v_saturation}
+\end{figure}
+
+\Cref{fig:aniso_v_saturation} illustrates a neat correlation between the emergence of the performance saturation phenomenon and the appearance of anisotropy in the last-layer representations of the models. It also shows that anisotropy increases abruptly around the saturation point during training. Moreover, we see here that on a specific in-domain corpus, the models quickly lose performance at saturation and never seem to fully recover from this explosion.
+
+\subsubsection{Singular Values Saturation}
+\label{sub:saturation}
+
+Average cosine-similarity is a valuable measure of the uniformity of a distribution, but including other metrics can help to better capture the complexity of some manifolds \citep{rudman-etal-2022-isoscore}. Moreover, it only focuses on the output embeddings of the language models, and not on their weights. In this section, we extend our analysis by studying the singular value distributions of the language modeling heads, to link our empirical observations to our theoretical findings. In \Cref{fig:sv_evolve}, we display the singular value distributions of the final predictive layer weights $W$ along training.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{0.32\columnwidth}
+         \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/sv_map_14m.png}
+         \caption{14M}
+         \label{fig:sv_14M}
+    \end{subfigure}
+    \begin{subfigure}{0.32\columnwidth}
+         \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/sv_map_31m.png}
+         \caption{31M}
+         \label{fig:sv_31M}
+    \end{subfigure}
+    \begin{subfigure}{0.32\columnwidth}
+         \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/sv_map_70m.png}
+         \caption{70M}
+         \label{fig:sv_70M}
+    \end{subfigure}
+    \begin{subfigure}{0.32\columnwidth}
+         \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/sv_map_160m.png}
+         \caption{160M}
+         \label{fig:sv_160M}
+    \end{subfigure}
+    \begin{subfigure}{0.32\columnwidth}
+         \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/sv_map_410m.png}
+         \caption{410M}
+         \label{fig:sv_410M}
+    \end{subfigure}
+    \caption{Evolution of the singular value distributions of the LM heads of Pythia models during training, normalized by the maximum singular value.}
+    \label{fig:sv_evolve}
+\end{figure}
+
+\Cref{fig:sv_evolve} sheds light on a specific pattern of spectral saturation, roughly co-occurring with the performance saturation phenomenon. It shows that the singular value distribution progressively flattens during training, and nearly reaches uniformity before abruptly evolving towards a spiked distribution with a high maximal singular value, relatively to the other ones.
+
+\begin{wrapfigure}{r}{0.45\textwidth}
+\centering
+    \includegraphics[width=0.45\textwidth]{sources/part_1/softmax_bottleneck/imgs/kullback_uni.png}
+    \caption{Training dynamics of the singular entropy, for different Pythia models.}
+    \vspace{-10pt}
+
+    \label{fig:kl_div}
+\end{wrapfigure}
+
+In order to quantify this behavior more accurately, we use a \textit{singular entropy metric}, computed as the Kullback-Leibler divergence between the normalized singular value distribution and the uniform distribution.
+
+\Cref{fig:kl_div} shows that singular distributions evolve differently for models using less than 410M parameters than for the larger ones. The heads of small models see their singular value distributions become increasingly uniform, up to a point where they degenerate abruptly, which again correlates with the LM performance drop. The singular value distributions of larger models tend to be more stable, and do not display clear monotonic patterns throughout training.
+
+\subsection{The Softmax Bottleneck \& Language Dimensionality}
+\subsubsection{Inherent Dimensionality of Natural Language}
+\label{sec:inherent_dim}
+% In practice, we can neither access $W^*$ nor $\phi^*$. However, we propose to use proxies for both in order to estimate the magnitude of the dimensionality of natural language in terms of singular spectrum.
+Intuitively, the saturation of the singular values distribution observed only for smaller models in \Cref{sub:saturation} questions the dimensionalities involved in the optimization of the LM head. In this section, we propose to empirically measure a critical value for the rank of the LM head, and to estimate the dimensionality of the contextual probability distribution the head's outputs are supposed to match.
+
+In order to empirically measure the effect of the rank of the linear head, we propose to train rank-constrained heads on pretrained contextual representations from highly-parameterized language models. In order to control the maximum rank $r$, we consider heads of the form $W = AB \in \mathbb{R}^{V \times d}$, where the coefficients of $A \in \mathbb{R}^{V \times r}$ and $B \in \mathbb{R}^{r \times d}$ are drawn from $\mathcal{N}(0, 1)$ ($d$ being the hidden dimension of the model). The rank of such $W$ matrices is limited by the parameter $r \in [1, d]$, which we sweep over a wide range of values.
+
+We freeze the language models and train the rank-constrained heads on their output representations on roughly 150M tokens, while adjusting the learning rate to the trainable parameter count (more details in \Cref{app:hyperparams}).
+
+\begin{figure}[h]
+\centering
+    \begin{subfigure}{0.41\columnwidth}
+         \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/llama_bottleneck_acc.png}
+         \caption{Accuracy}
+         \label{fig:bottleneck_acc}
+    \end{subfigure}
+    \begin{subfigure}{0.42\columnwidth}
+         \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/llama_bottleneck_loss.png}
+         \caption{Cross-entropy}
+         \label{fig:bottleneck_ce}
+    \end{subfigure}
+    \caption{Performance of several models as the bottleneck dimension of the head increases.}
+    \label{fig:perf_bottleneck}
+\end{figure}
+In \Cref{fig:perf_bottleneck}, we observe that perplexity starts to noticeably decrease when the rank of the language modeling head $W$ is inferior to 1000, \textit{regardless of the model size}. This hints that the head is not a major performance bottleneck for models with greater hidden dimensions, but that it may hurt performance for models with smaller ones independently of the quality of the output representations.
+
+Another interesting factor to estimate is the dimensionality inherent to the data itself. To avoid possible effects related to specific inductive biases, we train naive 5-gram language models on several datasets of varying coverage (IMDb \citep{imdb}, Wikitext \citep{wikitext}, and The Pile \citep{gao2020pile}), using two tokenizers of varying vocabulary sizes (30k tokens for Llama-2 and 50k tokens for Pythia). Given $C$ observed 5-grams, we consider the matrices $W \in \mathbb{R}^{C \times V}$ where each row is a probability distribution over possible tokens in a given 4-token context, and compute their singular value distributions, as in \citet{ngram_svd}. In \Cref{fig:w_error}, we report \textit{$W$-error}, the minimal approximation error on $W$ for a matrix of rank $d$ as predicted by the Eckart-Young-Mirsky theorem (see \Cref{eym}), normalized by the Frobenius norm of $W$:
+$$
+W\text{-error}(d) = \frac{||\sigma_{d+1:}||_2}{||W||_F}
+$$
+\begin{figure}[h]
+\centering
+    \begin{subfigure}{0.415\columnwidth}
+         \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/llama_sv_4gram.png}
+         \caption{Llama-2 tokenizer}
+         \label{fig:llama}
+    \end{subfigure}
+    \begin{subfigure}{0.4\columnwidth}
+         \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/pythia_sv_4gram.png}
+         \caption{Pythia tokenizer}
+         \label{fig:pythia}
+    \end{subfigure}
+    \caption{$W$-error as $d$ increases, for different tokenizers and datasets. We observe that while W-error can be halved using 1000 or 2000 dimensions, it only becomes negligible after 10,000-15,000 dimensions.}
+    \label{fig:w_error}
+\end{figure}
+
+We find that the estimated rank of $W$ is non-negligible with respect to the usual magnitude of hidden dimensions. In the next section, we analyze the connection between the dimensionality of an ideal linear language modeling head and performance from a theoretical perspective.
+
+
+\subsubsection{A Theoretical Bottleneck}
+In this section, we aim at identifying a formal link between the inherent dimensionality of the contextual distribution and the performance bottleneck that can be attributed to the lower dimensionality of the output representations of a language model. To that end, we conceptualize a language modeling head optimized on \textit{ideal} contextual representations, and we explore the relationship between its spectral properties and the performance gap induced when training a low-rank head on the same representations.  
+
+% Let's consider a set $\mathcal{T}$ of sequences $(y_i)_{i \in [1, |y|]}$ of elements taken from a vocabulary of size $V$, representing the pretraining data. We consider a function $\phi^*_D$ that \textit{perfectly} (e.g. in a bijective way) represents a given context $y_{< i}$ as a single real vector of \textit{sufficiently} high dimension $D \in \mathbb{N}^* \cup \{+\infty\}$. As we do not focus on $\phi^*_D$, we can simplify the notations by introducing the contextual representations $x^*_i = \phi^*_D(y_{< i})$. 
+
+Let's consider a set $\mathcal{T}$ of sequences $(y_i)_{i \in [1, |y|]}$ of elements taken from a vocabulary of size $V$, representing the pretraining data. We consider a function $\phi^*$ that \textit{perfectly} (e.g. in a bijective way) represents a given context $y_{< i}$ as a single real vector of \textit{infinite} dimension. As we do not focus on $\phi^*$, we can simplify the notations by introducing the contextual representations $x^*_i = \phi^*(y_{< i})$. 
+
+The task of the linear language modeling head can be formalized as an optimization problem on the matrix $W$:
+\begin{equation}
+W^* = \argmin_{W \in \mathbb{R}^{V \times \infty}} \sum_{y \in \mathcal{T}} \sum_{i} \mathcal{L}(W, x^*_i, y_i)
+\label{eq:unconstrained}
+\end{equation}
+
+where $\mathcal{L}$ is the cross-entropy objective defined using the softmax function $\sigma$ as:
+$$
+\mathcal{L}(W, x, y) = - \log (\sigma(Wx)_{y})
+$$
+
+% Without loss of generality, we choose $D$ to be large enough so that setting up this problem using $D+1$ would not lead to a better performance in \autoref{eq:unconstrained}.
+
+In practice, a neural language model $\phi_{\theta}$ produces contextual representations $x_i = \phi_{\theta}(y_{< i})$ of dimension $d \in \mathbb{N}^*$. The linear language modeling head $W_\theta \in \mathcal{R}^{V \times d}$ is trained concurrently with $\phi_{\theta}$ with the same objective as in \autoref{eq:unconstrained}.
+
+We focus on the maximal expressiveness of a lower-dimensional head: when provided with \textit{perfect} contextual representations $x^*_i$, what is the maximal performance level of a linear language modeling head of maximal rank $d$? This question can be put in mathematical terms:
+
+\begin{equation}
+W_d^* = \argmin_{W \in \mathbb{R}^{V \times \infty}} \sum_{y \in \mathcal{T}} \sum_{i} \mathcal{L}(W, x^*_i, y_i) \text{ s.t. } rank(W) \leq d
+\label{eq:constrained}
+\end{equation}
+
+% MADE THINGS COMPLICATED with x*:
+% \Cref{best_on_all} shows that any alternative to the $W^*$ matrix, including a low-rank approximation, cannot improve performance in any context.
+
+
+% \begin{lemma}
+% \label[lemma]{best_on_all}{(proof in \Cref{app:best_on_all})}
+% By construction of $W^*$, for all $W \in \mathbb{R}^{V \times \infty}$, $y \in \mathcal{T}$ and $x^* = \phi^*(y)$, we have:
+% $$
+% \mathcal{L}(W, x^*, y) \geq \mathcal{L}(W^*, x^*, y)
+% $$
+% \end{lemma}
+
+
+\Cref{linear_rel} shows that by approaching $W^*$ directly, we can asymptotically expect to close the performance gap.
+
+\begin{lemma}
+\label[lemma]{linear_rel}{(proof in \Cref{app:linear_rel})}
+Let's consider $W \in \mathbb{R}^{V \times \infty}, M \in \mathcal{H}^{V \times \infty}$ the matrix unit sphere for the Frobenius norm $||\cdot||_F$, and $\varepsilon \in \mathbb{R}^*_+$ such that $W = W^* + \varepsilon M$ . When $\epsilon \rightarrow 0$:
+$$
+|\mathcal{L}(W, x^*_i, y_i) - \mathcal{L}(W^*, x^*_i, y_i)|  = O(\varepsilon)
+$$
+\end{lemma}
+
+% \begin{lemma}
+% \label[lemma]{linear_rel}{(proof in \Cref{app:linear_rel})}
+% Let's consider $W \in \mathbb{R}^{V \times \infty}, M \in \mathcal{H}^{V \times \infty}$ the matrix unit sphere for the Frobenius norm $||\cdot||_F$, and $\varepsilon \in \mathbb{R}^*_+$ such that $W = W^* + \varepsilon M$ . When $\epsilon \rightarrow 0$:
+% $$
+% |\mathcal{L}(W, x^*_i, y_i) - \mathcal{L}(W^*, x^*_i, y_i)|  = K_{W^*, x^*, y} \cdot \varepsilon + o(\varepsilon)
+% $$
+% \end{lemma}
+
+Hence, our problem is linked to a low-rank matrix approximation \citep{low_rank}, which has direct connections with spectral theory. In our case, we can use the Eckart–Young–Mirsky theorem.
+
+\begin{lemma}
+\label[lemma]{eym}{(Eckart–Young–Mirsky theorem)}
+Let's consider $(\sigma_i)$ the singular values of $W^*$ in decreasing order, and $\mathcal{M}_d$ the set of matrices in $\mathbb{R}^{V \times \infty}$ of rank $d < V = rank(W^*)$. Then:
+$$
+\min_{W_d \in \mathcal{M}_d}||W_d - W^*||_F = \sqrt{\sum_{i=d+1}^{V} \sigma_i^2}
+$$
+\end{lemma}
+
+Combining all of the above yields \Cref{main_thm}.
+% Stronger but weaker
+% \begin{lemma}
+% \label[lemma]{linear_rel}{(proof in \Cref{app:linear_rel})}
+% Let's consider $W \in \mathbb{R}^{D \times V}$, $M \in \mathcal{H}^{D \times V}$ the matrix unit sphere for the Frobenius norm $||\cdot||_F$, and $\epsilon \in \mathbb{R}^*_+$ such that $W = W^* + \epsilon M$ . When $\epsilon \rightarrow 0$, there is a constant $K_{W^*, x^*_i, M} \geq 0$ such that:
+% $$
+% |\mathcal{L}(W, x^*_i, y_i) - \mathcal{L}(W^*, x^*_i, y_i)| \geq \epsilon K_{W^*, x^*_i, M} + o(\epsilon)
+% $$
+% \end{lemma}
+
+%From \Cref{linear_rel}, we know that minimizing $||W_d^* - W^*||_F$ also minimizes \autoref{eq:constrained}.%
+
+\begin{theorem}{(proof in \Cref{app:main_thm})}
+\label{main_thm}
+Let's consider $(\sigma_i)$ the singular values of $W^*$ in decreasing order. Then, when $d \rightarrow V$, the loss gap induced by a $d$-dimensional bottleneck on the linear LM head follows:
+$$
+\sum_{y \in \mathcal{T}} \sum_{i} \mathcal{L}(W_d^*, x^*_i, y_i) - \mathcal{L}(W^*, x^*_i, y_i) = O\left(\sqrt{\sum_{i=d+1}^{V}\sigma_i^2}\right)$$
+\end{theorem}
+
+These properties shed light on how the dimensionality of the ideal language modeling head impacts the performance when the LM head is low-rank. However, the relation obtained in \Cref{main_thm} is not particularly strong, as discussed in \Cref{app:main_thm}.
+
+In \Cref{fig:neg_res_thm}, we compare the results of the head bottleneck experiment of the Pythia-1B model in \Cref{sec:inherent_dim} to the $W$-error on the head of the same model as the bottleneck dimension $d$ evolves. It shows that the loss gap grows slowly with the $W$-error, implying that even when the allowed rank would lead to a poor approximation of $W$, the performance can still remain acceptable. We notice that the performance starts decreasing when the $W$-error outgrows 0.6.
+
+\begin{wrapfigure}{r}{0.45\textwidth}
+\centering
+    \includegraphics[width=0.45\textwidth]{sources/part_1/softmax_bottleneck/imgs/loss_v_werr.png}
+    \caption{Final loss with trained rank-constrained heads (mimicking $W_d^*$), as a function of the theoretical $W$-error for rank $d$ on the head of the Pythia-1B model.}
+    \vspace{-10pt}
+
+    \label{fig:neg_res_thm}
+\end{wrapfigure}
+
+% \begin{figure}[h]
+% \centering
+%     \includegraphics[width=0.4\linewidth]{sources/part_1/softmax_bottleneck/imgs/loss_v_werr.png}
+%     \caption{Final loss with trained rank-constrained heads (mimicking $W_d^*$), as a function of the theoretical $W$-error for rank $d$ on the head of the Pythia-1B model.}
+%     \label{fig:neg_res_thm}
+% \end{figure}
+
+% This is mostly due to the peculiar nature of the target distributions, which make a direct low-rank approximation to $W^*$ particularly suboptimal in terms of cross-entropy loss. 
+
+% Moreover, contexts are far from uniformly distributed, which means that the optimal overall low-rank performance can be further optimized by focusing on the more frequent contexts. A better frame for this problem would be weighted low-rank approximation \citep{srebro2003weighted}; however, such an optimization problem does not have a closed form to the best of our knowledge. We leave exploration in this direction for future work.
+
+
+
+% \subsubsection{The Role of Unigram Frequency}
+% We have shown that the LM head of a small model tends to adopt a degenerated state in late training, which is correlated with the low performance of the resulting model. In this section, we propose to study this degenerated state at representation level, in order to understand what it implies for the model behavior and why it may lead to suboptimal performance.
+
+% \textcolor{blue}{
+% What will be here?
+% \begin{itemize}
+%     \item a figure showing how the norm of the average output representation increases in training, and how it aligns with frequency ($\sigma(W\bar{x}) \rightarrow f$)
+%     \item conclusion: frequency becomes more important during training
+%     \item empirical examples of high frequency terms appearing too often in generation after explosion vs. before
+% \end{itemize}
+% }
+\newpage
+\subsection{Discussion}
+
+% This paper provides insights on the performance bottleneck represented by linear language modeling heads, stressing out that the dimensionality of the target contextual distribution is poorly matched by language models that rely on small hidden dimensions.
+
+One way to address the problem at hand could be to train shallow small language models, increasing hidden dimension at the expense of other hyperparameters, such as layer count or feed-forward dimension. However, we believe that such research directions may not be promising in this context. Previous works have extensively explored and optimized the hyperparameter choices for various architecture sizes. The impact of width and depth has been extensively studied \citep{merrill-etal-2022-saturated, tay2022scale, petty2023impact}, often showcasing the importance of depth in final performance and generalization capabilities.
+
+Another possible way forward consists in implementing more expressive softmax alternatives \citep{softmax_bottleneck,chang-mccallum-2022-softmax} in the context of pretraining small language models on large datasets. We leave the exploration of such techniques for future work.
+
+We also believe that further exploration of the specific nature of the singular components after the collapse we describe in \Cref{sub:saturation} could improve our understanding of LM saturation. We hypothesize that the resulting dominating components are correlated with token frequency, based on previous works that link anisotropy with token frequency \citep{gao2018representation,ethayarajh-2019-contextual,bis-etal-2021-much} and show the importance of token frequency in the LM head mechanism \citep{meister-etal-2023-natural}.
+
+Beyond the scope of this article, we argue that our work demonstrates that last-layer anisotropy is symptomatic of performance saturation, and is thus likely not a desirable property of language models. We also advocate that this work paves the way towards a better understanding of the structure of the contextual probability distribution, which could also enhance our interpretation of the scaling laws.
+
+\section*{Conclusion}
+Small language models can be affected by performance saturation during training. We find that this phenomenon can be explained by an inherent difficulty in mapping a low-dimensional output representation space to a high-rank contextual probability distribution through a linear language modeling head. Indeed, we show a theoretical link between the performance gap induced by a smaller hidden dimension and the spectral properties of the contextual probability distribution.
+
+We empirically confirm that the rank of such a mapping can be expected to be relatively high compared to regular hidden dimension choices. Moreover, we conduct experiments to measure the impact of constraining the rank of the LM head on the performance of a large language model. Our results show that performance noticeably drops when using a hidden dimension smaller than roughly 1000. We further analyze the saturation phenomenon through the lens of spectral analysis and find that the emergence of last-layer anisotropy that only affects small models can be correlated with saturation. We also show that the LM heads of small models concurrently suffer from \textit{spectral} saturation, i.e. a uniformization of singular values that leads to a degenerated state.
+
+Our work paves the way for a better understanding of the consequences of the softmax bottleneck on language modeling, and for the conception of language models that better embrace the complexity of the target probability distribution.
+
+\section*{Limitations}
+The main limitation of this article is the relatively small amount of saturated language models we studied. As it is the only suite of language models trained in the range of interest to release an extensive amount of intermediate checkpoints, we could only observe the training dynamics of small Pythia models. Although we observe strong last-layer anisotropy for the smallest GPT-2 model, we cannot tell with certainty whether it suffered from saturation. The OPT-125m model does not display a strong last-layer anisotropy, which could indicate that it was not affected by the saturation phenomenon.
+
+Nevertheless, we argue that this paper does not show that \textit{all} small models should suffer from saturation, but rather that the saturation of small language models is symptomatic of a limitation that may affect language models that are based on a relatively small hidden dimension. Furthermore, we do not state that there is a causality relationship between degeneration and low hidden dimension choices, but rather expose a strong correlation between both phenomenon that can be explained through the prism of our softmax bottleneck analysis.
+
+
+Another limitation of this work is the loose nature of the mathematical connection that we establish between the dimensionality of the ideal language modeling head and the rank-constrained performance (cf. \Cref{main_thm}). Moreover, it can also be argued that considering \textit{ideal} $x_i^*$ representations is an ill-defined notion. We argue that the reasoning behind \Cref{main_thm} could be applied to any contextual representations, as the \textit{ideal} nature of $x_i^*$ is not necessary in the demonstrations. The word \textit{ideal} reflects that our observations hold for $x_i^*$ representations obtained from \textit{any underlying model}, to an extent that depends on the structure that these representations impose on the $W^*$ matrix for a given training set $\mathcal{T}$.
+
+\section*{Acknowledgements}
+We thank Song Duong for carefully reviewing this article and for his valuable suggestions.
+
+This work was funded by the last author's chair in the PRAIRIE institute funded by the French national agency ANR as part of the ``Investissements d'avenir'' programme under the reference ANR-19-P3IA-0001. 
+
+This work was granted access to the HPC resources of GENCI operated by IDRIS (allocation 2023-AD011013680R1).
+
+
+% Previous works \citep{ethayarajh-2019-contextual,godey2024anisotropy} notice that almost all layers of Transformers language models are anisotropic. They notably show that the last layer of decoder models display extremely high anisotropy metrics. For instance, \citet{ethayarajh-2019-contextual} show that the representations of the last layer of the small version of GPT-2 \citep{radford2019language} have an average cosine-similarity of 0.97.
+
+% The matter of outlier dimensions has been studied for larger language models, notably in the quantization literature \citep{bondarenko2023quantizable,lee2024owq}.
+% % 
+
+
+
+
+
+
+
+% \subsection{Theoretical contributions}
+
+% \subsubsection{Low-rank approximation}
+% We 
+
+% \subsubsection{Optimization problem}
+
+% Language modeling with a linear classifier can also be thought of as an optimization problem for a matrix mapping context to token probability, in the style of.
+% \begin{equation} \label{eq1}
+% \begin{split}
+% \min_{W\in\mathcal{M}^d} E_{c,y}(\mathcal{L}(W, c, y)) & = \frac{1}{|c|} \sum_{c \in \mathcal{D}} \sum_y P^*(y|c)\log P_W(y|c)\\
+% & = \sum_{c \in C} P(c)\sum_y P^*(y|c)\log P_W(y|c) \\
+% & = \sum_{c \in C}\sum_y (P(c)P^*(y|c))\log P_W(y|c) \\
+% \end{split}
+% \end{equation}
+
+% $$
+% \min_W E_{c,y}(\mathcal{L}(W, c, y)) = 
+% $$
+% $$
+% \min_W E_{c,y}(\mathcal{L}(W, c, y)) = \sum_{c \in C} P(c)\sum_y P^*(y|c)\log P_W(y|c)
+% $$
+% % $$
+% % \mathcal{L}(W^* + \epsilon, x^*_i, y_i) - \mathcal{L}(W^*, x^*_i, y_i) = -(\epsilon x^*_i)_{y_i} + \log\left(\frac{\sum_j{e^{{(W^*x^*_i)}_j} e^{{(\epsilon x^*_i)}_j}}}{\sum_j{e^{({W^*x^*_i})_j}}}\right)
+% % $$
+
+% % $$
+% % \mathcal{L}(W^* + \epsilon, x^*_i, y_i) - \mathcal{L}(W^*, x^*_i, y_i) \geq -(\epsilon x^*_i)_{y_i} + \frac{\sum_j{e^{{(W^*x^*_i)}_j} {(\epsilon x^*_i)}_j}}{\sum_j{e^{({W^*x^*_i})_j}}}
+% % $$
+
+
+% \subsubsection*{Author Contributions}
+% If you'd like to, you may include  a section for author contributions as is done
+% in many journals. This is optional and at the discretion of the authors.
+
+% \subsubsection*{Acknowledgments}
+% Use unnumbered third level headings for the acknowledgments. All
+% acknowledgments, including those to funding agencies, go at the end of the paper.
+
+
+\subsection{Proofs}
+% \subsubsection{\Cref{best_on_all}}
+% \label{app:best_on_all}
+% This proof can be done by contradiction. Let's suppose that there exist $W \in \mathbb{R}^{V \times \infty}$, $y \in T$ and $x^*=\phi^*(y)$, and $i \in [1, |y|]$ such that $\mathcal{L}(W, x^*_i, y_i) < \mathcal{L}(W^*, x^*_i, y_i)$. We can build a block diagonal matrix $W_{2\infty} = \begin{bmatrix}
+% W^* \\ W
+% \end{bmatrix}$ along with the $x_{2\infty}$ representations as $\begin{bmatrix}
+% \phi^*(T \setminus \{y_i\}) & 0 \\
+% 0 & \phi^*(y_i)
+% \end{bmatrix}$.
+
+% It is clear that for all $z \in T \setminus \{y_i\}$ and all $j \in [1, |z|]$, we have $\mathcal{L}(W^*, \phi^*(z_j), z_j) = \mathcal{L}(W_{2\infty}, \phi^*(z_j), z_j)$, and $\mathcal{L}(W_{2\infty}, x^*_i, y_i) = \mathcal{L}(W, x^*_i, y_i) < \mathcal{L}(W^*, x^*_i, y_i)$. Thus, $W_{2\infty}$ is a better minimizer of the problem defined in \autoref{eq:unconstrained}, which contradicts the definition of $W^*$.
+
+
+\subsubsection{\Cref{linear_rel}}
+\label{app:linear_rel}
+The proof is mainly based on calculations and limited development:
+\begin{align*}
+& |\mathcal{L}(W, x^*_i, y_i) - \mathcal{L}(W^*, x^*_i, y_i)| \\
+& =
+\left| -\log \frac{\exp((Wx^*_i)_{y_i})}{\sum_{j \in V} \exp((Wx^*_i)_{j})} + \log\frac{\exp((W^*x^*_i)_{y_i})}{\sum_{j \in V} \exp((W^*x^*_i)_{j})}\right| \\
+& =  \left|-(\varepsilon Mx^*_i)_{y_i} + \log \frac{\sum_{j \in V} \exp((W^*x^*_i)_{j}) \exp((\varepsilon Mx^*_i)_{j})}{\sum_{j \in V} \exp((W^*x^*_i)_{j})}\right| \\
+& = \left| - \varepsilon (M x^*_i)_{y_i} + \log\left( 1 + \frac{\sum_{j \in V} \varepsilon \exp((Mx^*_i)_{j})}{\sum_{j \in V} \exp((W^*x^*_i)_{j})} + o(\varepsilon) \right) \right| \\
+& = \left| -\varepsilon (M x^*_i)_{y_i} + \varepsilon  \frac{\sum_{j \in V} \exp((Mx^*_i)_{j})}{\sum_{j \in V} \exp((W^*x^*_i)_{j})} \right| + o(\varepsilon) \\
+& = \varepsilon \left| - (M x^*_i)_{y_i} + \frac{\sum_{j \in V} \exp((Mx^*_i)_{j})}{\sum_{j \in V} \exp((W^*x^*_i)_{j})} \right| + o(\varepsilon)
+\end{align*}
+
+The continuous function $M \longrightarrow \left| - (M x^*_i)_{y_i} + \frac{\sum_{j \in V} \exp((Mx^*_i)_{j})}{\sum_{j \in V} \exp((W^*x^*_i)_{j})} \right|$ is bounded on the compact matrix unit sphere (i.e. where $||M||_F = 1$), which ends the proof.
+
+\textbf{Remark : }This result could also be proven using a differentiability argument, but we prefer to display a more precise relation between the loss gap and the error on the $W$ matrix approximation, stressing out its quasi-linear nature. This formulation will hopefully pave the way for further exploration of this relation in future works.
+
+\subsubsection{\Cref{main_thm}}
+\label{app:main_thm}
+Let us note $W_d$ the best approximation of $W^*$ of rank $d$ with respect to the Frobenius norm. By definition of $W_d^*$, we have that:
+\begin{equation}
+\label{eq:approx}
+    \left|\sum_{y \in \mathcal{T}} \sum_{i} \mathcal{L}(W_d^*, x^*_i, y_i) - \mathcal{L}(W^*, x^*_i, y_i)\right| \leq \sum_{y \in \mathcal{T}} \sum_{i} \left|\mathcal{L}(W_d, x^*_i, y_i) - \mathcal{L}(W^*, x^*_i, y_i)\right|
+\end{equation}
+
+% We know from \Cref{best_on_all} that for all $y\in\mathcal{T}$ and $i \in [1, |y|]$:
+% $$
+% \mathcal{L}(W_d, x^*_i, y_i) - \mathcal{L}(W^*, x^*_i, y_i) \geq 0
+% $$
+
+The Eckart-Young-Mirsky theorem tells us that when $d \rightarrow V$, 
+$$||W_d - W^*||_F = \sqrt{\sum_{i=d+1}^{V} \sigma_i^2} \rightarrow 0$$
+
+By defining $\varepsilon = W_d - W^*$, we can apply \Cref{linear_rel} and show that:
+$$
+\left|\mathcal{L}(W_d, x^*_i, y_i) - \mathcal{L}(W^*, x^*_i, y_i)\right| = O(||W_d - W^*||_F) = O\left(\sqrt{\sum_{i=d+1}^{V} \sigma_i^2}\right)
+$$
+
+From \Cref{eq:approx}, we have that:
+$$
+\left|\sum_{y \in \mathcal{T}} \sum_{i} \mathcal{L}(W_d^*, x^*_i, y_i) - \mathcal{L}(W^*, x^*_i, y_i)\right| = O\left(\sqrt{\sum_{i=d+1}^{V} \sigma_i^2}\right)
+$$
+
+By definition of $W^*$ and $W_d^*$, we also have that:
+$$
+0 \leq \sum_{y \in \mathcal{T}} \sum_{i} \mathcal{L}(W_d^*, x^*_i, y_i) - \mathcal{L}(W^*, x^*_i, y_i) = \left|\sum_{y \in \mathcal{T}} \sum_{i} \mathcal{L}(W_d^*, x^*_i, y_i) - \mathcal{L}(W^*, x^*_i, y_i)\right|
+$$
+which ends the proof.
+
+\paragraph{Remark} The bound used in \Cref{eq:approx} can be rather loose in practice. We can think of no particular reason why approaching $W^*$ directly should be the optimal way to minimize the loss on $\mathcal{T}$. Hence, the presented result should be taken carefully, and we leave the refinement of such an analysis for future work.
+
+% Jensen's inequality for concave functions can be applied to the $\log$ term:
+% \begin{align*}
+% \mathcal{L}(W, x^*_i, y_i) - \mathcal{L}(W^*, x^*_i, y_i) &\geq -(\epsilon x^*_i)_{y_i} + \frac{\sum_{j \in V} \exp((W^*x^*_i)_{j}) (\epsilon x^*_i)_{j}}{\sum_{j \in V} \exp((W^*x^*_i)_{j})} \\
+% &\geq ||\epsilon||_F \min_{M \in \mathcal{H}^{D \times N}} -(M x^*_i)_{y_i} + \frac{\sum_{j \in V} \exp((W^*x^*_i)_{j}) (M x^*_i)_{j}}{\sum_{j \in V} \exp((W^*x^*_i)_{j})} \right)
+% \end{align*}
+
+% where $\mathcal{H}^{D \times N}$ is the matrix hypersphere, i.e. $\{M \in \mathbb{R}^{D \times N} s.t. ||M||_F = 1 \}$.
+
+
+% \subsection{Eckart–Young–Mirsky theorem}
+% \label{app:eym}
+% \begin{lemma}
+% \label[lemma]{eym}{(Eckart–Young–Mirsky)}
+% Let's consider $(\sigma_i)$ the singular values of $W^*$ in decreasing order, and $\mathcal{M}_d$ the set of matrices of rank $d < D$. Then:
+% $$
+% \min_{W_d \in \mathcal{M}_d}||W_d - W^*||_F = \sqrt{\sum_{i=d+1}^{D} \sigma_i^2}
+% $$
+% \end{lemma}
+
+\subsection{Hyperparameters}
+\label{app:hyperparams}
+
+\subsubsection{Constrained head experiments (\Cref{fig:perf_bottleneck})}
+
+We freeze the pretrained weights in the Transformer layers, and we train each rank-constrained head (i.e. in the form $W=AB$ with $r$ as the inner dimension of the matrix product) for various values of $r$ on 150M tokens sampled from The Pile using 4 V100 GPUs for the Pythia models and 4 A100 GPUs for Llama-7B. We use the hyperparameters from \citet{biderman2023pythia}, except for the batch size which we set to 256 as it fits our hardware setup better. As the trainable parameter count evolves with $r$, we search for the best-performing learning rates among values ranging from $1\cdot 10^{-3}$ to $5\cdot 10^{-2}$.
+
+We report the chosen learning rates in \Cref{fig:lr_choices}.
+
+\begin{figure}[h]
+\centering
+    \includegraphics[width=0.6\linewidth]{sources/part_1/softmax_bottleneck/imgs/lr_final.png}
+    \caption{Chosen peak learning rates used for the rank-constrained head experiments for each model.}
+    \label{fig:lr_choices}
+\end{figure}
+
+
