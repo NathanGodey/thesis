@@ -189,6 +189,8 @@
 \renewcommand{\right}{\aftergroup\egroup\originalright}
 
 \DeclareMathOperator*{\argmin}          {arg\,min}
+\DeclareMathOperator*{\argmax}          {arg\,max}
+
 \DeclareMathOperator {\dist}            {dist}
 \DeclareMathOperator {\im}              {im}
 
