@@ -2,52 +2,61 @@
 \section{Representation Learning}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 \subsection{Introduction}
 
-There are many different ways to represent textual data informatically. Text can be stored as bytes that encode written symbols, but it can also be read orally and recorded into a sound file, or stored in a numerical image as part of a screenshot. Hence, when designing algorithms that process natural language, one should pay attention to the nature of the \textit{features} that represent a given utterance in order to optimize for performance and efficiency.
+Representation learning is a foundational aspect of Natural Language Processing (NLP), providing the means to transform raw linguistic data into structured forms that can be effectively utilized by machine learning models. The core objective is to capture the intricate semantics, syntactic structures, and contextual nuances inherent in language, facilitating tasks such as language modeling, translation, and text classification.
 
-Usually, the \textit{representation} of an object is a real-valued vector which makes it \textit{easier to extract useful information when building classifiers and other predictors} \citep{bengio_repr}. In the case of Natural Language Processing, the represented objects can be of various types and granularities:
-\begin{itemize}
-  \item \textbf{Language} : initiatives such as the World Atlas of Language Structures \citep{wals} have 
-\end{itemize}
+Over the years, the field has evolved from traditional statistical methods to more sophisticated neural approaches. Early methods relied heavily on manually crafted features and statistical techniques, which, while effective in certain contexts, struggled with scalability and capturing deep semantic relationships. The advent of neural networks and deep learning has revolutionized this space, enabling the automatic learning of representations from large datasets. This shift has led to significant improvements in various NLP tasks by leveraging dense, distributed representations that better encode linguistic properties.
+
+In this section, we review key approaches to representation learning in NLP, focusing on the progression from statistical to neural methods and culminating in the development of sentence embeddings. This progression highlights the transition from sparse, high-dimensional representations to dense, low-dimensional embeddings, reflecting the broader trend towards models that can generalize more effectively across different linguistic contexts.
+
 
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Statistical approaches}
+\subsection{Statistical Methods}
+
+Statistical methods have long been the cornerstone of representation learning in Natural Language Processing (NLP), offering simple yet effective ways to encode textual data. These methods often involve transforming text into numerical vectors that capture certain statistical properties of words and documents.
+
+One of the most fundamental approaches is the \textit{Bag of Words} (BoW) model, which represents text as an unordered collection of words. Despite its simplicity, BoW has been widely used due to its ability to effectively capture word frequency information. However, it disregards word order and syntactic relationships, which limits its ability to capture deeper semantic meaning.
+
+To address some of these limitations, the \textit{Term Frequency-Inverse Document Frequency} (TF-IDF) weighting scheme was introduced. TF-IDF adjusts the raw word frequency by considering the importance of words in the context of the entire corpus, thereby reducing the influence of commonly occurring but less informative words. This method enhances the representation by emphasizing words that are more significant in specific documents relative to the corpus.
+
+Another important statistical approach involves \textit{Co-occurrence Matrices}, which capture the context of words based on their co-occurrence with other words within a specified window. These matrices form the basis for several representation learning techniques, such as Latent Semantic Analysis (LSA), which aims to reduce the dimensionality of these matrices while preserving the most meaningful relationships.
+
+\textit{Topic Modeling} techniques, such as Latent Dirichlet Allocation (LDA), further advance representation learning by discovering the underlying themes or topics within a corpus. These methods assume that documents are mixtures of topics, and each topic is a distribution over words. By capturing these topic distributions, topic models provide a more interpretable and semantically rich representation of text.
+
+Overall, statistical methods laid the groundwork for subsequent advances in representation learning, providing tools that, while limited in their ability to capture complex linguistic structures, offer a strong foundation for understanding text in terms of frequency and co-occurrence patterns.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Statistical approaches to representation learning primarily involve methods that leverage co-occurrence statistics and distributional properties of words. Key techniques in this category include:
+\subsection{Neural Methods}
 
-\begin{itemize}
-  \item Latent Semantic Analysis (LSA): LSA is based on the Singular Value Decomposition (SVD) of term-document matrices, reducing the dimensionality of the data and uncovering latent semantic structures. By mapping words and documents to a shared vector space, LSA captures semantic similarities based on co-occurrence patterns.
-\end{itemize}
+The advent of neural methods marked a significant shift in representation learning for Natural Language Processing (NLP), introducing models that can automatically learn dense, distributed word representations from large corpora. These neural embeddings capture rich semantic and syntactic information, overcoming many limitations of earlier statistical approaches.
+
+One of the pioneering methods in this space is \textit{Word2Vec}, introduced by Mikolov et al. Word2Vec utilizes shallow neural networks to learn word embeddings by predicting either the context of a given word (Skip-gram model) or the word given its context (Continuous Bag of Words, CBOW). These embeddings are highly effective, capturing relationships such as word analogies and similarities in a low-dimensional vector space.
+
+Building on the success of Word2Vec, \textit{GloVe} (Global Vectors for Word Representation) was introduced by Pennington et al. GloVe combines the advantages of both global matrix factorization methods and local context-based learning, leveraging co-occurrence statistics from a corpus to generate word vectors. This approach provides a more global context to the embeddings, resulting in vectors that better capture the overall structure of the corpus.
+
+\textit{FastText}, developed by Facebook, extends the Word2Vec approach by considering subword information. Unlike Word2Vec, which treats words as atomic units, FastText represents each word as a bag of character n-grams, allowing the model to generate meaningful embeddings for rare and even out-of-vocabulary words by composing them from their constituent n-grams. This method is particularly useful for morphologically rich languages.
+
+More recently, the field has seen a move towards \textit{pretrained contextual embeddings}, such as \textit{ELMo}, \textit{BERT}, and \textit{GPT}. These models are trained on large corpora using deep neural networks, capturing context-dependent meanings of words by considering the entire sentence or document. Unlike static embeddings like Word2Vec or GloVe, contextual embeddings dynamically adjust based on the context in which a word appears, making them highly effective for a wide range of downstream NLP tasks. These embeddings can be fine-tuned on specific tasks, significantly improving performance on tasks such as text classification, named entity recognition, and machine translation.
+
+Neural methods, particularly through the development of pretrained contextual embeddings, have thus transformed the landscape of representation learning in NLP, offering flexible, high-quality representations that can be adapted to various linguistic challenges.
 
 
-Latent Dirichlet Allocation (LDA): LDA is a generative probabilistic model that represents documents as mixtures of topics, where each topic is a distribution over words. By inferring the topic distribution for each document, LDA provides a way to represent documents in a lower-dimensional topic space.
+\subsection{Sentence Embeddings}
 
-Word2Vec: Introduced by Mikolov et al., Word2Vec includes two model architectures—Continuous Bag of Words (CBOW) and Skip-gram. These models learn word embeddings by predicting the context words surrounding a target word or vice versa. The resulting vectors capture semantic relationships such as analogies (e.g., "king" - "man" + "woman" $\simeq$ "queen").
+While word embeddings have proven invaluable for capturing the meanings of individual words, many NLP tasks require understanding entire sentences or even larger text segments. \textit{Sentence embeddings} aim to represent these larger units of text as dense vectors that encapsulate the semantic content, syntactic structure, and contextual information of the sentence.
 
-GloVe (Global Vectors for Word Representation): GloVe is another word embedding technique that combines the advantages of matrix factorization and local context window methods. It constructs a word-word co-occurrence matrix and derives word vectors by factorizing this matrix, ensuring that the dot product of word vectors approximates the logarithm of their co-occurrence probabilities.
+One of the key challenges in developing effective sentence embeddings is ensuring that they capture not just the meanings of individual words, but also the interactions between them, including word order, syntax, and higher-level semantics. Desired properties of sentence embeddings include being able to generalize well across different contexts, handle varying sentence lengths, and distinguish between sentences that are semantically similar or dissimilar.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Auto-encoders}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Auto-encoders are neural network models designed to learn efficient representations of data through unsupervised learning. They consist of an encoder that maps input data to a latent space and a decoder that reconstructs the original data from this latent representation. In NLP, auto-encoders can be used to learn embeddings for words, sentences, or documents.
+Early approaches to sentence embeddings involved simple averaging or concatenation of word vectors. However, these methods often failed to capture the nuanced relationships between words in a sentence. More sophisticated methods, such as those based on Recurrent Neural Networks (RNNs), Long Short-Term Memory (LSTM) networks, and Transformer-based models, were subsequently developed to address these issues by learning embeddings that better reflect the compositionality and dependencies within sentences.
 
-Basic Auto-Encoders: The simplest form of auto-encoders involves a single hidden layer that compresses the input into a lower-dimensional latent space. The model is trained to minimize the reconstruction error between the input and the output.
+A significant advancement in this area comes from \textit{contrastive learning} approaches, which focus on learning sentence embeddings by distinguishing between similar and dissimilar pairs of sentences. \textit{SimCSE} (Simple Contrastive Sentence Embeddings) is one such approach that has gained attention. SimCSE generates positive sentence pairs by applying dropout to the same sentence and trains the model to maximize the similarity between these pairs while minimizing the similarity between different sentences. This simple yet effective technique has demonstrated strong performance in producing high-quality sentence embeddings.
 
-Variational Auto-Encoders (VAEs): VAEs extend basic auto-encoders by imposing a probabilistic structure on the latent space. They use a probabilistic encoder to map inputs to a distribution in the latent space, allowing for the generation of new samples by sampling from this distribution. VAEs are useful in tasks requiring generative capabilities, such as text generation.
+Other notable contrastive approaches include \textit{InferSent}, which leverages supervised learning on natural language inference (NLI) datasets, and \textit{Sentence-BERT}, which applies a Siamese network structure to fine-tune BERT on sentence pairs, significantly improving sentence similarity and retrieval tasks. Additionally, methods like \textit{Universal Sentence Encoder} and \textit{QuickThoughts} have also been influential, employing various architectures and training objectives to produce embeddings that perform well across a range of sentence-level tasks.
 
-Denoising Auto-Encoders (DAEs): DAEs are trained to reconstruct the original data from corrupted versions. This process encourages the model to learn robust features that are invariant to noise, improving the quality of the learned representations.
-
-\subsection{Contrastive approaches}
-
-Contrastive approaches in representation learning aim to learn effective embeddings by contrasting positive and negative examples. The core idea is to bring similar items closer together in the embedding space while pushing dissimilar items apart. These methods are essential for capturing nuanced relationships in the data and enhancing the quality of learned representations.
-\begin{itemize}
-  \item Contrastive Loss: The fundamental concept in contrastive learning is the contrastive loss function, which drives the learning process by encouraging the model to distinguish between positive pairs (similar items) and negative pairs (dissimilar items).
-  \item Triplet Loss: Triplet loss is a popular contrastive learning technique that uses triplets of samples: an anchor, a positive (similar to the anchor), and a negative (dissimilar to the anchor). The objective is to minimize the distance between the anchor and the positive while maximizing the distance between the anchor and the negative. This approach is widely used in tasks such as face recognition and text similarity.
-  \item 
-  Noise Contrastive Estimation (NCE): NCE is another contrastive learning method that reformulates the problem of estimating a probability distribution into a binary classification problem. The model learns to distinguish between observed data and artificially generated noise samples. NCE is particularly useful in large-scale language models where direct computation of probabilities is computationally expensive.
-\end{itemize}
+Overall, the development of sentence embeddings has advanced significantly, with contrastive learning approaches offering robust solutions for generating embeddings that accurately capture the meanings of entire sentences. These methods are crucial for enhancing the performance of NLP systems in tasks that require a deep understanding of sentence semantics.
+\newpage
