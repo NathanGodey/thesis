@@ -1,5 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Language Modeling}
+\label{sec:rw_lm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -18,7 +19,10 @@ These models can be used in various applications, which will often shape the way
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Methods}
 
-\paragraph*{Textual units and Tokenization} Before presenting the statistical paradigm of modern language models, we need to define precisely the textual units on which these models are based, namely tokens. \citet{mielke2021wordscharactersbriefhistory} cope with this subject in a very exhaustive manner. They distinguish three different approaches of forming tokens: a linguistic approach, an atomic approach, and a statistical approach.
+\paragraph*{Textual units and Tokenization}
+\label{subsec:rw_lm_tokenization}
+
+Before presenting the statistical paradigm of modern language models, we need to define precisely the textual units on which these models are based, namely tokens. \citet{mielke2021wordscharactersbriefhistory} cope with this subject in a very exhaustive manner. They distinguish three different approaches of forming tokens: a linguistic approach, an atomic approach, and a statistical approach.
 
 First, many works have built linguistically-grounded sets of textual units that should be considered as microscopic to some extent, such as the Morphosyntactic Annotation Framework \citep{clement_maf}, which defines a token as a \textit{non-empty contiguous sequence of graphemes or phonemes in a document}. More generally, the domain of morphology, well defined in \citet{aronoff2022morphology}, has led to several morphologically-informed tokenizers \citep{saleva-lignos-2021-effectiveness, gronroos-etal-2018-cognate}.
 
@@ -309,7 +313,7 @@ BERT (for \textit{Bidirectional Encoder Representations from Transformers}) is a
     \item Leave it unchanged 10\% of the time.\footnote{In that case, the training task is not language modeling but simply learning the identity mapping.}
 \end{itemize}
 
-In \citet{devlin-etal-2019-bert}, 15\% of the tokens are masked according to this procedure, and the cross-entropy training objective is used for the masked positions. By partially masking the whole sequence at once, the authors assume that altering one token does not hurt the feasability of the prediction at another position which uses this token in the context.
+In \citet{devlin-etal-2019-bert}, 15\% of the tokens are masked according to this procedure, and the cross-entropy training objective is used for the masked positions. By partially masking the whole sequence at once, the authors assume that altering one token does not hurt the feasability of the prediction at another position which uses this token in the context. In order to train the model for sentence-level semantics, an auxiliary objective trains the model to identify whether two consecutive sentences in the training data were also consecutive in the original document.
 The original trained architecture is similar to GPT in parameter count and is similarly fine-tuned on downstream tasks, but a larger version is trained and achieves better performance. \citet{roberta} subsequently show that training on larger training sets leads to significantly better performance, and introduce the RoBERTa models suite.
 
 T5 (for \textit{Text-to-Text Transfer Transformer}) is a model suite that aims for a different approach when it comes to downstream tasks. \citet{2020t5} argue that downstream tasks can be rephrased as natural language samples. For instance, the Corpus of Linguistic Acceptability, or CoLA \citep{warstadt2018neural} is a sentence-level classification task where a grammatical acceptability label (acceptable or unacceptable) is given to each sentence. The STSB subset of GLUE \citep{wang-etal-2018-glue} is a sentence-pair classification task where a similarity score in $[1, 5]$ is given to a pair of sentences. The authors argue that these tasks can be rephrased as language modeling tasks where the labels or scores are tokens that the model is expected to generate at inference time. The main advantage of this approach is that it does not require to have task-specific classification heads, which implies that the model can be fine-tuned on all tasks at once.
@@ -333,7 +337,7 @@ They conduct medium-scale experiments, training models ranging from 14M to 335M 
 \paragraph*{Scale \& Performance}
 The emergence of highly parameterized neural networks trained on large textual datasets as effective language models brings the question of scale, i.e. to what extent can scaling up either (or both) the volume of textual data or the count of trainable parameters can increase the language modeling performance and the downstream capabilities of models?
 
-With RoBERTa \citep{roberta}, it appeared clear that the first generation of pretrained models, namely BERT and GPT, were undertrained. GPT-2 \citep{gpt2} is a follow-up model suite that was trained on a larger and more diverse dataset than BookCorpus called WebText, with model sizes ranging from 117 million to 1.5 billion parameters. The authors noticed that the larger GPT-2 models had interestingly better \textit{few-shot} and \textit{zero-shot} abilities, especially at question answering tasks.
+With RoBERTa \citep{roberta}, it appeared clear that the first generation of pretrained models, namely BERT and GPT, were undertrained. The authors train a BERT-style model on approximately 10 times more data, and remove the sentence-level auxiliary objective and show strong improvements. GPT-2 \citep{gpt2} is a follow-up model suite that was trained on a larger and more diverse dataset than BookCorpus called WebText, with model sizes ranging from 117 million to 1.5 billion parameters. The authors noticed that the larger GPT-2 models had interestingly better \textit{few-shot} and \textit{zero-shot} abilities, especially at question answering tasks.
 
 GPT-3 \citep{gpt3} introduces a much larger architecture, using 175 billion parameters, while relying on a training procedure and architecture that do not significantly differ from the original Transformers-based GPT. The authors claim that this model displays a zero-shot downstream performance level that is close to fine-tuned counterparts. Similar results are reproduced through the OPT initiative \citep{zhang2022opt}. Subsequently, the 540 billion parameters PaLM model \citep{palm} was released, leading to similar conclusions. A multilingual counterpart to this line of work is BLOOM \citep{le2023bloom}, a 176 billion parameters model trained in 46 languages.
 

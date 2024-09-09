@@ -43,6 +43,536 @@
     abstract = "Replacing static word embeddings with contextualized word representations has yielded significant improvements on many NLP tasks. However, just how contextual are the contextualized representations produced by models such as ELMo and BERT? Are there infinitely many context-specific representations for each word, or are words essentially assigned one of a finite number of word-sense representations? For one, we find that the contextualized representations of all words are not isotropic in any layer of the contextualizing model. While representations of the same word in different contexts still have a greater cosine similarity than those of two different words, this self-similarity is much lower in upper layers. This suggests that upper layers of contextualizing models produce more context-specific representations, much like how upper layers of LSTMs produce more task-specific representations. In all layers of ELMo, BERT, and GPT-2, on average, less than 5{\%} of the variance in a word{'}s contextualized representations can be explained by a static embedding for that word, providing some justification for the success of contextualized representations.",
 }
 
+@inbook{tf_idf,
+author = {Sparck Jones, Karen},
+title = {A statistical interpretation of term specificity and its application in retrieval},
+year = {1988},
+isbn = {0947568212},
+publisher = {Taylor Graham Publishing},
+address = {GBR},
+booktitle = {Document Retrieval Systems},
+pages = {132–142},
+numpages = {11}
+}
+
+@misc{harris1954distributional,
+  title={Distributional Structure},
+  author={Harris, ZS},
+  year={1954},
+  publisher={Word}
+}
+
+@inproceedings{weaver-1952-translation,
+    title = "Translation",
+    author = "Weaver, Warren",
+    booktitle = "Proceedings of the Conference on Mechanical Translation",
+    month = "17-20 " # jun,
+    year = "1952",
+    address = "Massachusetts Institute of Technology",
+    url = "https://aclanthology.org/1952.earlymt-1.1",
+}
+
+@article{shannon_mi,
+  added-at = {2021-09-19T18:40:37.000+0200},
+  author = {Shannon, Claude Elwood},
+  biburl = {https://www.bibsonomy.org/bibtex/29f88587b33c82f692b61d129eb2f2517/steschum},
+  interhash = {754130207906fcec16a53d330eeff348},
+  intrahash = {9f88587b33c82f692b61d129eb2f2517},
+  journal = {The Bell System Technical Journal},
+  keywords = {imported},
+  pages = {379--423},
+  timestamp = {2021-09-19T18:41:56.000+0200},
+  title = {A Mathematical Theory of Communication},
+  url = {http://plan9.bell-labs.com/cm/ms/what/shannonday/shannon1948.pdf},
+  urldate = {2003-04-22},
+  volume = 27,
+  year = 1948
+}
+
+@incollection{alexnet,
+  added-at = {2016-11-14T12:05:24.000+0100},
+  author = {Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E.},
+  biburl = {https://www.bibsonomy.org/bibtex/2886c491fe45049fee3c9660df30bb5c4/albinzehe},
+  booktitle = {Advances in Neural Information Processing Systems 25},
+  editor = {Pereira, F. and Burges, C. J. C. and Bottou, L. and Weinberger, K. Q.},
+  interhash = {74bbb5dea5afb1b088bd10e317f1f0d2},
+  intrahash = {886c491fe45049fee3c9660df30bb5c4},
+  keywords = {cnn deeplearning ma-zehe neuralnet},
+  pages = {1097--1105},
+  publisher = {Curran Associates, Inc.},
+  timestamp = {2016-11-14T12:05:24.000+0100},
+  title = {ImageNet Classification with Deep Convolutional Neural Networks},
+  url = {http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf},
+  year = 2012
+}
+
+@inproceedings{cho-etal-2014-learning,
+    title = "Learning Phrase Representations using {RNN} Encoder{--}Decoder for Statistical Machine Translation",
+    author = {Cho, Kyunghyun  and
+      van Merri{\"e}nboer, Bart  and
+      Gulcehre, Caglar  and
+      Bahdanau, Dzmitry  and
+      Bougares, Fethi  and
+      Schwenk, Holger  and
+      Bengio, Yoshua},
+    editor = "Moschitti, Alessandro  and
+      Pang, Bo  and
+      Daelemans, Walter",
+    booktitle = "Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing ({EMNLP})",
+    month = oct,
+    year = "2014",
+    address = "Doha, Qatar",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/D14-1179",
+    doi = "10.3115/v1/D14-1179",
+    pages = "1724--1734",
+}
+
+@misc{word2vec,title	= {Efficient Estimation of Word Representations in Vector Space},author	= {Tomas Mikolov and Kai Chen and Greg S. Corrado and Jeffrey Dean},year	= {2013},URL	= {http://arxiv.org/abs/1301.3781}}}
+
+
+@InProceedings{pmlr-vR5-morin05a,
+  title = 	 {Hierarchical Probabilistic Neural Network Language Model},
+  author =       {Morin, Frederic and Bengio, Yoshua},
+  booktitle = 	 {Proceedings of the Tenth International Workshop on Artificial Intelligence and Statistics},
+  pages = 	 {246--252},
+  year = 	 {2005},
+  editor = 	 {Cowell, Robert G. and Ghahramani, Zoubin},
+  volume = 	 {R5},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {06--08 Jan},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/r5/morin05a/morin05a.pdf},
+  url = 	 {https://proceedings.mlr.press/r5/morin05a.html},
+  note =         {Reissued by PMLR on 30 March 2021.}
+}
+
+@inproceedings{pennington-etal-2014-glove,
+    title = "{G}lo{V}e: Global Vectors for Word Representation",
+    author = "Pennington, Jeffrey  and
+      Socher, Richard  and
+      Manning, Christopher",
+    editor = "Moschitti, Alessandro  and
+      Pang, Bo  and
+      Daelemans, Walter",
+    booktitle = "Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing ({EMNLP})",
+    month = oct,
+    year = "2014",
+    address = "Doha, Qatar",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/D14-1162",
+    doi = "10.3115/v1/D14-1162",
+    pages = "1532--1543",
+}
+
+@INPROCEEDINGS{lstm_w2v,
+  author={Xiao, Lizhong and Wang, Guangzhong and Zuo, Yang},
+  booktitle={2018 11th International Symposium on Computational Intelligence and Design (ISCID)}, 
+  title={Research on Patent Text Classification Based on Word2Vec and LSTM}, 
+  year={2018},
+  volume={01},
+  number={},
+  pages={71-74},
+  keywords={Computational intelligence;Handheld computers;security field;text categorization;Word2Vec;long and short-term memory networks;stop words},
+  doi={10.1109/ISCID.2018.00023}}
+
+@article{MUHAMMAD2021728,
+title = {Sentiment Analysis Using Word2vec And Long Short-Term Memory (LSTM) For Indonesian Hotel Reviews},
+journal = {Procedia Computer Science},
+volume = {179},
+pages = {728-735},
+year = {2021},
+note = {5th International Conference on Computer Science and Computational Intelligence 2020},
+issn = {1877-0509},
+doi = {https://doi.org/10.1016/j.procs.2021.01.061},
+url = {https://www.sciencedirect.com/science/article/pii/S1877050921000752},
+author = {Putra Fissabil Muhammad and Retno Kusumaningrum and Adi Wibowo},
+keywords = {Hotel Reviews, sentiment analysis, Word2Vec, Long-short term memory}
+}
+
+@ARTICLE{tl_survey,
+  author={Pan, Sinno Jialin and Yang, Qiang},
+  journal={IEEE Transactions on Knowledge and Data Engineering}, 
+  title={A Survey on Transfer Learning}, 
+  year={2010},
+  volume={22},
+  number={10},
+  pages={1345-1359},
+  keywords={Machine learning;Training data;Data mining;Knowledge transfer;Space technology;Knowledge engineering;Machine learning algorithms;Labeling;Learning systems;Testing;Transfer learning;survey;machine learning;data mining.},
+  doi={10.1109/TKDE.2009.191}}
+
+
+@inproceedings{panchendrarajan-amaresan-2018-bidirectional,
+    title = "Bidirectional {LSTM}-{CRF} for Named Entity Recognition",
+    author = "Panchendrarajan, Rrubaa  and
+      Amaresan, Aravindh",
+    editor = "Politzer-Ahles, Stephen  and
+      Hsu, Yu-Yin  and
+      Huang, Chu-Ren  and
+      Yao, Yao",
+    booktitle = "Proceedings of the 32nd Pacific Asia Conference on Language, Information and Computation",
+    month = "1{--}3 " # dec,
+    year = "2018",
+    address = "Hong Kong",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/Y18-1061",
+}
+
+@article{zar2005spearman,
+  title={Spearman rank correlation},
+  author={Zar, Jerrold H},
+  journal={Encyclopedia of Biostatistics},
+  volume={7},
+  year={2005},
+  publisher={Wiley Online Library}
+}
+
+@inproceedings{
+mu2018allbutthetop,
+title={All-but-the-Top: Simple and Effective Postprocessing for Word Representations},
+author={Jiaqi Mu and Pramod Viswanath},
+booktitle={International Conference on Learning Representations},
+year={2018},
+url={https://openreview.net/forum?id=HkuGJ3kCb},
+}
+
+@inproceedings{li-etal-2020-sentence,
+    title = "On the Sentence Embeddings from Pre-trained Language Models",
+    author = "Li, Bohan  and
+      Zhou, Hao  and
+      He, Junxian  and
+      Wang, Mingxuan  and
+      Yang, Yiming  and
+      Li, Lei",
+    editor = "Webber, Bonnie  and
+      Cohn, Trevor  and
+      He, Yulan  and
+      Liu, Yang",
+    booktitle = "Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+    month = nov,
+    year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2020.emnlp-main.733",
+    doi = "10.18653/v1/2020.emnlp-main.733",
+    pages = "9119--9130",
+    abstract = "Pre-trained contextual representations like BERT have achieved great success in natural language processing. However, the sentence embeddings from the pre-trained language models without fine-tuning have been found to poorly capture semantic meaning of sentences. In this paper, we argue that the semantic information in the BERT embeddings is not fully exploited. We first reveal the theoretical connection between the masked language model pre-training objective and the semantic similarity task theoretically, and then analyze the BERT sentence embeddings empirically. We find that BERT always induces a non-smooth anisotropic semantic space of sentences, which harms its performance of semantic similarity. To address this issue, we propose to transform the anisotropic sentence embedding distribution to a smooth and isotropic Gaussian distribution through normalizing flows that are learned with an unsupervised objective. Experimental results show that our proposed BERT-flow method obtains significant performance gains over the state-of-the-art sentence embeddings on a variety of semantic textual similarity tasks. The code is available at \url{https://github.com/bohanli/BERT-flow}.",
+}
+
+@inproceedings{
+arora2017a,
+title={A Simple but Tough-to-Beat Baseline for Sentence Embeddings},
+author={Sanjeev Arora and Yingyu Liang and Tengyu Ma},
+booktitle={International Conference on Learning Representations},
+year={2017},
+url={https://openreview.net/forum?id=SyK00v5xx}
+}
+
+@inproceedings{conneau-etal-2017-supervised,
+    title = "Supervised Learning of Universal Sentence Representations from Natural Language Inference Data",
+    author = {Conneau, Alexis  and
+      Kiela, Douwe  and
+      Schwenk, Holger  and
+      Barrault, Lo{\"\i}c  and
+      Bordes, Antoine},
+    editor = "Palmer, Martha  and
+      Hwa, Rebecca  and
+      Riedel, Sebastian",
+    booktitle = "Proceedings of the 2017 Conference on Empirical Methods in Natural Language Processing",
+    month = sep,
+    year = "2017",
+    address = "Copenhagen, Denmark",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/D17-1070",
+    doi = "10.18653/v1/D17-1070",
+    pages = "670--680",
+    abstract = "Many modern NLP systems rely on word embeddings, previously trained in an unsupervised manner on large corpora, as base features. Efforts to obtain embeddings for larger chunks of text, such as sentences, have however not been so successful. Several attempts at learning unsupervised representations of sentences have not reached satisfactory enough performance to be widely adopted. In this paper, we show how universal sentence representations trained using the supervised data of the Stanford Natural Language Inference datasets can consistently outperform unsupervised methods like SkipThought vectors on a wide range of transfer tasks. Much like how computer vision uses ImageNet to obtain features, which can then be transferred to other tasks, our work tends to indicate the suitability of natural language inference for transfer learning to other NLP tasks. Our encoder is publicly available.",
+}
+
+
+@inproceedings{cer-etal-2018-universal,
+    title = "Universal Sentence Encoder for {E}nglish",
+    author = "Cer, Daniel  and
+      Yang, Yinfei  and
+      Kong, Sheng-yi  and
+      Hua, Nan  and
+      Limtiaco, Nicole  and
+      St. John, Rhomni  and
+      Constant, Noah  and
+      Guajardo-Cespedes, Mario  and
+      Yuan, Steve  and
+      Tar, Chris  and
+      Strope, Brian  and
+      Kurzweil, Ray",
+    editor = "Blanco, Eduardo  and
+      Lu, Wei",
+    booktitle = "Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing: System Demonstrations",
+    month = nov,
+    year = "2018",
+    address = "Brussels, Belgium",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/D18-2029",
+    doi = "10.18653/v1/D18-2029",
+    pages = "169--174",
+    abstract = "We present easy-to-use TensorFlow Hub sentence embedding models having good task transfer performance. Model variants allow for trade-offs between accuracy and compute resources. We report the relationship between model complexity, resources, and transfer performance. Comparisons are made with baselines without transfer learning and to baselines that incorporate word-level transfer. Transfer learning using sentence-level embeddings is shown to outperform models without transfer learning and often those that use only word-level transfer. We show good transfer task performance with minimal training data and obtain encouraging results on word embedding association tests (WEAT) of model bias.",
+}
+
+
+@inproceedings{hill-etal-2016-learning,
+    title = "Learning Distributed Representations of Sentences from Unlabelled Data",
+    author = "Hill, Felix  and
+      Cho, Kyunghyun  and
+      Korhonen, Anna",
+    editor = "Knight, Kevin  and
+      Nenkova, Ani  and
+      Rambow, Owen",
+    booktitle = "Proceedings of the 2016 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies",
+    month = jun,
+    year = "2016",
+    address = "San Diego, California",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/N16-1162",
+    doi = "10.18653/v1/N16-1162",
+    pages = "1367--1377",
+}
+
+
+@inproceedings{Zhang2020BERTScore,
+title={BERTScore: Evaluating Text Generation with BERT},
+author={Tianyi Zhang* and Varsha Kishore* and Felix Wu* and Kilian Q. Weinberger and Yoav Artzi},
+booktitle={International Conference on Learning Representations},
+year={2020},
+url={https://openreview.net/forum?id=SkeHuCVFDr}
+}
+
+@inproceedings{reimers-gurevych-2019-sentence,
+    title = "Sentence-{BERT}: Sentence Embeddings using {S}iamese {BERT}-Networks",
+    author = "Reimers, Nils  and
+      Gurevych, Iryna",
+    editor = "Inui, Kentaro  and
+      Jiang, Jing  and
+      Ng, Vincent  and
+      Wan, Xiaojun",
+    booktitle = "Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)",
+    month = nov,
+    year = "2019",
+    address = "Hong Kong, China",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/D19-1410",
+    doi = "10.18653/v1/D19-1410",
+    pages = "3982--3992",
+    abstract = "BERT (Devlin et al., 2018) and RoBERTa (Liu et al., 2019) has set a new state-of-the-art performance on sentence-pair regression tasks like semantic textual similarity (STS). However, it requires that both sentences are fed into the network, which causes a massive computational overhead: Finding the most similar pair in a collection of 10,000 sentences requires about 50 million inference computations ({\textasciitilde}65 hours) with BERT. The construction of BERT makes it unsuitable for semantic similarity search as well as for unsupervised tasks like clustering. In this publication, we present Sentence-BERT (SBERT), a modification of the pretrained BERT network that use siamese and triplet network structures to derive semantically meaningful sentence embeddings that can be compared using cosine-similarity. This reduces the effort for finding the most similar pair from 65 hours with BERT / RoBERTa to about 5 seconds with SBERT, while maintaining the accuracy from BERT. We evaluate SBERT and SRoBERTa on common STS tasks and transfer learning tasks, where it outperforms other state-of-the-art sentence embeddings methods.",
+}
+
+
+@inproceedings{bommasani-etal-2020-interpreting,
+    title = "{I}nterpreting {P}retrained {C}ontextualized {R}epresentations via {R}eductions to {S}tatic {E}mbeddings",
+    author = "Bommasani, Rishi  and
+      Davis, Kelly  and
+      Cardie, Claire",
+    editor = "Jurafsky, Dan  and
+      Chai, Joyce  and
+      Schluter, Natalie  and
+      Tetreault, Joel",
+    booktitle = "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics",
+    month = jul,
+    year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2020.acl-main.431",
+    doi = "10.18653/v1/2020.acl-main.431",
+    pages = "4758--4781",
+    abstract = "Contextualized representations (e.g. ELMo, BERT) have become the default pretrained representations for downstream NLP applications. In some settings, this transition has rendered their static embedding predecessors (e.g. Word2Vec, GloVe) obsolete. As a side-effect, we observe that older interpretability methods for static embeddings {---} while more diverse and mature than those available for their dynamic counterparts {---} are underutilized in studying newer contextualized representations. Consequently, we introduce simple and fully general methods for converting from contextualized representations to static lookup-table embeddings which we apply to 5 popular pretrained models and 9 sets of pretrained weights. Our analysis of the resulting static embeddings notably reveals that pooling over many contexts significantly improves representational quality under intrinsic evaluation. Complementary to analyzing representational quality, we consider social biases encoded in pretrained representations with respect to gender, race/ethnicity, and religion and find that bias is encoded disparately across pretrained models and internal layers even for models with the same training data. Concerningly, we find dramatic inconsistencies between social bias estimators for word embeddings.",
+}
+
+
+
+@inproceedings{martin-etal-2020-camembert,
+    title = "{C}amem{BERT}: a Tasty {F}rench Language Model",
+    author = "Martin, Louis  and
+      Muller, Benjamin  and
+      Ortiz Su{\'a}rez, Pedro Javier  and
+      Dupont, Yoann  and
+      Romary, Laurent  and
+      de la Clergerie, {\'E}ric  and
+      Seddah, Djam{\'e}  and
+      Sagot, Beno{\^\i}t",
+    editor = "Jurafsky, Dan  and
+      Chai, Joyce  and
+      Schluter, Natalie  and
+      Tetreault, Joel",
+    booktitle = "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics",
+    month = jul,
+    year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2020.acl-main.645",
+    doi = "10.18653/v1/2020.acl-main.645",
+    pages = "7203--7219",
+    abstract = "Pretrained language models are now ubiquitous in Natural Language Processing. Despite their success, most available models have either been trained on English data or on the concatenation of data in multiple languages. This makes practical use of such models {--}in all languages except English{--} very limited. In this paper, we investigate the feasibility of training monolingual Transformer-based language models for other languages, taking French as an example and evaluating our language models on part-of-speech tagging, dependency parsing, named entity recognition and natural language inference tasks. We show that the use of web crawled data is preferable to the use of Wikipedia data. More surprisingly, we show that a relatively small web crawled dataset (4GB) leads to results that are as good as those obtained using larger datasets (130+GB). Our best performing model CamemBERT reaches or improves the state of the art in all four downstream tasks.",
+}
+
+
+@ARTICLE{owens_gpu,
+  author={Owens, John D. and Houston, Mike and Luebke, David and Green, Simon and Stone, John E. and Phillips, James C.},
+  journal={Proceedings of the IEEE}, 
+  title={GPU Computing}, 
+  year={2008},
+  volume={96},
+  number={5},
+  pages={879-899},
+  keywords={Graphics;Central Processing Unit;Physics computing;Engines;Arithmetic;Bandwidth;Microprocessors;Hardware;Computational biophysics;Performance gain;General-purpose computing on the graphics processing unit (GPGPU);GPU computing;parallel computing},
+  doi={10.1109/JPROC.2008.917757}}
+
+
+@article{bojanowski-etal-2017-enriching,
+    title = "Enriching Word Vectors with Subword Information",
+    author = "Bojanowski, Piotr  and
+      Grave, Edouard  and
+      Joulin, Armand  and
+      Mikolov, Tomas",
+    editor = "Lee, Lillian  and
+      Johnson, Mark  and
+      Toutanova, Kristina",
+    journal = "Transactions of the Association for Computational Linguistics",
+    volume = "5",
+    year = "2017",
+    address = "Cambridge, MA",
+    publisher = "MIT Press",
+    url = "https://aclanthology.org/Q17-1010",
+    doi = "10.1162/tacl_a_00051",
+    pages = "135--146",
+    abstract = "Continuous word representations, trained on large unlabeled corpora are useful for many natural language processing tasks. Popular models that learn such representations ignore the morphology of words, by assigning a distinct vector to each word. This is a limitation, especially for languages with large vocabularies and many rare words. In this paper, we propose a new approach based on the skipgram model, where each word is represented as a bag of character n-grams. A vector representation is associated to each character n-gram; words being represented as the sum of these representations. Our method is fast, allowing to train models on large corpora quickly and allows us to compute word representations for words that did not appear in the training data. We evaluate our word representations on nine different languages, both on word similarity and analogy tasks. By comparing to recently proposed morphological word representations, we show that our vectors achieve state-of-the-art performance on these tasks.",
+}
+
+
+
+@inproceedings{billingsley-curran-2012-improvements,
+    title = "Improvements to Training an {RNN} parser",
+    author = "Billingsley, Richard  and
+      Curran, James",
+    editor = "Kay, Martin  and
+      Boitet, Christian",
+    booktitle = "Proceedings of {COLING} 2012",
+    month = dec,
+    year = "2012",
+    address = "Mumbai, India",
+    publisher = "The COLING 2012 Organizing Committee",
+    url = "https://aclanthology.org/C12-1018",
+    pages = "279--294",
+}
+
+
+
+@article{lda,
+author = {Blei, David M. and Ng, Andrew Y. and Jordan, Michael I.},
+title = {Latent dirichlet allocation},
+year = {2003},
+issue_date = {3/1/2003},
+publisher = {JMLR.org},
+volume = {3},
+number = {null},
+issn = {1532-4435},
+abstract = {We describe latent Dirichlet allocation (LDA), a generative probabilistic model for collections of discrete data such as text corpora. LDA is a three-level hierarchical Bayesian model, in which each item of a collection is modeled as a finite mixture over an underlying set of topics. Each topic is, in turn, modeled as an infinite mixture over an underlying set of topic probabilities. In the context of text modeling, the topic probabilities provide an explicit representation of a document. We present efficient approximate inference techniques based on variational methods and an EM algorithm for empirical Bayes parameter estimation. We report results in document modeling, text classification, and collaborative filtering, comparing to a mixture of unigrams model and the probabilistic LSI model.},
+journal = {J. Mach. Learn. Res.},
+month = {mar},
+pages = {993–1022},
+numpages = {30}
+}
+
+@article{churchill2022evolution,
+  title={The evolution of topic modeling},
+  author={Churchill, Rob and Singh, Lisa},
+  journal={ACM Computing Surveys},
+  volume={54},
+  number={10s},
+  pages={1--35},
+  year={2022},
+  publisher={ACM New York, NY}
+}
+
+@article{deerwester1990indexing,
+  title={Indexing by latent semantic analysis},
+  author={Deerwester, Scott and Dumais, Susan T and Furnas, George W and Landauer, Thomas K and Harshman, Richard},
+  journal={Journal of the American society for information science},
+  volume={41},
+  number={6},
+  pages={391--407},
+  year={1990},
+  publisher={Wiley Online Library}
+}
+
+@inproceedings{ramos2003using,
+  title={Using tf-idf to determine word relevance in document queries},
+  author={Ramos, Juan and others},
+  booktitle={Proceedings of the first instructional conference on machine learning},
+  volume={242},
+  number={1},
+  pages={29--48},
+  year={2003},
+  organization={Citeseer}
+}
+
+@InProceedings{He_2020_CVPR,
+author = {He, Kaiming and Fan, Haoqi and Wu, Yuxin and Xie, Saining and Girshick, Ross},
+title = {Momentum Contrast for Unsupervised Visual Representation Learning},
+booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+month = {June},
+year = {2020}
+}
+
+@misc{oord2019representationlearningcontrastivepredictive,
+      title={Representation Learning with Contrastive Predictive Coding}, 
+      author={Aaron van den Oord and Yazhe Li and Oriol Vinyals},
+      year={2019},
+      eprint={1807.03748},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/1807.03748}, 
+}
+
+@misc{li2023generaltextembeddingsmultistage,
+      title={Towards General Text Embeddings with Multi-stage Contrastive Learning}, 
+      author={Zehan Li and Xin Zhang and Yanzhao Zhang and Dingkun Long and Pengjun Xie and Meishan Zhang},
+      year={2023},
+      eprint={2308.03281},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2308.03281}, 
+}
+
+@article{10.1145/3593590,
+author = {Xu, Lingling and Xie, Haoran and Li, Zongxi and Wang, Fu Lee and Wang, Weiming and Li, Qing},
+title = {Contrastive Learning Models for Sentence Representations},
+year = {2023},
+issue_date = {August 2023},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {14},
+number = {4},
+issn = {2157-6904},
+url = {https://doi.org/10.1145/3593590},
+doi = {10.1145/3593590},
+abstract = {Sentence representation learning is a crucial task in natural language processing, as the quality of learned representations directly influences downstream tasks, such as sentence classification and sentiment analysis. Transformer-based pretrained language models such as bidirectional encoder representations from transformers (BERT) have been extensively applied to various natural language processing tasks, and have exhibited moderately good performance. However, the anisotropy of the learned embedding space prevents BERT sentence embeddings from achieving good results in the semantic textual similarity tasks. It has been shown that contrastive learning can alleviate the anisotropy problem and significantly improve sentence representation performance. Therefore, there has been a surge in the development of models that utilize contrastive learning to fine-tune BERT-like pretrained language models to learn sentence representations. But no systematic review of contrastive learning models for sentence representations has been conducted. To fill this gap, this article summarizes and categorizes the contrastive learning based sentence representation models, common evaluation tasks for assessing the quality of learned representations, and future research directions. Furthermore, we select several representative models for exhaustive experiments to illustrate the quantitative improvement of various strategies on sentence representations.},
+journal = {ACM Trans. Intell. Syst. Technol.},
+month = {jun},
+articleno = {67},
+numpages = {34},
+keywords = {Sentence representation learning, contrastive learning, Data Augmentation, BERT}
+}
+
+@inproceedings{simclr,
+author = {Chen, Ting and Kornblith, Simon and Norouzi, Mohammad and Hinton, Geoffrey},
+title = {A simple framework for contrastive learning of visual representations},
+year = {2020},
+publisher = {JMLR.org},
+abstract = {This paper presents SimCLR: a simple framework for contrastive learning of visual representations. We simplify recently proposed contrastive self-supervised learning algorithms without requiring specialized architectures or a memory bank. In order to understand what enables the contrastive prediction tasks to learn useful representations, we systematically study the major components of our framework. We show that (1) composition of data augmentations plays a critical role in defining effective predictive tasks, (2) introducing a learnable nonlinear transformation between the representation and the contrastive loss substantially improves the quality of the learned representations, and (3) contrastive learning benefits from larger batch sizes and more training steps compared to supervised learning. By combining these findings, we are able to considerably outperform previous methods for self-supervised and semi-supervised learning on ImageNet. A linear classifier trained on self-supervised representations learned by Sim-CLR achieves 76.5\% top-1 accuracy, which is a 7\% relative improvement over previous state-of-the-art, matching the performance of a supervised ResNet-50. When fine-tuned on only 1\% of the labels, we achieve 85.8\% top-5 accuracy, outperforming AlexNet with 100\texttimes{} fewer labels.},
+booktitle = {Proceedings of the 37th International Conference on Machine Learning},
+articleno = {149},
+numpages = {11},
+series = {ICML'20}
+}
+
 @inproceedings{
 gao2018representation,
 title={Representation Degeneration Problem in Training Natural Language Generation Models},
@@ -51,6 +581,24 @@ booktitle={International Conference on Learning Representations},
 year={2019},
 url={https://openreview.net/forum?id=SkEYojRqtm},
 }
+
+
+@InProceedings{pmlr-v119-wang20k,
+  title = 	 {Understanding Contrastive Representation Learning through Alignment and Uniformity on the Hypersphere},
+  author =       {Wang, Tongzhou and Isola, Phillip},
+  booktitle = 	 {Proceedings of the 37th International Conference on Machine Learning},
+  pages = 	 {9929--9939},
+  year = 	 {2020},
+  editor = 	 {III, Hal Daumé and Singh, Aarti},
+  volume = 	 {119},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {13--18 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v119/wang20k/wang20k.pdf},
+  url = 	 {https://proceedings.mlr.press/v119/wang20k.html},
+  abstract = 	 {Contrastive representation learning has been outstandingly successful in practice. In this work, we identify two key properties related to the contrastive loss: (1) alignment (closeness) of features from positive pairs, and (2) uniformity of the induced distribution of the (normalized) features on the hypersphere. We prove that, asymptotically, the contrastive loss optimizes these properties, and analyze their positive effects on downstream tasks. Empirically, we introduce an optimizable metric to quantify each property. Extensive experiments on standard vision and language datasets confirm the strong agreement between both metrics and downstream task performance. Directly optimizing for these two metrics leads to representations with comparable or better performance at downstream tasks than contrastive learning.}
+}
+
 
 @inproceedings{yu-etal-2022-rare,
     title = "Rare Tokens Degenerate All Tokens: Improving Neural Text Generation via Adaptive Gradient Gating for Rare Token Embeddings",
@@ -185,15 +733,6 @@ url={https://openreview.net/forum?id=ByxY8CNtvr}
 }
 
 
-@misc{su2021whitening,
-      title={Whitening Sentence Representations for Better Semantics and Faster Retrieval}, 
-      author={Jianlin Su and Jiarun Cao and Weijie Liu and Yangyiwen Ou},
-      year={2021},
-      eprint={2103.15316},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2103.15316}, 
-}
 
 @inproceedings{el-boukkouri-etal-2020-characterbert,
     title = "{C}haracter{BERT}: Reconciling {ELM}o and {BERT} for Word-Level Open-Vocabulary Representations From Characters",
@@ -437,6 +976,7 @@ url={https://openreview.net/forum?id=Byj72udxe}
     pages = "3651--3657",
     abstract = "BERT is a recent language representation model that has surprisingly performed well in diverse language understanding benchmarks. This result indicates the possibility that BERT networks capture structural information about language. In this work, we provide novel support for this claim by performing a series of experiments to unpack the elements of English language structure learned by BERT. Our findings are fourfold. BERT{'}s phrasal representation captures the phrase-level information in the lower layers. The intermediate layers of BERT compose a rich hierarchy of linguistic information, starting with surface features at the bottom, syntactic features in the middle followed by semantic features at the top. BERT requires deeper layers while tracking subject-verb agreement to handle long-term dependency problem. Finally, the compositional scheme underlying BERT mimics classical, tree-like structures.",
 }
+
 
 @misc{su2021whiteningsentencerepresentationsbetter,
       title={Whitening Sentence Representations for Better Semantics and Faster Retrieval}, 
@@ -2967,6 +3507,93 @@ abstract = {In this paper, we study the problem of stochastic language modelling
       primaryClass={cs.CL},
       url={https://arxiv.org/abs/2112.10508}, 
 }
+
+@inbook{longacre,
+url = {https://doi.org/10.1515/9783110872521.173},
+title = {Hierarchy in Language},
+booktitle = {Method and Theory in Linguistics},
+author = {Robert E. Longacre},
+editor = {Paul L. Garvin},
+publisher = {De Gruyter Mouton},
+address = {Berlin, Boston},
+pages = {173--196},
+doi = {doi:10.1515/9783110872521.173},
+isbn = {9783110872521},
+year = {1970},
+lastchecked = {2024-08-29}
+}
+
+@article{jaro,
+author = {Matthew A. Jaro},
+title = {Advances in Record-Linkage Methodology as Applied to Matching the 1985 Census of Tampa, Florida},
+journal = {Journal of the American Statistical Association},
+volume = {84},
+number = {406},
+pages = {414--420},
+year = {1989},
+publisher = {ASA Website},
+doi = {10.1080/01621459.1989.10478785},
+URL = {https://www.tandfonline.com/doi/abs/10.1080/01621459.1989.10478785},
+eprint = {https://www.tandfonline.com/doi/pdf/10.1080/01621459.1989.10478785}
+}
+
+@article{baharudin2010review,
+  title={A Review of Machine Learning Algorithms for Text-Documents Classification},
+  author={Baharudin, Baharum and Lee, Lam Hong and Khan, Khairullah},
+  journal={Journal of Advances in Information Technology},
+  volume={1},
+  number={1},
+  pages={4},
+  year={2010},
+  publisher={Engineering and Technology Publishing}
+}
+
+@book{zipf_psycho-biology_1935,
+  abstract = {An account of discoveries pertaining to linguistic change, presenting many problems to the psychologist whose interest lies in speech-behavior or meaning.  Harvard Book List (edited) 1955 \#268 (PsycINFO Database Record (c) 2016 APA, all rights reserved)},
+  added-at = {2021-11-29T12:47:08.000+0100},
+  address = {Oxford, England},
+  author = {Zipf, George Kingsley},
+  biburl = {https://www.bibsonomy.org/bibtex/2bd6861139bfec20e99c41def3897b9e9/lepsky},
+  interhash = {ccec2f286b0b2ff9db6fe1b004971b9e},
+  intrahash = {bd6861139bfec20e99c41def3897b9e9},
+  keywords = {statistik termgewichtung},
+  publisher = {Houghton Mifflin},
+  series = {The psycho-biology of language: an introduction to dynamic philology},
+  shorttitle = {The psycho-biology of language},
+  timestamp = {2021-11-29T12:47:08.000+0100},
+  title = {The psycho-biology of language : an introduction to dynamic philology},
+  year = 1935
+}
+
+
+@book{chowdhury2010introduction,
+  title={Introduction to modern information retrieval},
+  author={Chowdhury, Gobinda G},
+  year={2010},
+  publisher={Facet publishing}
+}
+
+@ARTICLE{hamming,
+  author={Hamming, R. W.},
+  journal={The Bell System Technical Journal}, 
+  title={Error detecting and error correcting codes}, 
+  year={1950},
+  volume={29},
+  number={2},
+  pages={147-160},
+  keywords={},
+  doi={10.1002/j.1538-7305.1950.tb00463.x}}
+
+
+@inproceedings{levenshtein1966binary,
+  title={Binary Codes Capable of Correcting Deletions, Insertions and Reversals},
+  author={Levenshtein, VI},
+  booktitle={Soviet Physics Doklady},
+  volume={10},
+  pages={707},
+  year={1966}
+}
+
 
 @article{bengio_repr,
 author = {Bengio, Yoshua and Courville, Aaron and Vincent, Pascal},
