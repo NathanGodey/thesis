@@ -334,7 +334,8 @@ As in BERT \citep{devlin-etal-2019-bert}, a portion of the tokens is selected an
 They conduct medium-scale experiments, training models ranging from 14M to 335M parameters, and observe that their pretrained models achieve parity with CLMs and MLMs when fine-tuned on downstream tasks, while using significantly less pretraining compute.
 
 
-\paragraph*{Scale \& Performance}
+\subsubsection{Scale \& Performance}
+\label{ssec:scaling_law}
 The emergence of highly parameterized neural networks trained on large textual datasets as effective language models brings the question of scale, i.e. to what extent can scaling up either (or both) the volume of textual data or the count of trainable parameters can increase the language modeling performance and the downstream capabilities of models?
 
 With RoBERTa \citep{roberta}, it appeared clear that the first generation of pretrained models, namely BERT and GPT, were undertrained. The authors train a BERT-style model on approximately 10 times more data, and remove the sentence-level auxiliary objective and show strong improvements. GPT-2 \citep{gpt2} is a follow-up model suite that was trained on a larger and more diverse dataset than BookCorpus called WebText, with model sizes ranging from 117 million to 1.5 billion parameters. The authors noticed that the larger GPT-2 models had interestingly better \textit{few-shot} and \textit{zero-shot} abilities, especially at question answering tasks.

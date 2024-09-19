@@ -2,8 +2,6 @@
 \section{Representation Learning for Natural Language}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Introduction}
-
 \begin{center}
   \begin{minipage}{0.7\textwidth}
     \textit{The performance of machine learning methods is heavily
@@ -148,6 +146,9 @@ $$
 Thus, $\text{cos-sim}(x, y) \in [-1, 1]$ and higher cosine similarity values depict vectors which directions are more aligned.
 
 They evaluate their model against concurrent work such as USE \citep{cer-etal-2018-universal} and InferSent \citep{conneau-etal-2017-supervised} on the Sentence Textual Similarity (STS) benchmarks that provide sentence pairs with semantic similarity scores. Using the Spearman correlation metric \citep{zar2005spearman}, they show that the cosine-similarity between the Sentence-BERT representations correlates significantly better with the ground-truth similarity scores compared with other approaches.
+
+Similar supervised methods have been applied with multilingual and/or multimodal data and base models to obtain language-agnostic sentence representations \citep{feng-etal-2022-language}, and with multi-modal representations \citep{Duquenne:2023:sonar_arxiv}.
+
 
 \subsubsection{Latent Regularization Methods}
 
