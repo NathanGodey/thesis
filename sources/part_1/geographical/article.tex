@@ -1,20 +1,14 @@
+In recent years, \textit{scale} has been deemed a crucial factor towards improving language models, whether as an argument in favor of larger and more diverse training datasets, or as a motivation for training larger models. The hypothesis that scaling up models could solve current issues in NLP is both a consequence of the \textit{bitter lesson} claim \citep{Sutton_2019} which states that more computation leads to more effectiveness, and of the scaling laws \citep{kaplan_scaling,chinchilla_scaling}.
 
+We explore this claim from a representation analysis perspective, and propose to quantify the informativeness of learnt intermediate representations in language models by probing a specific kind of information: geographical knowledge. 
 
-\subsection{Introduction \& Related work}
+Among probing tasks, several works have focused on geographical representations that are implicitly embedded in language models, and the bias that they inherit from the training data \citep{lotr, faisal-anastasopoulos-2022-geographic, faisal-etal-2022-dataset}.
 
-In recent years, numerous studies analyzing the hidden representations of self-supervised language models have provided insights into how these models incorporate linguistic knowledge from their training data \citep{gupta-etal-2015-distributional,kohn-2015-whats,shi-etal-2016-string,ijcai2018p796,conneau-etal-2018-cram,jawahar-etal-2019-bert}. 
-
-This line of work has been called probing, as most approaches are generally based on the training of classifiers---or \textit{probes}---upon frozen hidden representations.
-
-Analyzing the representations of language models can point out sociocultural biases that were inherently learned by the models during training \citep{zhao-etal-2018-gender}, and training probes can help with mitigating these biases \citep{ravfogel-etal-2020-null, iskander-etal-2023-shielded}.
-
-Among probing tasks, several works have focused on geographical representations that are implicitly embedded in language models. \citet{lotr} show that coordinates of places in the Middle-Earth can be predicted by just using the co-occurence matrix extracted from the Lord of the Rings novels. \citet{faisal-anastasopoulos-2022-geographic} build networks from geographical representations based on monolingual and multilingual models of different sizes. They show that all models embed more accurate geographical representations for countries of the Global North.
-
-This geographical discrepancy can be explained by biases that are inherent to the datasets used for pretraining \citet{faisal-etal-2022-dataset}. Imbalanced frequency distributions of geographical references in pretraining data causes distortions in the representational space \citep{zhou2021freqbased}. These distortions lead to a loss in the models' ability to differentiate between under-represented locations.
+As discussed in \Cref{ssec:degeneration}, imbalanced frequency distributions of geographical references in pretraining data causes distortions in the representational space \citep{zhou2021freqbased}. These distortions lead to a loss in the models' ability to differentiate between under-represented locations.
 
 Recently, \citet{gurnee2023language} have probed large language models from the Llama-2 suite \citep{touvron2023llama} to extract coordinates of prompted locations from hidden representations across layers. They show that models ranging from 7B to 70B parameters are able to convincingly embed geographical coordinates on a world map when representing basic prompts.
 
-In this work, we propose to extend the analysis by \citet{gurnee2023language} to smaller language models, in order to observe how scale affects the ability of models to implicitly embed geographical information from raw training data. We show that such ability consistently improves with model size, and that even tiny models are able to produce visually meaningful world maps.
+In this chapter, we propose to extend the analysis by \citet{gurnee2023language} to smaller language models, in order to observe how scale affects the ability of models to implicitly embed geographical information from raw training data. We show that such ability consistently improves with model size, and that even tiny models are able to produce visually meaningful world maps.
 
 We make several contributions:
 \begin{itemize}
@@ -23,7 +17,7 @@ We make several contributions:
     \item We find that the performance of models in terms of geographical probing is correlated with the frequency of corresponding country names in the training data.
 \end{itemize} 
 
-\subsection{Scaling Laws of Geographical Probing}
+\section{Scaling Laws of Geographical Probing}
 \label{sec:scaling}
 \begin{figure*}[h]
     \centering
@@ -55,25 +49,24 @@ We make several contributions:
 
 In this section, we train geographical probes for a wide variety of models at different scales.
 
-\subsubsection{Methodology}
+\subsection{Methodology}
 
 We use the World dataset from \citet{gurnee2023language} as a geographical data source. It contains 39,504 location names from the whole world along with corresponding longitude and latitude. We use the same train-test split strategy as in the original article, thus keeping 20\% of samples for testing purposes.
 
 For each location name $X$, we prompt models with the text: ``\textit{Where is $X$ in the world?}''. We then infer with a given model on the whole dataset, and use the last token belonging to the entity $X$ as the model's representation. To follow the linear probing paradigm used in \citet{gurnee2023language}, we train a Ridge linear regressor \citep{ridge} to predict latitude and longitude based on the model's representations. We then measure the probe's performance on the test set using the $R^2$ correlation coefficient.
 
-\subsubsection{Results}
+\subsection{Results}
 In \autoref{fig:maps}, we display the predictions of the probe for the most performant layer, which is generally the last one. We observe that geographical information can be extracted from models even for a very small parameter count. The performance of the probes seem to increase with the model size.
 
 \begin{figure}[h]
     \centering
-    \begin{subfigure}[b]{0.37\textwidth}
-         \includegraphics[width=\linewidth]{sources/part_1/geographical/imgs/r_square_world_decoders.png}
+    \begin{subfigure}[b]{0.4\textwidth}
+         \includegraphics[width=\textwidth]{sources/part_1/geographical/imgs/r_square_world_decoders.png}
          \caption{Decoder models}
          \label{fig:decoder_evol}
-         \vspace{1em}
     \end{subfigure}
-    \begin{subfigure}[b]{0.37\textwidth}
-         \includegraphics[width=\linewidth]{sources/part_1/geographical/imgs/r_square_world_encoders.png}
+    \begin{subfigure}[b]{0.4\textwidth}
+         \includegraphics[width=\textwidth]{sources/part_1/geographical/imgs/r_square_world_encoders.png}
          \caption{Encoder models}
          \label{fig:encoder_evol}
     \end{subfigure}
@@ -81,23 +74,23 @@ In \autoref{fig:maps}, we display the predictions of the probe for the most perf
     \label{fig:evol}
 \end{figure}
 
-We show in \autoref{fig:evol} that the performance of language models evolves consistently with model size, regardless of the architecture. We validate this property on several decoder model families: GPT-2 \citep{gpt2}, OPT \citep{zhang2022opt}, Pythia \citep{pythia}, GPT-Neo \citep{gpt-neo}, the multilingual mGPT \citep{shliazhko2023mgpt}, and Llama-2 \citep{touvron2023llama}. We also display results for several encoder models: BERT \citep{devlin-etal-2019-bert,turc2020wellread}, RoBERTa \citep{roberta}, ELECTRA \citep{electra}, and DeBERTa-v3 \citep{deberta}. This property also applies for encoder models, for which we notice that the BERT suite unexpectedly outperforms its counterparts. The performance of encoder models is comparable with the one of equivalent decoder models. We can underline the fact that BERT-Large (336M parameters) is as accurate as the three times larger Pythia-1B.
+We show in \autoref{fig:evol} that the performance of language models evolves consistently with model size, regardless of the architecture. We validate this property on several decoder model families: GPT-2 \citep{gpt2}, OPT \citep{zhang2022opt}, Pythia \citep{pythia}, GPT-Neo \citep{gpt-neo}, the multilingual mGPT \citep{shliazhko2023mgpt}, and Llama-2 \citep{touvron2023llama}. We also display results for several encoder models: BERT \citep{devlin-etal-2019-bert,turc2019}, RoBERTa \citep{roberta}, ELECTRA \citep{electra}, and DeBERTa-v3 \citep{deberta}. This property also applies for encoder models, for which we notice that the BERT suite unexpectedly outperforms its counterparts. The performance of encoder models is comparable with the one of equivalent decoder models. We can underline the fact that BERT-Large (336M parameters) is as accurate as the three times larger Pythia-1B.
 
-Interestingly, the multilingual XLM-R \citep{conneau2020unsupervised} underperforms its counterparts, even though multilingual data must have increased the training data's geographical diversity to some extent \citep{faisal-anastasopoulos-2021-investigating}. The mGPT suite also slightly underperforms Pythia models at equivalent model sizes.
+Interestingly, the multilingual XLM-R \citep{conneau2019unsupervised} underperforms its counterparts, even though multilingual data must have increased the training data's geographical diversity to some extent \citep{faisal-anastasopoulos-2021-investigating}. The mGPT suite also slightly underperforms Pythia models at equivalent model sizes.
 
 We verified that the better performance of larger models was not solely related with the ability of the probes to extract better patterns from their higher-dimensionality hidden representations. We achieved this by concatenating representations with themselves to increase dimensionality without introducing novel knowledge. It led to slightly worse performance for all tested models, thus showing that performance was not a consequence of dimensionality alone.
 
-\subsection{Geographical Bias and Scale}
+\section{Geographical Bias and Scale}
 
 In \autoref{fig:maps}, it seems at first glance that as the model size increases, the predictions tend to be more accurate for locations of the Southern Hemisphere. In this section, we propose to quantify this hypothesized behavior by measuring the bias across countries and continents for various scales. We also correlate the models' accuracy with both lexical and geographical factors.
 
-\subsubsection{Measuring bias}
+\subsection{Measuring bias}
 
 We group probe performance as measured by mean-squared error (MSE) on predicted coordinates, and average measures by continent in \autoref{fig:continent_perf}. While we notice that the performance increases consistently for every continent, we do not observe a significant reduction in the performance gap across continents as model size increases.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.9\linewidth]{sources/part_1/geographical/imgs/mse_continent.png}
+    \includegraphics[width=0.7\linewidth]{sources/part_1/geographical/imgs/mse_continent.png}
     \caption{Average MSE by continent for different sizes in the Pythia suite.}
     \label{fig:continent_perf}
 \end{figure}
@@ -109,25 +102,25 @@ $$
 
 A Gini coefficient of 1 reflects perfect heterogeneity, while a Gini of 0 implies perfect homogeneity.
 
-\begin{figure}
+\begin{figure}[h]
     \centering
-    \includegraphics[width=0.75\linewidth]{sources/part_1/geographical/imgs/gini_combined.png}
+    \includegraphics[width=0.5\linewidth]{sources/part_1/geographical/imgs/gini_combined.png}
     \caption{Gini coefficients of MSE on the test set averaged by country or by continent, as model size increases.}
     \label{fig:ginis}
 \end{figure}
 
 \autoref{fig:ginis} shows that the larger the model is, the more heterogeneous the probe performance is across countries and continents. This contradicts the impression given by \autoref{fig:maps}, and shows that scale does not solve the geographical discrepancy caused by bias inherent to the training data.
 
-\begin{figure}
+\begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\linewidth]{sources/part_1/geographical/imgs/heatmap_100_50.png}
+    \includegraphics[width=0.6\linewidth]{sources/part_1/geographical/imgs/heatmap_100_50.png}
     \caption{Test log-MSE for Pythia-1B as plotted on a World map.}
     \label{fig:heatmap}
 \end{figure}
 
 In \autoref{fig:heatmap}, we locally average log-MSE on a World map, and report results agglomerated according to latitude and longitude. We clearly observe that the model performs poorly in Oceania, South Asia and South America. We also see that the error is minimal around the latitude of North America and Europe, while it increases in the Southern Hemisphere.
 
-\subsubsection{Identifying sources of bias}
+\subsection{Identifying sources of bias}
 We attempt to correlate the performance of our geographical probes with several factors. First, the dataset from \citep{gurnee2023language} provides each location with an estimate of the corresponding population count when relevant. We also consider training data distribution as a potential factor of heterogeneity. Finally, we consider latitude and longitude as potential factors of bias.
 
 
@@ -137,7 +130,7 @@ We do not count occurrences of location names directly, as matching locations on
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.9\linewidth]{sources/part_1/geographical/imgs/correl_size.png}
+    \includegraphics[width=0.7\linewidth]{sources/part_1/geographical/imgs/correl_size.png}
     \caption{Pearson correlation coefficients of various factors with location-wise MSE, for several Pythia model sizes. *: Tests that yielded p-values above 0.05.}
     \label{fig:correl}
 \end{figure}
@@ -148,20 +141,22 @@ Interestingly, the population count is not correlated with the error level. The 
 
 We also measure the correlation between country occurrences and other metrics to account for the bias inherent to the data. We observe that country name occurrences are positively correlated with latitude with a p-value of 0.06, and not correlated with the longitude. More importantly, the population count of a country and the count of this country name in the data are heavily correlated (factor of +0.52 and p-value of 3e-23). Thus, even though the data seems guided by demographic factors, this is not the case of the model's representations.
 
-\subsection{Discussion}
+\section{Discussion}
 \label{sec:discussion}
 We believe that quantifying sociocultural bias in representations of language models and pretraining datasets allows to better understand the roots of the biases that can be observed during generation.
 
 \citet{parrots_bender} discuss the relevance of scaling models to ever larger magnitudes, with regard to environmental and financial costs. Our study shows that scale can also increase language modeling bias when it comes to geographical representation, given a pretraining dataset. We advocate in favor of measuring and mitigating bias in pretraining datasets to avoid scaling bias along with performance.
 
-\subsection*{Conclusion}
+\section*{Conclusion}
 In this study, we show that a wide variety of language models, varying in architecture and sizes, implicitly embed geographical data to some extent. As we consider larger models, the performance of geographical probes consistently increases towards levels shown in \citet{gurnee2023language}.
 
 We show numerically that the geographical probe performance is correlated with latitude across model sizes, but also with the number of occurrence of corresponding country names in the pretraining data. Conversely, the population count of the location seems uncorrelated with the probe performance. This indicates that a minority of people benefit from better geographical understanding when using language models, which does not maximize the social utility of these systems.
 
 While it may initially seem that this performance increase mitigates heterogeneity between Southern and Northern countries, we actually show that larger models tend to be more biased according to the Gini coefficient taken on prediction error. This tends to show that scaling language models can amplify discrepancies in their geographical knowledge.
 
+\vspace{2em}
 
+This study shows that scaling up the size of language models does not reduce their dependency to the data distribution, and can even lead to more biased behaviours. As a result, this incentivizes research towards training paradigms that reduce the dependency to the data distribution, so that the model size can be scaled harmlessly and so that the model can intrinsically be aligned with ethical guidelines easily.
 
 
 % \section*{Acknowledgements}

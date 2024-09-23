@@ -78,6 +78,47 @@
     abstract = "A surprising property of word vectors is that word analogies can often be solved with vector arithmetic. However, it is unclear why arithmetic operators correspond to non-linear embedding models such as skip-gram with negative sampling (SGNS). We provide a formal explanation of this phenomenon without making the strong assumptions that past theories have made about the vector space and word distribution. Our theory has several implications. Past work has conjectured that linear substructures exist in vector spaces because relations can be represented as ratios; we prove that this holds for SGNS. We provide novel justification for the addition of SGNS word vectors by showing that it automatically down-weights the more frequent word, as weighting schemes do ad hoc. Lastly, we offer an information theoretic interpretation of Euclidean distance in vector spaces, justifying its use in capturing word dissimilarity.",
 }
 
+@techreport{francis79browncorpus,
+  added-at = {2008-02-29T17:14:20.000+0100},
+  author = {Francis, W. N. and Kucera, H.},
+  biburl = {https://www.bibsonomy.org/bibtex/260bb0c74c2ecced0632393e47eb64f48/sb3000},
+  institution = {Department of Linguistics, Brown University, Providence, Rhode Island, US},
+  interhash = {119c367841941ad1a8f0db35d9f1c0b9},
+  intrahash = {60bb0c74c2ecced0632393e47eb64f48},
+  keywords = {corpus linguistics text-mining},
+  timestamp = {2008-02-29T17:14:20.000+0100},
+  title = {Brown Corpus Manual},
+  url = {http://icame.uib.no/brown/bcm.html},
+  year = 1979
+}
+
+
+@article{sgd,
+author = {Herbert Robbins and Sutton Monro},
+title = {{A Stochastic Approximation Method}},
+volume = {22},
+journal = {The Annals of Mathematical Statistics},
+number = {3},
+publisher = {Institute of Mathematical Statistics},
+pages = {400 -- 407},
+year = {1951},
+doi = {10.1214/aoms/1177729586},
+URL = {https://doi.org/10.1214/aoms/1177729586}
+}
+
+
+@book{aronoff1993morphology,
+  title={Morphology by Itself: Stems and Inflectional Classes},
+  author={Aronoff, M.},
+  isbn={9780262510721},
+  lccn={93020543},
+  series={Linguistic Inquiry Monographs},
+  url={https://books.google.fr/books?id=PFMH1qg-Z5kC},
+  year={1993},
+  publisher={MIT Press}
+}
+
+
 @inproceedings{
 adi2017finegrained,
 title={Fine-grained Analysis of Sentence Embeddings Using Auxiliary Prediction Tasks},
@@ -493,10 +534,38 @@ url={https://openreview.net/forum?id=SyK00v5xx}
     pages = "1367--1377",
 }
 
+@inproceedings{schwenk-douze-2017-learning,
+    title = "Learning Joint Multilingual Sentence Representations with Neural Machine Translation",
+    author = "Schwenk, Holger  and
+      Douze, Matthijs",
+    editor = "Blunsom, Phil  and
+      Bordes, Antoine  and
+      Cho, Kyunghyun  and
+      Cohen, Shay  and
+      Dyer, Chris  and
+      Grefenstette, Edward  and
+      Hermann, Karl Moritz  and
+      Rimell, Laura  and
+      Weston, Jason  and
+      Yih, Scott",
+    booktitle = "Proceedings of the 2nd Workshop on Representation Learning for {NLP}",
+    month = aug,
+    year = "2017",
+    address = "Vancouver, Canada",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/W17-2619",
+    doi = "10.18653/v1/W17-2619",
+    pages = "157--167",
+    abstract = "In this paper, we use the framework of neural machine translation to learn joint sentence representations across six very different languages. Our aim is that a representation which is independent of the language, is likely to capture the underlying semantics. We define a new cross-lingual similarity measure, compare up to 1.4M sentence representations and study the characteristics of close sentences. We provide experimental evidence that sentences that are close in embedding space are indeed semantically highly related, but often have quite different structure and syntax. These relations also hold when comparing sentences in different languages.",
+}
+
+@misc{Sutton_2019, title={The Bitter Lesson}, url={https://incompleteideas.net/IncIdeas/BitterLesson.html}, journal={Incomplete Ideas}, author={Sutton, Rich}, year={2019}, month={Mar}} 
+
+
 
 @inproceedings{Zhang2020BERTScore,
 title={BERTScore: Evaluating Text Generation with BERT},
-author={Tianyi Zhang* and Varsha Kishore* and Felix Wu* and Kilian Q. Weinberger and Yoav Artzi},
+author={Tianyi Zhang and Varsha Kishore and Felix Wu and Kilian Q. Weinberger and Yoav Artzi},
 booktitle={International Conference on Learning Representations},
 year={2020},
 url={https://openreview.net/forum?id=SkeHuCVFDr}
@@ -2000,6 +2069,7 @@ year={2020},
 url={https://openreview.net/forum?id=r1xMH1BtvB}
 }
 
+
 @inproceedings{
 deberta,
 title={{\{}DEBERTA{\}}: {\{}DECODING{\}}-{\{}ENHANCED{\}} {\{}BERT{\}} {\{}WITH{\}} {\{}DISENTANGLED{\}} {\{}ATTENTION{\}}},
@@ -2139,8 +2209,7 @@ pages={12830-12838}
 }
 
 
-
-
+@misc{Hewitt_2019, title={Designing and Interpreting Probes}, url={https://nlp.stanford.edu/~johnhew/interpreting-probes.html}, author={Hewitt, John}, year={2019}, month={Aug}} 
 
 @article{conneau2019unsupervised,
   title={Unsupervised Cross-lingual Representation Learning at Scale},
@@ -2507,6 +2576,21 @@ author={Sachin Kumar and Yulia Tsvetkov},
 booktitle={Proc. of ICLR},
 year={2019},
 url={https://arxiv.org/pdf/1812.04616.pdf},
+}
+
+@inproceedings{10.5555/3295222.3295378,
+author = {van den Oord, Aaron and Vinyals, Oriol and Kavukcuoglu, Koray},
+title = {Neural discrete representation learning},
+year = {2017},
+isbn = {9781510860964},
+publisher = {Curran Associates Inc.},
+address = {Red Hook, NY, USA},
+abstract = {Learning useful representations without supervision remains a key challenge in machine learning. In this paper, we propose a simple yet powerful generative model that learns such discrete representations. Our model, the Vector Quantised-Variational AutoEncoder (VQ-VAE), differs from VAEs in two key ways: the encoder network outputs discrete, rather than continuous, codes; and the prior is learnt rather than static. In order to learn a discrete latent representation, we incorporate ideas from vector quantisation (VQ). Using the VQ method allows the model to circumvent issues of "posterior collapse" -ߞ where the latents are ignored when they are paired with a powerful autoregressive decoder -ߞ typically observed in the VAE framework. Pairing these representations with an autoregressive prior, the model can generate high quality images, videos, and speech as well as doing high quality speaker conversion and unsupervised learning of phonemes, providing further evidence of the utility of the learnt representations.},
+booktitle = {Proceedings of the 31st International Conference on Neural Information Processing Systems},
+pages = {6309–6318},
+numpages = {10},
+location = {Long Beach, California, USA},
+series = {NIPS'17}
 }
 
 @InProceedings{quick_train_bengio_03,
