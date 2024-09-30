@@ -1,6 +1,6 @@
-In recent years, \textit{scale} has been deemed a crucial factor towards improving language models, whether as an argument in favor of larger and more diverse training datasets, or as a motivation for training larger models. The hypothesis that scaling up models could solve current issues in NLP is both a consequence of the \textit{bitter lesson} claim \citep{Sutton_2019} which states that more computation leads to more effectiveness, and of the scaling laws \citep{kaplan_scaling,chinchilla_scaling}.
+In recent years, \textit{scale} has been deemed a crucial factor towards improving language models, whether as an argument in favor of larger and more diverse training datasets, or as a motivation for training larger models. The hypothesis that scaling up models could solve current issues in NLP is both a consequence of the \textit{bitter lesson} claim \citep{Sutton_2019} which states that more computation leads to more effectiveness, and of the scaling laws (see \Cref{ssec:scaling_law}).
 
-We explore this claim from a representation analysis perspective, and propose to quantify the informativeness of learnt intermediate representations in language models by probing a specific kind of information: geographical knowledge. 
+In this chapter, we explore this claim from a representation analysis perspective, and propose to quantify the informativeness of learnt intermediate representations in language models of increasing size by probing a specific kind of information: geographical knowledge. 
 
 Among probing tasks, several works have focused on geographical representations that are implicitly embedded in language models, and the bias that they inherit from the training data \citep{lotr, faisal-anastasopoulos-2022-geographic, faisal-etal-2022-dataset}.
 
@@ -8,7 +8,7 @@ As discussed in \Cref{ssec:degeneration}, imbalanced frequency distributions of 
 
 Recently, \citet{gurnee2023language} have probed large language models from the Llama-2 suite \citep{touvron2023llama} to extract coordinates of prompted locations from hidden representations across layers. They show that models ranging from 7B to 70B parameters are able to convincingly embed geographical coordinates on a world map when representing basic prompts.
 
-In this chapter, we propose to extend the analysis by \citet{gurnee2023language} to smaller language models, in order to observe how scale affects the ability of models to implicitly embed geographical information from raw training data. We show that such ability consistently improves with model size, and that even tiny models are able to produce visually meaningful world maps.
+We propose to extend the analysis by \citet{gurnee2023language} to smaller language models, in order to observe how scale affects the ability of models to implicitly embed geographical information from raw training data. We show that such ability consistently improves with model size, and that even tiny models are able to produce visually meaningful world maps.
 
 We make several contributions:
 \begin{itemize}
@@ -19,26 +19,26 @@ We make several contributions:
 
 \section{Scaling Laws of Geographical Probing}
 \label{sec:scaling}
-\begin{figure*}[h]
+\begin{figure*}[ht]
     \centering
-    \begin{subfigure}[b]{0.43\textwidth}
+    \begin{subfigure}[b]{0.48\textwidth}
          \includegraphics[trim={0 0 0 0.7cm},clip,width=\linewidth]{sources/part_1/geographical/imgs/pythia-14m.png}
          \caption{Pythia 14M ($R^2 = 34.34$)}
          \label{fig:14m_map}
          \vspace{1em}
     \end{subfigure}
-    \begin{subfigure}[b]{0.43\textwidth}
+    \begin{subfigure}[b]{0.48\textwidth}
          \includegraphics[trim={0 0 0 0.7cm},clip,width=\linewidth]{sources/part_1/geographical/imgs/pythia-160m.png}
          \caption{Pythia 160M ($R^2 = 55.28$)}
          \label{fig:160m_map}
         \vspace{1em}
     \end{subfigure}
-    \begin{subfigure}[b]{0.43\textwidth}
+    \begin{subfigure}[b]{0.48\textwidth}
          \includegraphics[trim={0 0 0 0.7cm},clip,width=\linewidth]{sources/part_1/geographical/imgs/pythia-1b.png}
          \caption{Pythia 1B ($R^2 = 67.94$)}
          \label{fig:1b_map}
     \end{subfigure}
-    \begin{subfigure}[b]{0.43\textwidth}
+    \begin{subfigure}[b]{0.48\textwidth}
          \includegraphics[trim={0 0 0 0.7cm},clip,width=\linewidth]{sources/part_1/geographical/imgs/pythia-2.8b.png}
          \caption{Pythia 2.8B ($R^2 = 74.97$)}
          \label{fig:2.8b_map}
@@ -58,14 +58,14 @@ For each location name $X$, we prompt models with the text: ``\textit{Where is $
 \subsection{Results}
 In \autoref{fig:maps}, we display the predictions of the probe for the most performant layer, which is generally the last one. We observe that geographical information can be extracted from models even for a very small parameter count. The performance of the probes seem to increase with the model size.
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
-    \begin{subfigure}[b]{0.4\textwidth}
+    \begin{subfigure}[b]{0.48\textwidth}
          \includegraphics[width=\textwidth]{sources/part_1/geographical/imgs/r_square_world_decoders.png}
          \caption{Decoder models}
          \label{fig:decoder_evol}
     \end{subfigure}
-    \begin{subfigure}[b]{0.4\textwidth}
+    \begin{subfigure}[b]{0.48\textwidth}
          \includegraphics[width=\textwidth]{sources/part_1/geographical/imgs/r_square_world_encoders.png}
          \caption{Encoder models}
          \label{fig:encoder_evol}
@@ -90,7 +90,7 @@ We group probe performance as measured by mean-squared error (MSE) on predicted 
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\linewidth]{sources/part_1/geographical/imgs/mse_continent.png}
+    \includegraphics[width=0.8\linewidth]{sources/part_1/geographical/imgs/mse_continent.png}
     \caption{Average MSE by continent for different sizes in the Pythia suite.}
     \label{fig:continent_perf}
 \end{figure}
@@ -102,18 +102,18 @@ $$
 
 A Gini coefficient of 1 reflects perfect heterogeneity, while a Gini of 0 implies perfect homogeneity.
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
-    \includegraphics[width=0.5\linewidth]{sources/part_1/geographical/imgs/gini_combined.png}
+    \includegraphics[width=0.8\linewidth]{sources/part_1/geographical/imgs/gini_combined.png}
     \caption{Gini coefficients of MSE on the test set averaged by country or by continent, as model size increases.}
     \label{fig:ginis}
 \end{figure}
 
 \autoref{fig:ginis} shows that the larger the model is, the more heterogeneous the probe performance is across countries and continents. This contradicts the impression given by \autoref{fig:maps}, and shows that scale does not solve the geographical discrepancy caused by bias inherent to the training data.
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
-    \includegraphics[width=0.6\linewidth]{sources/part_1/geographical/imgs/heatmap_100_50.png}
+    \includegraphics[width=0.9\linewidth]{sources/part_1/geographical/imgs/heatmap_100_50.png}
     \caption{Test log-MSE for Pythia-1B as plotted on a World map.}
     \label{fig:heatmap}
 \end{figure}
@@ -130,7 +130,7 @@ We do not count occurrences of location names directly, as matching locations on
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\linewidth]{sources/part_1/geographical/imgs/correl_size.png}
+    \includegraphics[width=0.9\linewidth]{sources/part_1/geographical/imgs/correl_size.png}
     \caption{Pearson correlation coefficients of various factors with location-wise MSE, for several Pythia model sizes. *: Tests that yielded p-values above 0.05.}
     \label{fig:correl}
 \end{figure}
@@ -148,7 +148,7 @@ We believe that quantifying sociocultural bias in representations of language mo
 \citet{parrots_bender} discuss the relevance of scaling models to ever larger magnitudes, with regard to environmental and financial costs. Our study shows that scale can also increase language modeling bias when it comes to geographical representation, given a pretraining dataset. We advocate in favor of measuring and mitigating bias in pretraining datasets to avoid scaling bias along with performance.
 
 \section*{Conclusion}
-In this study, we show that a wide variety of language models, varying in architecture and sizes, implicitly embed geographical data to some extent. As we consider larger models, the performance of geographical probes consistently increases towards levels shown in \citet{gurnee2023language}.
+In this chapter, we show that a wide variety of language models, varying in architecture and sizes, implicitly embed geographical data to some extent. As we consider larger models, the performance of geographical probes consistently increases towards levels shown in \citet{gurnee2023language}.
 
 We show numerically that the geographical probe performance is correlated with latitude across model sizes, but also with the number of occurrence of corresponding country names in the pretraining data. Conversely, the population count of the location seems uncorrelated with the probe performance. This indicates that a minority of people benefit from better geographical understanding when using language models, which does not maximize the social utility of these systems.
 
@@ -156,7 +156,7 @@ While it may initially seem that this performance increase mitigates heterogenei
 
 \vspace{2em}
 
-This study shows that scaling up the size of language models does not reduce their dependency to the data distribution, and can even lead to more biased behaviours. As a result, this incentivizes research towards training paradigms that reduce the dependency to the data distribution, so that the model size can be scaled harmlessly and so that the model can intrinsically be aligned with ethical guidelines easily.
+This chapter shows that scaling up the size of language models does not reduce their dependency to the data distribution, and can even lead to more biased behaviours. As a result, this incentivizes research towards training paradigms that reduce the dependency to the data distribution, so that the model size can be scaled harmlessly and so that the model can intrinsically be aligned with ethical guidelines easily.
 
 
 % \section*{Acknowledgements}

@@ -2,8 +2,8 @@
 %!TEX encoding = UTF-8 Unicode
 %!BIB program = bibtex
 
-\documentclass{mimosis}
-% \documentclass[draft]{mimosis}
+% \documentclass{mimosis}
+\documentclass[draft]{mimosis}
 
 
 \usepackage{metalogo}
@@ -101,7 +101,10 @@
 \usepackage{fontawesome5}
 \usepackage{tikz}
 \usepackage{wrapfig}
+\usepackage{graphicx}
+
 \usepackage{ragged2e}
+\usepackage{adjustbox}
 \usepackage[title]{appendix}
 
 \renewcommand{\appendixname}{Appendix}
@@ -140,54 +143,17 @@
 
 \mainmatter
 
-\part[Introduction]{%
-  A good part\\
-  %
-  \vspace{1cm}
-  %
-  \begin{minipage}[l]{\textwidth}
-    %
-    \textnormal{%
-      \normalsize
-      %
-      \begin{singlespace*}
-        \onehalfspacing
-        %
-        You can also use parts in order to partition your great work
-        into larger `chunks'. This involves some manual adjustments in
-        terms of the layout, though.
-      \end{singlespace*}
-    }
-  \end{minipage}
-}
 
 \include{sources/introduction}
 
 \part[Related Works]{%
-  A good part\\
-  %
-  \vspace{1cm}
-  %
-  \begin{minipage}[l]{\textwidth}
-    %
-    \textnormal{%
-      \normalsize
-      %
-      \begin{singlespace*}
-        \onehalfspacing
-        %
-        You can also use parts in order to partition your great work
-        into larger `chunks'. This involves some manual adjustments in
-        terms of the layout, though.
-      \end{singlespace*}
-    }
-  \end{minipage}
+  Related Works
 }
 \include{sources/related_works}
 
 
 \part[Analysis of the Representations of Language Models]{%
-  A good part\\
+  Analysis of the Representations of Language Models\\
   %
   \vspace{1cm}
   %
@@ -199,18 +165,17 @@
       \begin{singlespace*}
         \onehalfspacing
         %
-        You can also use parts in order to partition your great work
-        into larger `chunks'. This involves some manual adjustments in
-        terms of the layout, though.
+        This part studies the representation degeneration phenomenon from various perspectives. We extend the works mentioned in \Cref{chap:rw_repr_ana} by exploring these questions at larger model scales, for other modalities and using different analysis tools. This provides valuable insights towards improving the language modeling paradigm, that we leverage in \Cref{part:solutions}.
       \end{singlespace*}
     }
   \end{minipage}
 }
+\label{part:analysis}
 \include{sources/part_1/analysis_lm}
 
 
 \part[Extensions of the Language Modeling Paradigm]{%
-  A good part\\
+ Extensions of the Language Modeling Paradigm\\
   %
   \vspace{1cm}
   %
@@ -222,13 +187,12 @@
       \begin{singlespace*}
         \onehalfspacing
         %
-        You can also use parts in order to partition your great work
-        into larger `chunks'. This involves some manual adjustments in
-        terms of the layout, though.
+        In this part, we leverage the insights provided in \Cref{part:analysis} in various ways and derive methods that mitigate the identifies limitations of the classical language modeling framework. Our approaches yield several benefits in robustness, performance, and efficiency.
       \end{singlespace*}
     }
   \end{minipage}
 }
+\label{part:solutions}
 \include{sources/part_2/extensions_lm}
 
 

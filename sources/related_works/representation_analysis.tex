@@ -1,5 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Representation Analysis for NLP}
+\label{chap:rw_repr_ana}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 With the advent of neural methods for NLP systems, it became significantly more difficult to explicitly and totally control the inner behavior of the model, which was straightforward in \textit{symbolic} methods, as well as in purely statistical ones, to a certain extent. 
 
@@ -171,6 +173,7 @@ They extend this observation to rare tokens through more complex analysis, and d
 To overcome this limitation, \citet{yu-etal-2022-rare} train a language model using adaptive gradient gating, which regularizes the gradients related to low-frequency tokens. \citet{meister-etal-2023-natural} propose a simpler approach where a bias is added to the output of the language modeling head. This bias is manually set to $b_i = \log(f_{w_i})$, where $f_{w_i}$ is the unigram frequency of token $w_i$, which allows the model to only model a residual contribution to the contextual probability, making it less sensitive to token frequency.
 
 \subsection{Anisotropy \& Outlier Dimensions}
+\label{ssec:rw_aniso}
 
 
 \begin{figure}[ht]
@@ -186,7 +189,7 @@ To overcome this limitation, \citet{yu-etal-2022-rare} train a language model us
         \label{fig:aniso}
     \end{subfigure}
     \caption{Schema of anisotropy in a token embedding space. (taken from \citet{ethayarajh-2019-contextual})}
-    \label{fig:anisotropy}
+    \label{fig:anisotropy_rw}
 \end{figure}
 
 

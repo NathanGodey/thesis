@@ -1,4 +1,4 @@
-In recent years, deep learning models based on Transformers have led to significant breakthroughs in various fields.
+
 
 Anisotropy has been widely observed among self-supervised models based on Transformers, and literature suggests that it may be a consequence of optimizing the cross-entropy loss on long-tailed distributions of tokens, as discussed in \Cref{chap:softmax_bottleneck}. However, this observation does not suffice to explain the anisotropy levels of other layers in pretrained language models, including those that seem to be affected less by these frequency-based distortions. For instance, the OPT models \citep{zhang2022opt} have isotropic last layers, but degenerated first layers (see \Cref{fig:opt_aniso} in \Cref{chap:softmax_bottleneck}).
 
@@ -15,7 +15,7 @@ In this paper, we investigate the anisotropy problem in depth, and we make sever
 
 \begin{figure}[ht]
     \centering
-     \includegraphics[width=0.5\columnwidth]{sources/part_1/anisotropy/imgs/cosine_token.png}
+     \includegraphics[width=0.6\columnwidth]{sources/part_1/anisotropy/imgs/cosine_token.png}
      \caption{Average cosine-similarity between hidden representations across layers for token-level NLP models. For T5-base, we concatenate encoder and decoder results.}
      \label{fig:anisotropy_token}
 \end{figure}
@@ -31,7 +31,7 @@ Various methods have been proposed to reduce anisotropy in Transformer-based LMs
 \label{sec:charbased}
 \begin{figure}[ht]
     \centering
-     \includegraphics[width=0.5\columnwidth]{sources/part_1/anisotropy/imgs/cosine_char_based.png}
+     \includegraphics[width=0.6\columnwidth]{sources/part_1/anisotropy/imgs/cosine_char_based.png}
      \caption{Average cosine-similarity between hidden representations across layers for character-level models.}
      \label{fig:cos_char_aware}
 \end{figure}
@@ -81,7 +81,7 @@ We also conduct the same experiment for convolution-based networks in the vision
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.5\linewidth]{sources/part_1/anisotropy/imgs/cosine_cnn_imagenet.png}
+    \includegraphics[width=0.6\linewidth]{sources/part_1/anisotropy/imgs/cosine_cnn_imagenet.png}
     \caption{Average cosine-similarity between hidden representations across layers for convolution-based vision models.}
     \label{fig:convbased}
 \end{figure}
@@ -104,7 +104,7 @@ We observe in \Cref{fig:convbased} that most of the convolution-based models are
           \label{fig:q95}
      \end{subfigure}
      \caption{Anisotropy metrics on multi-dimensional normal distributions as the dimension increases. In \Cref{fig:q95}, we add points for the average cosine-similarity level of Transformers models for several modalities.}
-     \label{fig:anisotropy_modalities}
+     \label{fig:anisotropy_high}
  \end{figure*}
 
 
@@ -124,13 +124,13 @@ We study the correlation between the uniformly measured cosine-similarity, and t
 
 \begin{figure}[ht]
      \centering
-     \begin{subfigure}[b]{0.45\columnwidth}
+     \begin{subfigure}[b]{0.43\columnwidth}
           \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/pval_vs_cosine_spearman.png}
           \subcaption{Spearman correlation test}
           \label{fig:pval_vs_cos_spearman}
      \end{subfigure}
      \hfill
-     \begin{subfigure}[b]{0.45\columnwidth}
+     \begin{subfigure}[b]{0.43\columnwidth}
           \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/pval_vs_cosine_pearson.png}
           \subcaption{Pearson correlation test}
           \label{fig:pval_vs_cos_pearson}
@@ -161,13 +161,13 @@ Specifically, we study the average norm of the input representations $\mathbb{E}
 \subsection{Input vs. output analysis}
 \begin{figure}[ht]
     \centering
-    \begin{subfigure}[b]{0.45\columnwidth}
+    \begin{subfigure}[b]{0.43\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/scratch_bert_base_input_vs_output.png}
          \subcaption{Cosine similarity}
          \label{fig:cos_scratch_transformer}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.45\columnwidth}
+    \begin{subfigure}[b]{0.43\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/bert_base_norm_v_output.pdf}
          \subcaption{Norm}
          \label{fig:norm_scratch_transformer}
@@ -188,7 +188,7 @@ To understand the effect of the drift effect on the inner workings of the Transf
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.5\linewidth]{sources/part_1/anisotropy/imgs/trained_bert_base_att_scores.pdf}
+    \includegraphics[width=0.6\linewidth]{sources/part_1/anisotropy/imgs/trained_bert_base_att_scores.pdf}
     \caption{Histograms of the pre-softmax attention scores as the input bias norm increases. Other initializations of the layer and of the bias direction $b_u$ led to a general \textit{increase} of the attention scores instead.}
     \label{fig:attscore_trained_transformer}
 \end{figure}
@@ -205,13 +205,13 @@ We can observe in \Cref{fig:kq} that query and key representations indeed increa
 
 \begin{figure}[ht]
     \centering
-    \begin{subfigure}[b]{0.48\columnwidth}
+    \begin{subfigure}[b]{0.43\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/trained_bert_base_bias_vs_kq_cos.png}
          \caption{Cosine similarity}
          \label{fig:cos_qk_trained_transformer}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\columnwidth}
+    \begin{subfigure}[b]{0.43\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/trained_bert_base_bias_vs_kq_norm.png}
          \caption{Norm}
          \label{fig:norm_qk_trained_transformer}
@@ -227,7 +227,7 @@ After exploring the consequences of the drift of input representations on the qu
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.5\linewidth]{sources/part_1/anisotropy/imgs/untrained_bert_base_bias_vs_softmax.png}
+    \includegraphics[width=0.6\linewidth]{sources/part_1/anisotropy/imgs/untrained_bert_base_bias_vs_softmax.png}
     \caption{Evolution of the self-attention softmax values as the input bias norm increases.}
     \label{fig:softmax_trained_transformer}
 \end{figure}
@@ -237,13 +237,13 @@ In \Cref{fig:softmax_trained_transformer}, we retrieve softmax values in the sel
 
 \begin{figure}[ht]
     \centering
-    \begin{subfigure}[b]{0.48\columnwidth}
+    \begin{subfigure}[b]{0.43\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/untrained_bert_base_bias_vs_max_softmax.png}
          \caption{Maximum}
          \label{fig:max_softmax}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\columnwidth}
+    \begin{subfigure}[b]{0.43\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/untrained_bert_base_bias_vs_min_softmax.png}
          \caption{Minimum}
          \label{fig:min_softmax}
@@ -260,22 +260,22 @@ However, at low anisotropy levels, i.e. when the bias norm is low, we see that t
 \label{sec:qk}
 \begin{figure*}[ht]
     \centering
-    \begin{subfigure}[b]{0.48\linewidth}
+    \begin{subfigure}[b]{0.43\linewidth}
          \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/dist_l9h9_s0.png}
          \caption{Step 0}
          \label{fig:dist_qk_s0}
     \end{subfigure}
-    \begin{subfigure}[b]{0.48\linewidth}
+    \begin{subfigure}[b]{0.43\linewidth}
          \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/dist_l9h9_s40.png}
          \caption{Step 40k}
          \label{fig:dist_qk_s40}
     \end{subfigure}
-    \begin{subfigure}[b]{0.48\linewidth}
+    \begin{subfigure}[b]{0.43\linewidth}
          \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/dist_l9h9_s200.png}
          \caption{Step 200k}
          \label{fig:dist_qk_s200}
     \end{subfigure}
-    \begin{subfigure}[b]{0.48\linewidth}
+    \begin{subfigure}[b]{0.43\linewidth}
          \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/dist_l9h9_s2000.png}
          \caption{Step 2M (final)}
          \label{fig:dist_qk_s2M}
@@ -290,13 +290,13 @@ We use the MultiBERT checkpoints \citep{sellam2021multiberts} with seed 0 to ret
 
 \begin{figure}[ht]
     \centering
-    \begin{subfigure}[b]{0.48\columnwidth}
+    \begin{subfigure}[b]{0.43\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/l0h3_samedir_QK.png}
          \caption{Similar}
          \label{fig:QK_simdir}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\columnwidth}
+    \begin{subfigure}[b]{0.43\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/l9h5_diffdir_QK.png}
          \caption{Opposite}
          \label{fig:QK_diffdir}
@@ -309,22 +309,22 @@ In \Cref{fig:proj_qk_heads} and \Cref{fig:QK_dir}, we compute a SVD of the union
 
 \begin{figure*}[ht]
     \centering
-    \begin{subfigure}[b]{0.48\linewidth}
+    \begin{subfigure}[b]{0.43\linewidth}
          \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/l0_cosine_QK.png}
          \caption{Layer 0}
          \label{fig:cosine_qk_l0}
     \end{subfigure}
-    \begin{subfigure}[b]{0.48\linewidth}
+    \begin{subfigure}[b]{0.43\linewidth}
          \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/l4_cosine_QK.png}
          \caption{Layer 4}
          \label{fig:cosine_qk_l4}
     \end{subfigure}
-    \begin{subfigure}[b]{0.48\linewidth}
+    \begin{subfigure}[b]{0.43\linewidth}
          \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/l9_cosine_QK.png}
          \caption{Layer 9}
          \label{fig:cosine_qk_l9}
     \end{subfigure}
-    \begin{subfigure}[b]{0.48\linewidth}
+    \begin{subfigure}[b]{0.43\linewidth}
          \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/l11_cosine_QK.png}
          \caption{Layer 11}
          \label{fig:cosine_qk_l11}
@@ -339,13 +339,13 @@ To consolidate our observations, we compute the evolution of the cosine-similari
 
 \begin{figure}[ht]
     \centering
-    \begin{subfigure}[b]{0.48\columnwidth}
+    \begin{subfigure}[b]{0.43\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/l3h8_scalar_QK.png}
          \caption{Similar}
          \label{fig:scalar_sim}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\columnwidth}
+    \begin{subfigure}[b]{0.43\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/l9h9_scalar_QK.png}
          \caption{Opposite}
          \label{fig:scalar_opp}
@@ -358,7 +358,7 @@ As shown in \Cref{fig:scalar_QK}, this drift induces an increase in the magnitud
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.5\linewidth]{sources/part_1/anisotropy/imgs/entropy_decay.png}
+    \includegraphics[width=0.6\linewidth]{sources/part_1/anisotropy/imgs/entropy_decay.png}
     \caption{Average entropy of the probability distributions corresponding to self-attention rows along training. Each curve corresponds to one layer.}
     \label{fig:entropy_decay}
 \end{figure}
@@ -393,15 +393,6 @@ Moreover, we are aware that our approach is not theoretically rigorous in some a
 \vspace{2em}
 
 In this section, we show that representation degeneration happens in the self-attention layers and co-occurs with the sparsification of attention patterns, regardless of the data modality. This incentivizes the analysis of representation geometry as a way to better understand these implicit biases and paths towards how to improve them. 
-
-\vspace{4em}
-
-
-Overall, studying distortions and biases in the representation space has allowed us to shed light on bottlenecks and limitations that are inherent to the classical language modeling framework. It also provided insights about the architecture of modern language models, from the dimensionality and sparsity perspectives. 
-
-Beyond the scope of usual interpretability frameworks, that are designed to explain predictions from targeted observations, we advocate for tools that allow analyzing global behaviors of the inner states of language models, in order to provide guidelines towards better paradigm for learning models of natural language.
-
-Finally, we underline that our work, especially \Cref{chap:geobias} and \Cref{chap:softmax_bottleneck}, shows that representation degeneration and frequency-related biases hurt the quality of affected language models, either by degrading their performance or incorporating knowledge bias. In the next part, we propose several methods aimed at avoiding degeneration, reducing frequency dependency and mitigating sparsity in language models, in the hope that these methods will indirectly mitigate the identified limitations that are correlated with these phenomena.
 
 
 % \section*{Ethics Statement}

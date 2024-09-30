@@ -1,4 +1,6 @@
-In \Cref{sec:rw_degeneration}, we discussed the representation degeneration phenomenon from various perspectives. However, the observations made in the aforementioned works were mostly made on relatively small-scale models of dimensions comparable to BERT \citep{devlin-etal-2019-bert} or models from the GPT-2 suite \citep{gpt2}.
+In \Cref{chap:geobias}, we explored the knowledge bias phenomenon as the size of the models increases. \citet{zhou2021freqbased} describe the connection between knowledge bias and frequency-based distortions such as anisotropy (see \Cref{sec:rw_degeneration}). In this chapter, we explore these geometrical distortions for various model sizes, with a particular focus on training dynamics.
+
+In \Cref{sec:rw_degeneration}, we discussed the representation degeneration phenomenon from the various perspectives offered by the literature. However, the observations made in the aforementioned works were mostly made on relatively small-scale models of dimensions comparable to BERT \citep{devlin-etal-2019-bert} or models from the GPT-2 suite \citep{gpt2}.
 
 We recall that language models are usually composed of a neural network $f_\theta$ that takes sequences of tokens $(\mathbf{w}_{<t}) \in [1,V]^{t-1}$ as inputs and produces a relatively low-dimensional contextual representation in $\mathbb{R}^{d_m}$, where $d_m$ is the \textit{hidden dimension} of the model. They then rely on a \textit{language modeling head} that produces logits for contextual token probabilities. A common choice for the language modeling head is a linear layer with parameter $W \in \mathbb{R}^{V \times d_m}$, where $V$ is the vocabulary size. The resulting next-token probability distribution is then given by:
 $$
@@ -26,14 +28,14 @@ Overall, our contributions can be summarized as:
 \section{Language Model Saturation}
 We first verify that we can indeed observe and quantify performance saturation for the Pythia checkpoints, as they are the only released intermediate checkpoints for a wide range of model sizes. We measure the cross-entropy of Pythia checkpoints on 50k tokens randomly sampled from their pretraining dataset, i.e. The Pile \citep{gao2020pile}. 
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
-    \begin{subfigure}{0.37\columnwidth}
+    \begin{subfigure}{0.4\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/loss_saturation_anno.pdf}
          \caption{Loss saturation}
          \label{fig:loss_sat}
     \end{subfigure}
-    \begin{subfigure}{0.42\columnwidth}
+    \begin{subfigure}{0.45\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/scaling_laws_unfit_anno.pdf}
          \caption{Loss extrapolation}
          \label{fig:scaling_law}
@@ -50,9 +52,9 @@ $$
 
 We find that optimal parameters are $A=119.09$ and $\alpha=0.246$. We display the fitted curves for token counts that correspond to best and final checkpoints. We observe that the final checkpoints underperform the extrapolation by 8\% in average. The loss-minimizing (\textit{best}) checkpoints, which are expected to fall short of the extrapolation due to their incomplete learning rate cooldown, only underperform it by roughly 4\%.
 
-A similar performance saturation is also observed on datasets used for evaluation in the LM Evaluation Harness \citep{eval-harness}, as shown in \Cref{tab:perf_gap}.
+We report a similar performance saturation on datasets used for evaluation using the LM Evaluation Harness \citep{eval-harness}, as shown in \Cref{tab:perf_gap}.
 
-\begin{table}[h]
+\begin{table}[ht]
 % \scriptsize
 \centering
 \scalebox{0.85}{%
@@ -69,26 +71,26 @@ Final & 32.9 & 38 & 57.2 & 33.4 & 73.4 & 43.2 \\ \bottomrule
 
 \section{Performance Saturation is Rank Saturation}
 \subsection{Anisotropy at Scale}
-Given that most research on degeneration was conducted on smaller models, it remains unclear whether anisotropy affects models with over 1 billion parameters. In order to address this question, we compute average cosine-similarity of intermediate representations across layers in suites of models; namely GPT-2 \citep{radford2019language}, OPT \citep{zhang2022opt}, Pythia \citep{biderman2023pythia}, and Gemma \citep{gemmateam2024gemma}. We use a subsample of The Pile \citep{gao2020pile}, as we hypothesize that the domain of this dataset includes or matches the domain of the pretraining datasets used in these suites.
+Given that most research on degeneration was conducted on smaller models, it remains unclear whether anisotropy affects models with over 1 billion parameters. In order to address this question, we compute average cosine-similarity of intermediate representations across layers in suites of models; namely GPT-2 \citep{gpt2}, OPT \citep{zhang2022opt}, Pythia \citep{biderman2023pythia}, and Gemma \citep{gemmateam2024gemma}. We use a subsample of The Pile \citep{gao2020pile}, as we hypothesize that the domain of this dataset includes or matches the domain of the pretraining datasets used in these suites.
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
-    \begin{subfigure}{0.33\columnwidth}
+    \begin{subfigure}{0.45\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/pythia_anisotropy.png}
          \caption{Pythia}
          \label{fig:pythia_aniso}
     \end{subfigure}
-    \begin{subfigure}{0.33\columnwidth}
+    \begin{subfigure}{0.45\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/gpt2_anisotropy.png}
          \caption{GPT-2}
          \label{fig:gpt2_aniso}
     \end{subfigure}
-    \begin{subfigure}{0.33\columnwidth}
+    \begin{subfigure}{0.45\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/gemma_anisotropy.png}
          \caption{Gemma}
          \label{fig:gemma_aniso}
     \end{subfigure}
-    \begin{subfigure}{0.34\columnwidth}
+    \begin{subfigure}{0.45\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/opt_anisotropy.png}
          \caption{OPT}
          \label{fig:opt_aniso}
@@ -97,33 +99,33 @@ Given that most research on degeneration was conducted on smaller models, it rem
     \label{fig:anisotropy}
 \end{figure}
 
-In \Cref{fig:anisotropy}, we observe that most layers of Transformers models are anisotropic to some extent, regardless of the scale. Nevertheless, there seems to be a dichotomy in the last layer, where models are either nearly isotropic or highly anisotropic. Interestingly, we notice that the dichotomy aligns with the one of the saturation phenomenon for the Pythia suite, where only models containing 160M or fewer parameters seem affected by last-layer anisotropy.
+In \Cref{fig:anisotropy}, we observe that most layers of Transformers models are anisotropic to some extent, regardless of the scale. Nevertheless, there seems to be a dichotomy in the last layer, where models are either nearly isotropic or highly anisotropic. Interestingly, we notice that the dichotomy aligns with the one of the saturation phenomenon for the Pythia suite, where only models containing 160M or fewer parameters seem affected by last-layer anisotropy. In this chapter, we will focus on last-layer anisotropy, and we refer to \Cref{chap:anisotropy} for a study of degeneration in intermediate layers.
 
 We thus decide to study the training dynamics of anisotropy for the Pythia suite, and compare them with the saturation phenomenon in \Cref{fig:aniso_v_saturation}.
 
-\begin{figure}[h]
+\begin{figure}[ht!]
     \centering
-    \begin{subfigure}{0.32\columnwidth}
+    \begin{subfigure}{0.45\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/anisotropy_explosion_14m.png}
          \caption{14M}
          \label{fig:14M}
     \end{subfigure}
-    \begin{subfigure}{0.32\columnwidth}
+    \begin{subfigure}{0.45\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/anisotropy_explosion_31m.png}
          \caption{31M}
          \label{fig:31M}
     \end{subfigure}
-    \begin{subfigure}{0.32\columnwidth}
+    \begin{subfigure}{0.45\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/anisotropy_explosion_70m.png}
          \caption{70M}
          \label{fig:70M}
     \end{subfigure}
-    \begin{subfigure}{0.32\columnwidth}
+    \begin{subfigure}{0.45\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/anisotropy_explosion_160m.png}
          \caption{160M}
          \label{fig:160M}
     \end{subfigure}
-    \begin{subfigure}{0.33\columnwidth}
+    \begin{subfigure}{0.45\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/anisotropy_explosion_410m.png}
          \caption{410M}
          \label{fig:410M}
@@ -139,29 +141,29 @@ We thus decide to study the training dynamics of anisotropy for the Pythia suite
 
 Average cosine-similarity is a valuable measure of the uniformity of a distribution, but including other metrics can help to better capture the complexity of some manifolds \citep{rudman-etal-2022-isoscore}. Moreover, it only focuses on the output embeddings of the language models, and not on their weights. In this section, we extend our analysis by studying the singular value distributions of the language modeling heads, to link our empirical observations to our theoretical findings. In \Cref{fig:sv_evolve}, we display the singular value distributions of the final predictive layer weights $W$ along training.
 
-\begin{figure}[h]
+\begin{figure}[ht!]
     \centering
-    \begin{subfigure}{0.32\columnwidth}
+    \begin{subfigure}{0.45\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/sv_map_14m.png}
          \caption{14M}
          \label{fig:sv_14M}
     \end{subfigure}
-    \begin{subfigure}{0.32\columnwidth}
+    \begin{subfigure}{0.45\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/sv_map_31m.png}
          \caption{31M}
          \label{fig:sv_31M}
     \end{subfigure}
-    \begin{subfigure}{0.32\columnwidth}
+    \begin{subfigure}{0.45\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/sv_map_70m.png}
          \caption{70M}
          \label{fig:sv_70M}
     \end{subfigure}
-    \begin{subfigure}{0.32\columnwidth}
+    \begin{subfigure}{0.45\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/sv_map_160m.png}
          \caption{160M}
          \label{fig:sv_160M}
     \end{subfigure}
-    \begin{subfigure}{0.32\columnwidth}
+    \begin{subfigure}{0.45\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/sv_map_410m.png}
          \caption{410M}
          \label{fig:sv_410M}
@@ -172,14 +174,13 @@ Average cosine-similarity is a valuable measure of the uniformity of a distribut
 
 \Cref{fig:sv_evolve} sheds light on a specific pattern of spectral saturation, roughly co-occurring with the performance saturation phenomenon. It shows that the singular value distribution progressively flattens during training, and nearly reaches uniformity before abruptly evolving towards a spiked distribution with a high maximal singular value, relatively to the other ones.
 
-\begin{wrapfigure}{r}{0.45\textwidth}
+\begin{figure}[ht]
 \centering
-    \includegraphics[width=0.45\textwidth]{sources/part_1/softmax_bottleneck/imgs/kullback_uni.png}
+    \includegraphics[width=0.6\textwidth]{sources/part_1/softmax_bottleneck/imgs/kullback_uni.png}
     \caption{Training dynamics of the singular entropy, for different Pythia models.}
-    \vspace{-10pt}
 
     \label{fig:kl_div}
-\end{wrapfigure}
+\end{figure}
 
 In order to quantify this behavior more accurately, we use a \textit{singular entropy metric}, computed as the Kullback-Leibler divergence between the normalized singular value distribution and the uniform distribution.
 
@@ -199,15 +200,15 @@ More precisely, we freeze the pretrained weights in the Transformer layers, and 
 
 We report the chosen learning rates in \Cref{fig:lr_choices}.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
-    \includegraphics[width=0.45\linewidth]{sources/part_1/softmax_bottleneck/imgs/lr_final.png}
+    \includegraphics[width=0.6\linewidth]{sources/part_1/softmax_bottleneck/imgs/lr_final.png}
     \caption{Chosen peak learning rates used for the rank-constrained head experiments for each model.}
     \label{fig:lr_choices}
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
     \begin{subfigure}{0.41\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/llama_bottleneck_acc.png}
@@ -228,7 +229,7 @@ Another interesting factor to estimate is the dimensionality inherent to the dat
 $$
 W\text{-error}(d) = \frac{||\sigma_{d+1:}||_2}{||W||_F}
 $$
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
     \begin{subfigure}{0.415\columnwidth}
          \includegraphics[width=\linewidth]{sources/part_1/softmax_bottleneck/imgs/llama_sv_4gram.png}
@@ -353,11 +354,13 @@ $$
 \sum_{i=1}^{|\mathcal{T}|} \sum_{t=1}^{|\mathbf{w}^i|} \mathcal{L}(W_d^*, h^*_{i,t}, w^i_t) - \mathcal{L}(W^*, h^*_{i,t}, w^i_t) = O\left(\sqrt{\sum_{i=d+1}^{V}\sigma_i^2}\right)$$
 \end{theorem}
 \begin{proof}
-     Let us note $W_d$ the best approximation of $W^*$ of rank $d$ with respect to the Frobenius norm. By definition of $W_d^*$, we have that:
+     Let us note $W_d$ the best approximation of $W^*$ of rank $d$ with respect to the Frobenius norm. By the triangle inequality, we have that:
+
 \begin{equation}
 \label{eq:approx}
-    \left|\sum_{i=1}^{|\mathcal{T}|} \sum_{t=1}^{|\mathbf{w}^i|} \mathcal{L}(W_d^*, h^*_{i,t}, w^i_t) - \mathcal{L}(W^*, h^*_{i,t}, w^i_t)\right| \leq \sum_{i=1}^{|\mathcal{T}|} \sum_{t=1}^{|\mathbf{w}^i|} \left|\mathcal{L}(W_d, h^*_{i,t}, w^i_t) - \mathcal{L}(W^*, h^*_{i,t}, w^i_t)\right|
+\resizebox{\columnwidth}{!}{$\left|\sum_{i=1}^{|\mathcal{T}|} \sum_{t=1}^{|\mathbf{w}^i|} \mathcal{L}(W_d^*, h^*_{i,t}, w^i_t) - \mathcal{L}(W^*, h^*_{i,t}, w^i_t)\right| \leq \sum_{i=1}^{|\mathcal{T}|} \sum_{t=1}^{|\mathbf{w}^i|} \left|\mathcal{L}(W_d, h^*_{i,t}, w^i_t) - \mathcal{L}(W^*, h^*_{i,t}, w^i_t)\right|$}
 \end{equation}
+
 
 % We know from \Cref{best_on_all} that for all $y\in\mathcal{T}$ and $i \in [1, |y|]$:
 % $$
@@ -386,20 +389,18 @@ which ends the proof.
 \paragraph{Remark} The bound used in \Cref{eq:approx} can be rather loose in practice. We can think of no particular reason why approaching $W^*$ directly should be the optimal way to minimize the loss on $\mathcal{T}$. Hence, the presented result should be taken carefully, and we leave the refinement of such an analysis for future work.
 
 \end{proof}
-These properties shed light on how the dimensionality of the ideal language modeling head impacts the performance when the LM head is low-rank. However, the relation obtained in \Cref{main_thm} is not particularly strong, as discussed in \Cref{app:main_thm}.
+These properties shed light on how the dimensionality of the ideal language modeling head impacts the performance when the LM head is low-rank. However, the relation obtained in \Cref{main_thm} is not particularly strong, as discussed in the proof.
 
 In \Cref{fig:neg_res_thm}, we compare the results of the head bottleneck experiment of the Pythia-1B model in \Cref{sec:inherent_dim} to the $W$\!-error on the head of the same model as the bottleneck dimension $d$ evolves. It shows that the loss gap grows slowly with the $W$\!-error, implying that even when the allowed rank would lead to a poor approximation of $W$, the performance can still remain acceptable. We notice that the performance starts decreasing when the $W$\!-error outgrows 0.6.
 
-\begin{wrapfigure}{r}{0.45\textwidth}
+\begin{figure}
 \centering
-    \includegraphics[width=0.45\textwidth]{sources/part_1/softmax_bottleneck/imgs/loss_v_werr.png}
+    \includegraphics[width=0.6\textwidth]{sources/part_1/softmax_bottleneck/imgs/loss_v_werr.png}
     \caption{Final loss with trained rank-constrained heads (mimicking $W_d^*$), as a function of the theoretical $W$\!-error for rank $d$ on the head of the Pythia-1B model.}
-    \vspace{-10pt}
-
     \label{fig:neg_res_thm}
-\end{wrapfigure}
+\end{figure}
 
-% \begin{figure}[h]
+% \begin{figure}[ht]
 % \centering
 %     \includegraphics[width=0.4\linewidth]{sources/part_1/softmax_bottleneck/imgs/loss_v_werr.png}
 %     \caption{Final loss with trained rank-constrained heads (mimicking $W_d^*$), as a function of the theoretical $W$\!-error for rank $d$ on the head of the Pythia-1B model.}
@@ -453,7 +454,9 @@ Another limitation of this work is the loose nature of the mathematical connecti
 
 \vspace{2em}
 
-This chapter shows that language model representations can suffer not only from biases carried over by training data (\Cref{chap:geobias}), but also from limitations inherited from the complexity of language itself. Representing token contextual distributions using low-dimensional dense vectors inevitably restricts the performance of language models, and the magnitude of dimensionalities that are significantly affected by this phenomenon is empirically not negligible. This effect is strongly correlated with last-layer anisotropy, but it is unclear whether this effect is sufficient to account for anisotropy in the other layers of language models.
+This chapter shows that language model representations can suffer not only from biases carried over by training data (\Cref{chap:geobias}), but also from limitations inherited from the complexity of language itself. Representing token contextual distributions using low-dimensional dense vectors inevitably restricts the performance of language models, and the magnitude of dimensionalities that are significantly affected by this phenomenon is empirically not negligible. 
+
+This effect is strongly correlated with last-layer anisotropy, but it is unclear whether this effect is sufficient to account for anisotropy in the other layers of language models. We explore the degeneration phenomenon in intermediate layers in \Cref{chap:anisotropy}.
 
 
 % Previous works \citep{ethayarajh-2019-contextual,godey2024anisotropy} notice that almost all layers of Transformers language models are anisotropic. They notably show that the last layer of decoder models display extremely high anisotropy metrics. For instance, \citet{ethayarajh-2019-contextual} show that the representations of the last layer of the small version of GPT-2 \citep{radford2019language} have an average cosine-similarity of 0.97.
