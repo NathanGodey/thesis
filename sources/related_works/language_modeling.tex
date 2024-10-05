@@ -149,7 +149,7 @@ $$
     \centering
     \includegraphics[width=0.5\linewidth]{sources/related_works/imgs/RNN-LM.pdf}
     \caption{Schema of an RNN-based language model. The neural network $\upsilon$ is applied sequentially and produces both hidden states for future predictions and output representations used for the current prediction.}
-    \label{fig:token_graph}
+    \label{fig:rnn}
 \end{figure}
 
 Several variations have been proposed for this kind of models, notably improving the ability to avoid gradients issues related with the recurrence or to select information in the hidden states using specific functions in the unit. One of the most known variants is the Long Short-Term Memory (LSTM) unit introduced in \citet{HochSchm97}, which has been widely used in NLP, including for language modeling \citep{miyamoto-cho-2016-gated}. The Gated Recurrent Unit (GRU) was later introduced in \citet{cho2014learningphraserepresentationsusing} as a simplification of the LSTM unit.
@@ -157,6 +157,7 @@ Several variations have been proposed for this kind of models, notably improving
 Although these units improve modeling abilities for long range dependencies \citep{rnn_eval}, they were empirically found to fail to handle interactions for elements separated by more than 1,000 time steps \citep{HochSchm97}.
 
 \subsection{Transformers}
+\label{ssec:transformers}
 
 \citet{bahdanau_nmt} popularized the use of \textit{attention} in neural machine translation models as a method that lets the model select relevant tokens from the source sequence at a given prediction step. Such models, that previously used the last hidden states of a source-processing RNN (called \textit{encoder}) as the input to a target-generating RNN (called \textit{decoder}), suffered from an information bottleneck due to sharing only last-step representations between source and target sequences. The attention mechanism allowed to ease this bottleneck, by providing a \textit{direct path of interaction} between the source tokens and the decoder.
 
@@ -196,7 +197,7 @@ $$
     \centering
     \includegraphics[width=0.6\linewidth]{sources/related_works/imgs/transformer_attn_schema.png}
     \caption{Schema of self-attention in Transformer (from \citet{vaswani2017attention})}
-    \label{fig:token_graph}
+    \label{fig:self_attn}
 \end{figure}
 
 This self-attention layer can be summarized in the following formula:

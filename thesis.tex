@@ -2,7 +2,7 @@
 %!TEX encoding = UTF-8 Unicode
 %!BIB program = bibtex
 
-% \documentclass{mimosis}
+\documentclass{mimosis}
 \documentclass[draft]{mimosis}
 
 
@@ -100,12 +100,13 @@
 \usepackage{arydshln}
 \usepackage{fontawesome5}
 \usepackage{tikz}
+\usepackage{placeins}
 \usepackage{wrapfig}
 \usepackage{graphicx}
 
 \usepackage{ragged2e}
 \usepackage{adjustbox}
-\usepackage[title]{appendix}
+\usepackage[title,toc]{appendix}
 
 \renewcommand{\appendixname}{Appendix}
 
@@ -195,6 +196,7 @@
 \label{part:solutions}
 \include{sources/part_2/extensions_lm}
 
+\include{sources/conclusion}
 
 
 % This ensures that the subsequent sections are being included as root
@@ -217,7 +219,7 @@
 \bibliography{thesis}
 \bibliographystyle{acl_natbib}
 
-\chapter*{Appendix}
+\part*{Appendix}
 \input{sources/appendix}
 
 

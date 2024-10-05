@@ -4,8 +4,8 @@
 \renewcommand{\thesection}{\Alph{section}}
 
 \begin{appendices}
-\section{Additional results for \Cref{chap:anisotropy}}
-\subsection{Other projections for $Q^h_s$ and $K^h_s$}
+\section{Additional results for Chapter~\ref{chap:anisotropy}}
+\subsection{Other projections for \texorpdfstring{$Q^h_s$}{queries} and \texorpdfstring{$K^h_s$}{keys}}
 \label{sec:other_projs}
 
 As mentioned in the Discussion (\Cref{sec:anisotropy_discussion}), we reproduce visualizations from \Cref{sec:qk} using different projection choices. Namely, we compute the SVD on $K^h_s$ only in \Cref{fig:proj_qk_heads_K} and \Cref{fig:QK_dir_K}, and on $Q^h_s$ only in \Cref{fig:proj_qk_heads_Q} and \Cref{fig:QK_dir_Q}.
@@ -127,7 +127,7 @@ The plots show that not only does the distribution used for the SVD drifts away 
 
 \clearpage
 
-\section{Pretraining hyperparameters for \Cref{chap:headless_lm}}
+\section{Pretraining hyperparameters for Chapter~\ref{chap:headless_lm}}
 \label{app:train_hp}
 
 \subsection{Monolingual encoders}
@@ -264,7 +264,7 @@ Nb. steps         & 1000000        \\ \bottomrule
 \caption{Pre-training hyperparameters used for the small monolingual decoders used in \Cref{fig:batch_size}. These models rely on the GPT-2 architecture with a few changes. These changes scale down the model size to 11M parameters.}
 \end{table}
 
-\section{Finetuning hyperparameters for \Cref{chap:headless_lm}}
+\section{Finetuning hyperparameters for Chapter~\ref{chap:headless_lm}}
 \label{app:ft}
 
 \subsection{Balanced cross-entropy}
@@ -346,7 +346,7 @@ Linear warm-up & 10\% \\ \bottomrule
 \label{tab:ft_multi_enc}
 \end{table}
 
-\section{Hyperparameters for \Cref{chap:manta}}
+\section{Hyperparameters for Chapter~\ref{chap:manta}}
 \label{sec:appendix_hp}
 \begin{table}[H]
 \centering\small

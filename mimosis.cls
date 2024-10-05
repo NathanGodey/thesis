@@ -1,4 +1,4 @@
-\NeedsTeXFormat{LaTeX2e}
+% \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{mimosis}[2017/08/01 Minimal modern thesis class]
 
 \PassOptionsToPackage{
@@ -40,6 +40,7 @@
 % while keeping hyphenation rules correct. Should you add another one
 % in the list, please ensure that `english` is the last one. The last
 % language is used to control standard hyphenation.
+\RequirePackage{natbib}
 \usepackage[ngerman,french,english]{babel}
 
 \RequirePackage{csquotes} % Context-sensitive quotation marks
@@ -255,7 +256,7 @@
 % Bibliography ACL
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage{natbib}
+
 % for citation commands in the .tex, authors can use:
 % \citep, \citet, and \citeyearpar for compatibility with natbib, or
 % \cite, \newcite, and \shortcite for compatibility with older ACL .sty files

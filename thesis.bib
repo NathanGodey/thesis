@@ -551,7 +551,6 @@
 	year         = 2003,
 	booktitle    = {Proceedings of the first instructional conference on machine learning},
 	volume       = 242,
-	number       = 1,
 	pages        = {29--48},
 	organization = {Citeseer}
 }
@@ -1514,7 +1513,7 @@
 	pdf          = {https://proceedings.mlr.press/v202/biderman23a/biderman23a.pdf},
 	abstract     = {How do large language models (LLMs) develop and evolve over the course of training? How do these patterns change as models scale? To answer these questions, we introduce <em>Pythia</em>, a suite of 16 LLMs all trained on public data seen in the exact same order and ranging in size from 70M to 12B parameters. We provide public access to 154 checkpoints for each one of the 16 models, alongside tools to download and reconstruct their exact training dataloaders for further study. We intend <em>Pythia</em> to facilitate research in many areas, and we present several case studies including novel results in memorization, term frequency effects on few-shot performance, and reducing gender bias. We demonstrate that this highly controlled setup can be used to yield novel insights toward LLMs and their training dynamics. Trained models, analysis code, training code, and training data can be found at https://github.com/EleutherAI/pythia.}
 }
-@software{gpt-neo,
+@misc{gpt-neo,
 	title        = {{GPT-Neo: Large Scale Autoregressive Language Modeling with Mesh-Tensorflow}},
 	author       = {Black, Sid and Gao, Leo and Wang, Phil and Leahy, Connor and Biderman, Stella},
 	year         = 2021,
@@ -2639,11 +2638,11 @@ url={https://openreview.net/forum?id=_VjQlMeSB_J}
 	archiveprefix = {arXiv},
 	primaryclass = {cs.CL}
 }
-@software{together2023redpajama,
+@misc{together2023redpajama,
 	title        = {RedPajama: an Open Dataset for Training Large Language Models},
 	author       = {Together Computer},
 	year         = 2023,
-	month        = October,
+	month        = {October},
 	url          = {https://github.com/togethercomputer/RedPajama-Data}
 }
 @inproceedings{oscar,
@@ -2978,7 +2977,7 @@ url={https://openreview.net/forum?id=_VjQlMeSB_J}
 	editor       = {Korhonen, Anna  and Traum, David  and M{\`a}rquez, Llu{\'\i}s},
 	abstract     = {Multi-head self-attention is a key component of the Transformer, a state-of-the-art architecture for neural machine translation. In this work we evaluate the contribution made by individual attention heads to the overall performance of the model and analyze the roles played by them in the encoder. We find that the most important and confident heads play consistent and often linguistically-interpretable roles. When pruning heads using a method based on stochastic gates and a differentiable relaxation of the L0 penalty, we observe that specialized heads are last to be pruned. Our novel pruning method removes the vast majority of heads without seriously affecting performance. For example, on the English-Russian WMT dataset, pruning 38 out of 48 encoder heads results in a drop of only 0.15 BLEU.}
 }
-@conference{bahdanau_nmt,
+@inproceedings{bahdanau_nmt,
 	title        = {Neural machine translation by jointly learning to align and translate},
 	author       = {Dzmitry Bahdanau and Cho, {Kyung Hyun} and Yoshua Bengio},
 	year         = 2015,
@@ -3164,7 +3163,6 @@ url={https://openreview.net/forum?id=_VjQlMeSB_J}
 	doi          = {doi:10.1515/9783110872521.173},
 	isbn         = 9783110872521,
 	url          = {https://doi.org/10.1515/9783110872521.173},
-	editor       = {Paul L. Garvin},
 	lastchecked  = {2024-08-29}
 }
 @article{jaro,
@@ -3670,6 +3668,58 @@ abstract = {We give conditions ensuring that multilayer feedforward networks wit
 	pages        = {36963--36990},
 	url          = {https://proceedings.neurips.cc/paper_files/paper/2023/file/74bb24dca8334adce292883b4b651eda-Paper-Conference.pdf},
 	editor       = {A. Oh and T. Naumann and A. Globerson and K. Saenko and M. Hardt and S. Levine}
+}
+@inproceedings{10.1145/2897518.2897639,
+author = {Razenshteyn, Ilya and Song, Zhao and Woodruff, David P.},
+title = {Weighted low rank approximations with provable guarantees},
+year = {2016},
+isbn = {9781450341325},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/2897518.2897639},
+doi = {10.1145/2897518.2897639},
+abstract = {The classical low rank approximation problem is: given a matrix A, find a rank-k matrix B such that the Frobenius norm of A − B is minimized. It can be solved efficiently using, for instance, the Singular Value Decomposition (SVD). If one allows randomization and approximation, it can be solved in time proportional to the number of non-zero entries of A with high probability. Inspired by practical applications, we consider a weighted version of low rank approximation: for a non-negative weight matrix W we seek to minimize ∑i, j (Wi, j · (Ai,j − Bi,j))2. The classical problem is a special case of this problem when all weights are 1. Weighted low rank approximation is known to be NP-hard, so we are interested in a meaningful parametrization that would allow efficient algorithms. In this paper we present several efficient algorithms for the case of small k and under the assumption that the weight matrix W is of low rank, or has a small number of distinct columns. An important feature of our algorithms is that they do not assume anything about the matrix A. We also obtain lower bounds that show that our algorithms are nearly optimal in these parameters. We give several applications in which these parameters are small. To the best of our knowledge, the present paper is the first to provide algorithms for the weighted low rank approximation problem with provable guarantees. Perhaps even more importantly, our algorithms proceed via a new technique, which we call “guess the sketch”. The technique turns out to be general enough to give solutions to several other fundamental problems: adversarial matrix completion, weighted non-negative matrix factorization and tensor completion.},
+booktitle = {Proceedings of the Forty-Eighth Annual ACM Symposium on Theory of Computing},
+pages = {250–263},
+numpages = {14},
+keywords = {sketches, semi-algebraic sets, optimization, linear algebra},
+location = {Cambridge, MA, USA},
+series = {STOC '16}
+}
+@inproceedings{michael-etal-2023-nlp,
+    title = "What Do {NLP} Researchers Believe? Results of the {NLP} Community Metasurvey",
+    author = "Michael, Julian  and
+      Holtzman, Ari  and
+      Parrish, Alicia  and
+      Mueller, Aaron  and
+      Wang, Alex  and
+      Chen, Angelica  and
+      Madaan, Divyam  and
+      Nangia, Nikita  and
+      Pang, Richard Yuanzhe  and
+      Phang, Jason  and
+      Bowman, Samuel R.",
+    editor = "Rogers, Anna  and
+      Boyd-Graber, Jordan  and
+      Okazaki, Naoaki",
+    booktitle = "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2023",
+    address = "Toronto, Canada",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.acl-long.903",
+    doi = "10.18653/v1/2023.acl-long.903",
+    pages = "16334--16368",
+    abstract = "We present the results of the NLP Community Metasurvey. Run from May to June 2022, it elicited opinions on controversial issues, including industry influence in the field, concerns about AGI, and ethics. Our results put concrete numbers to several controversies: For example, respondents are split in half on the importance of artificial general intelligence, whether language models understand language, and the necessity of linguistic structure and inductive bias for solving NLP problems. In addition, the survey posed meta-questions, asking respondents to predict the distribution of survey responses. This allows us to uncover false sociological beliefs where the community{'}s predictions don{'}t match reality. Among other results, we find that the community greatly overestimates its own belief in the usefulness of benchmarks and the potential for scaling to solve real-world problems, while underestimating its belief in the importance of linguistic structure, inductive bias, and interdisciplinary science.",
+}
+
+@inproceedings{
+jang2017categorical,
+title={Categorical Reparameterization with Gumbel-Softmax},
+author={Eric Jang and Shixiang Gu and Ben Poole},
+booktitle={International Conference on Learning Representations},
+year={2017},
+url={https://openreview.net/forum?id=rkE3y85ee}
 }
 @article{gumbel-orig,
 	title        = {Les valeurs extr\^emes des distributions statistiques},

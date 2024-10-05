@@ -59,12 +59,13 @@ We decompose the tokenization process into several differentiable operations, en
     \item Pooling byte representations for each block $B_i$ weighted by the probability of each byte to belong in the current block $P(b_t \in B_i)$.
 \end{itemize}
 
-This process results in a sequence of embeddings that can be given directly to the encoder-decoder model. We provide an overview of the entire model in \Cref{fig:overview_diagram}, and we summarize the process of mapping byte embeddings to block embeddings in \Cref{sec:detailled_diagram}.
+This process results in a sequence of embeddings that can be given directly to the encoder-decoder model. We provide an overview of the entire model in \Cref{fig:overview_diagram}, and we summarize the process of mapping byte embeddings to block embeddings in \Cref{fig:detailled_diagram}.
 
 \begin{figure*}[!t]
-    \centering\label{fig:detailled_diagram}
+    \centering
     \includegraphics[width=0.9\linewidth]{sources/part_2/manta/images/MANTa_Tokenization_Module.pdf}
     \caption{A detailed view of the MANTa module. We denote by $h_b$ the dimension of the byte embeddings, by $h_{LM}$ the dimension of the block embeddings that will be fed to the encoder-decoder model, $L$ the length of the input sequence and $L_B$ the length of the block sequence. We omit batch sizes for simplicity.}
+    \label{fig:detailled_diagram}
 \end{figure*}
 
 \subsection{Predicting Subword Frontiers}
@@ -77,6 +78,7 @@ We make the assumption that long-range dependencies are not relevant for segment
 
 
 \subsection{Modeling the Byte-Block Assignment}
+\label{ssec:manta_maths}
 Once the frontier probabilities $(p_{F_t})_{t \in [1, L]}$ are predicted for the whole sequence, we use them to model an assignment between bytes and block slots. Each byte is given a probability distribution over the available block slots, and the expected block position of a byte in the block sequence increases along the byte sequence (i.e. the next byte is always more likely to be assigned to the next block).
 
 Let us introduce $(B,\ b_t)$, the slot random variables for each byte $b_t$, describing the position of the block containing $b_t$ in the block sequence. In other words, the event $(B=i,\ b_t)$ describes the fact that the $t$-th byte belongs in the $i$-th block. These variables can only take values in $[1, L]$, as there cannot be more blocks than there are bytes. We can model the $(B,\ b_t)$ as a \textit{cumulative sum} of the random variables $F_t$: the position of the block in which a byte belongs is exactly the number of frontier bytes before this one.
@@ -96,29 +98,6 @@ where $Z=\sum\limits_{1\leq i\leq L_B}G_{\mu_t, \sigma_t}(i)$ is a normalization
 
 We denote by $P_{i,t}$ the approximation of the probability of membership of the byte $t$ to block $i$. We display an example of this map at different steps during training in Figure~\ref{fig:mapping_example}. We truncate the block sequences after $(\mu_L + 3\sigma_L)$ since all the probabilities beyond this position are negligible.
 
-\iffalse
-\begin{figure*}
-    \centering\small
-    \begin{subfigure}[b]{0.45\textwidth}
-    \includegraphics[width=\linewidth]{sources/part_2/manta/images/mapping_example_0.png}
-    \caption{Step 0}
-    \end{subfigure}\hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-    \includegraphics[width=\linewidth]{sources/part_2/manta/images/mapping_example_3000.png}
-    \caption{Step 3,000}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.45\textwidth}
-    \includegraphics[width=\linewidth]{sources/part_2/manta/images/mapping_example_7000.png}
-    \caption{Step 7,000}
-    \end{subfigure}\hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-    \includegraphics[width=\linewidth]{sources/part_2/manta/images/mapping_example_13000.png}
-    \caption{Step 13,000}
-    \end{subfigure}
-    \caption{The block-byte soft assignment $P$ in the first pre-training steps. MANTa learns to downsample so that no information is lost through truncation, but also converges towards a sharp segmentation. }
-    \label{fig:mapping_example}
-\end{figure*}
-\fi
 
 \begin{figure}[ht!]
     \centering\small
@@ -333,7 +312,7 @@ MANTa-LM is approximately 4 times faster than $\text{Byte-level T5}_{Small}$, an
     
 
 \section{Discussion}
-\label{sec:discussion}
+\label{sec:discussion_manta}
 
 \begin{table*}[t]
 \centering\small

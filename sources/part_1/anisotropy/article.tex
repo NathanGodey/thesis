@@ -233,7 +233,7 @@ After exploring the consequences of the drift of input representations on the qu
 \end{figure}
 
 In \Cref{fig:softmax_trained_transformer}, we retrieve softmax values in the self-attention block and for each position, we extract the maximum, the median and the minimum. We then average these values over the whole batch, and repeat for various input bias norm levels. We notice that as the input bias norm increases, the self-attention softmax distributions tend to become less entropic, evolving towards higher maximal probabilities and lower minimal probabilities. In the following analysis, we'll use the term \textit{sharpness} to discuss entropy levels of the self-attention distributions.
-
+\FloatBarrier
 
 \begin{figure}[ht]
     \centering
@@ -258,6 +258,9 @@ However, at low anisotropy levels, i.e. when the bias norm is low, we see that t
 
 \section{Queries and keys: training dynamics}
 \label{sec:qk}
+
+\subsection{Parallel drift of queries and keys}
+
 \begin{figure*}[ht]
     \centering
     \begin{subfigure}[b]{0.43\linewidth}
@@ -332,6 +335,7 @@ In \Cref{fig:proj_qk_heads} and \Cref{fig:QK_dir}, we compute a SVD of the union
     \caption{Evolution of cosine-similarity between $\bar{Q^h_s}$ and $\bar{K^h_s}$ along training. Each color represents one self-attention head. Steps are counted in thousands. We generally observe that almost all heads see $\bar{Q^h_s}$ and $\bar{K^h_s}$ align in common or opposite directions along training. In other words, the average components of keys and queries representations tend to align in self-attention heads, which maximizes the magnitude of the scalar product between two average representations. We run a similar experiment on all MultiBERT seeds in \Cref{fig:seeds_qk}, and obtain comparable results.}
     \label{fig:cosine_qk_heads}
 \end{figure*}
+\FloatBarrier
 
 To consolidate our observations, we compute the evolution of the cosine-similarity between $\bar{Q^h_s}$ and $\bar{K^h_s}$ along training in \Cref{fig:cosine_qk_heads}. We also display some projected $Q^h_s$ and $K^h_s$ distributions for several $s$ steps in \Cref{fig:proj_qk_heads}.
 
@@ -356,7 +360,7 @@ To consolidate our observations, we compute the evolution of the cosine-similari
 
 As shown in \Cref{fig:scalar_QK}, this drift induces an increase in the magnitude of scalar products obtained in the self-attention $Q^h{K^h}^T$ operation, thus facilitating the emergence of sharp patterns where attention focuses on specific tokens.
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.6\linewidth]{sources/part_1/anisotropy/imgs/entropy_decay.png}
     \caption{Average entropy of the probability distributions corresponding to self-attention rows along training. Each curve corresponds to one layer.}
@@ -364,6 +368,81 @@ As shown in \Cref{fig:scalar_QK}, this drift induces an increase in the magnitud
 \end{figure}
 
 Finally, \Cref{fig:entropy_decay} describes the evolution of the average entropy in self-attention distributions. We observe that training induces an overall decay of the entropy for all layers, with different dynamics. This corresponds to sharper self-attention distributions. It is interesting to notice that the distributions in the first layers remain sharper than the ones in the last layers.
+
+\subsection{Relation between sparsity and anisotropy}
+
+Although there seems to be a clear correlation between parallel drift and sparsity in practice, we did not expose a clear causation between the coupled degeneration of queries and keys and the observed sparsity of attention maps. As a matter of fact, this parallel drift should only cause a bias in the attention values, which in turn has no incidence on the subsequent softmax-normalized attention map.
+
+To better understand this phenomenon, we need to precisely characterize the structure of the sparsity in attention maps. In \Cref{fig:attn_maps}, we compute the attention maps of TinyLlama \citep{tinyllama}, a 1B parameter causal language model based on the Llama suite \citep{touvron2023llama}.
+
+\begin{figure}[!ht]
+\centering
+\begin{subfigure}[b]{0.45\columnwidth}
+     \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/qk_position_l2h5.png}
+     \caption{Layer 3, head 6}
+     \label{fig:l2h5}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.45\columnwidth}
+     \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/qk_position_l12h5.png}
+     \caption{Layer 13, head 6}
+     \label{fig:l12h5}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.45\columnwidth}
+     \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/qk_position_l20h5.png}
+     \caption{Layer 21, head 6}
+     \label{fig:l20h5}
+\end{subfigure}
+\caption{TinyLlama's attention maps for different layers and heads.}
+\label{fig:attn_maps}
+\end{figure}
+
+As shown in \Cref{fig:attn_maps} attention maps are mostly sparse, following patterns where self-interaction dominate (\Cref{fig:l2h5}), where interactions are mostly active in a short context window before the current position (\Cref{fig:l12h5}), or where some positions are attended by all future ones (\Cref{fig:l20h5}). 
+
+We start by anayzing this latter case through the anisotropy lens. In \Cref{fig:attn_maps_l1h8}, we measure cosine-similarity between the average query representation $\bar{Q^h}$ and the key representations $K^h_t$, for an attention head that behaves accordingly.
+
+\begin{figure}[!ht]
+\centering
+\begin{subfigure}[b]{0.45\columnwidth}
+     \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/attn_l1h8.png}
+     \caption{Attention map}
+     \label{fig:amap_l1h8}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.45\columnwidth}
+     \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/cosine_q_khat_l1h8.png}
+     \caption{Cosine-similarity of keys and the average query representations}
+     \label{fig:cosim_l1h8}
+\end{subfigure}
+\caption{Analysis of TinyLlama's attention map for layer 2 and head 9.}
+\label{fig:attn_maps_l1h8}
+\end{figure}
+
+\Cref{fig:attn_maps_l1h8} illustrates how the cosine-similarity of keys with the average query component allows to differentiate between attended and ignored tokens. In other words, the norm of the projections of key vectors $K^h_t$ in the common drift direction represented by $\bar{Q^h}$ allows to separate between discardable positions and important ones. Most interactions being ignored by the attention pattern, we observe that most of the measured cosine-similarities are negative.
+
+For attention patterns that resemble \Cref{fig:l12h5}, we need to use a different approach as the attention value seems to depend on both key and query indices. In \Cref{fig:attn_maps_l12h5}, we propose to select a several fixed query indices and to measure the cosine-similarity with past keys.
+
+\begin{figure}[!ht]
+\centering
+\begin{subfigure}[b]{0.45\columnwidth}
+     \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/qk_position_l12h5.png}
+     \caption{Attention map}
+     \label{fig:amap_l12h5}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.45\columnwidth}
+     \includegraphics[width=\linewidth]{sources/part_1/anisotropy/imgs/cosine_q_khat_l12h5.png}
+     \caption{Cosine-similarity of queries and keys}
+     \label{fig:cossim_l12h5}
+\end{subfigure}
+\caption{Analysis of TinyLlama's attention map for layer 13 and head 6.}
+\label{fig:attn_maps_l12h5}
+\end{figure}
+
+In \Cref{fig:attn_maps_l12h5}, we remark a similar pattern than in \Cref{fig:attn_maps_l1h8}, where all interactions correspond to negative cosine-similarity, and where dominant interactions correspond to higher cosine-similarity levels. As most interactions are apparently discarded in this attention pattern, $Q^h_t$ representations need to have negative cosine-similarity with an increasing number of $K^h_t$ as we move further into the sequence, which reinforces an overall alignment of these representations.
+
+Hence, the parallel drift of queries and keys representations facilitates the emergence of a common direction that encodes a selective process in the self-attention patterns, where discardable interactions lead to lower cosine-similarity values. 
 
 Overall, this section shows that drift anisotropy emerges in the query and key representations during the training of MultiBERT, as self-attention distributions become sharper. The drifts of queries and keys tend to align, thus increasing the magnitude of scalar products, and the general sharpness of self-attention.
 
